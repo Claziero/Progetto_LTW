@@ -13,7 +13,7 @@ CREATE TABLE Utente(
     Sesso           CHAR(1) NOT NULL,
     Email           VARCHAR NOT NULL,
     Passwd          VARCHAR NOT NULL,
-    Autenticato     BOOLEAN NOT NULL,
+    Verificato      BOOLEAN NOT NULL,
     Privilegi       INT NOT NULL,
     
     PRIMARY KEY (CF)
