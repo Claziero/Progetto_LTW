@@ -15,14 +15,20 @@
     <meta http-equiv="refresh" content="0; pages/login.html"/>-->
 </head>
 
-<body class="text-center">
+<body class="">
 
     <!-- Includi l'header -->
     <?php include_once "pages/utils/header.php"; ?>
     
+    <!-- Includi la visualizzazione centrale degli elementi -->
+    <?php include "pages/utils/main-listing.php"; ?>
+    <?php include "pages/utils/main-listing.php"; ?>
+    <?php include "pages/utils/main-listing.php"; ?>
+    <?php include "pages/utils/main-listing.php"; ?>
+    <?php include "pages/utils/main-listing.php"; ?>
+    <?php include "pages/utils/main-listing.php"; ?>
 
-
-        <!-- Includi l'header -->
+    <!-- Includi il footer -->
     <?php include_once "pages/utils/footer.html"; ?>
 
 </body>

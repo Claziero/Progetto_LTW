@@ -2,8 +2,15 @@ header {
     background-color: blanchedalmond;
   }
   
-footer{
+footer {
     background-color: blanchedalmond;
-    margin-left: 0;
-    margin-right: 0;
+}
+
+.btn {
+  background-color: aqua;
+  color: black;
+}
+
+.rounded {
+  border-radius: 0.75rem !important;
 }
