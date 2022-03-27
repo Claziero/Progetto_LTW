@@ -29,7 +29,7 @@ CREATE TABLE Evento(
     Titolo              VARCHAR NOT NULL,
     Tipo                VARCHAR,
     Luogo               VARCHAR,
-    DataOra             DATETIME,
+    DataOra             TIMESTAMP,
     PostiDisponibili    INT,
     Descrizione         VARCHAR,
     Disponibile         BOOLEAN,
@@ -45,7 +45,7 @@ CREATE TABLE Evento(
 CREATE TABLE Prenotazione(
     ID_Evento           INT,
     CF_Utente           CHAR(16),
-    DataOra             DATETIME,
+    DataOra             TIMESTAMP,
 
     PRIMARY KEY (ID_Evento, CF_Utente),
     FOREIGN KEY (CF_Utente) REFERENCES Utente,
