@@ -10,6 +10,7 @@
 
     <script type="application/javascript" src="bootstrap/js/bootstrap.min.js"></script>
     <script type="application/javascript" src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="application/javascript" src="js/homeActions.js"></script>
     
     <!-- Per redirezionare ad una pagina 
     <meta http-equiv="refresh" content="0; pages/login.html"/>-->

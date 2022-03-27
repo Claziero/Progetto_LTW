@@ -1,6 +1,13 @@
 <?php
     /* Script per la connessione con il db postgres */
 
+    /* Funzione per convertire il formato della data
+    *  $date in formato YYYY-MM-DD da convertire in DD-MM-YYYY 
+    */
+    function convertDate ($date) {
+        return date("d-m-Y", strtotime($date));
+    }
+
     // Funzione per la query di richiesta degli eventi in home page
     function mainListing () {
         // Connetti al db
@@ -8,7 +15,7 @@
         $dbconn = pg_connect($conn_string) or die("Couldn't connect to database");
 
         // Crea ed esegui la query
-        $query = "SELECT Titolo, Tipo, DataOra, PostiDisponibili, Descrizione
+        $query = "SELECT Titolo, Tipo, DataOra, PostiDisponibili, Descrizione, ID
                   FROM Evento;";
         $res = pg_query($dbconn, $query);
 
@@ -20,24 +27,27 @@
 
         // Altrimenti per ogni riga crea un blocco nella home con i dati
         while ($row = pg_fetch_row($res)) {
+            $titolo = $row[0];
+            $tipo = $row[1];
+            $dataarr = explode(' ', $row[2]);
+            $data = convertDate($dataarr[0]);
+            $ora = $dataarr[1];
+            $posti = $row[3];
+            $desc = $row[4];
+            $id = $row[5]; 
+
             echo "
             <div class='listing jumbotron container border border-dark rounded mb-3'>
-                <h3 class='display-6'>$row[0]</h3>
-                <p class='lead'>Evento $row[1] il $row[2] [Posti rimanenti: $row[3]]</p>
+                <h3 class='display-6'>$titolo</h3>
+                <p class='lead'>Evento $tipo il $data ore $ora [Posti rimanenti: $posti]</p>
                 <hr class='my-1'>
-                <p>Descrizione evento: $row[4]</p>
+                <p>Descrizione: $desc</p>
                 <p class='lead'>
-                    <a href='#' class='px-1'>
-                        <button class='btn btn-info btn-lg'>Maggiori informazioni</button>
-                    </a>
-                    <a href='#' class=''>
-                        <button class='btn btn-prenota btn-lg'>Prenota</button>
-                    </a>
+                    <button class='btn btn-info btn-lg px-3' onclick='info($id)'>Maggiori informazioni</button>
+                    <button class='btn btn-prenota btn-lg' onclick='prenota($id)'>Prenota</button>
                 </p>
             </div>
             ";
-
-
         }
     }
 
