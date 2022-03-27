@@ -22,4 +22,4 @@ I file vengono organizzati secondo la seguente struttura:
 Tutte le pagine vengono salvate in formato .php, tranne quelle che non contengono alcun riferimento PHP all'interno, in tal caso hanno estensione .html .
 
 # Autori
-@Claziero, @Andrea
+@Claziero, @andrea1199
