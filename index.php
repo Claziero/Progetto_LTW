@@ -20,16 +20,12 @@
     <!-- Includi l'header -->
     <?php include_once "pages/utils/header.php"; ?>
 
-    <!-- Includi lo script per l'accesso al db -->
-    <?php include_once "php/db.php"; ?>
+    <!-- Includi lo script per l'accesso al db e ottieni gli eventi -->
+    <?php 
+        include_once "php/db.php"; 
+        mainListing();
+    ?>
     
-    <!-- Includi la visualizzazione centrale degli elementi -->
-    <?php include "pages/utils/main-listing.php"; ?>
-    <?php include "pages/utils/main-listing.php"; ?>
-    <?php include "pages/utils/main-listing.php"; ?>
-    <?php include "pages/utils/main-listing.php"; ?>
-    <?php include "pages/utils/main-listing.php"; ?>
-    <?php include "pages/utils/main-listing.php"; ?>
 
     <!-- Includi il footer -->
     <?php include_once "pages/utils/footer.html"; ?>
