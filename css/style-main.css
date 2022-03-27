@@ -1,16 +1,55 @@
-header {
-    background-color: blanchedalmond;
-  }
-  
-footer {
-    background-color: blanchedalmond;
+:root {
+  --theme-color: rgba(24, 192, 46, 0.534);
+  --btn-prenota-color: rgba(8, 211, 41, 0.603);
+  --btn-info-color: rgba(17, 177, 226, 0.534);
+  --header-color: var(--theme-color);
+  --footer-color: #efefef;
 }
 
-.btn {
-  background-color: aqua;
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  width: 100%;
+  padding-bottom: 5rem;
+  position: relative;
+}
+
+header {
+  background-color: var(--header-color);
+}
+
+footer {
+  background-color: var(--footer-color);
+  padding-top: 3rem;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn-prenota {
+  background-color: var(--btn-prenota-color);
+  color: black;
+}
+
+.btn-info {
+  background-color: var(--btn-info-color);
   color: black;
 }
 
 .rounded {
   border-radius: 0.75rem !important;
 }
+
+.listing {
+  width: 100%;
+}
+
