@@ -19,6 +19,9 @@
 
     <!-- Includi l'header -->
     <?php include_once "pages/utils/header.php"; ?>
+
+    <!-- Includi lo script per l'accesso al db -->
+    <?php include_once "php/db.php"; ?>
     
     <!-- Includi la visualizzazione centrale degli elementi -->
     <?php include "pages/utils/main-listing.php"; ?>
