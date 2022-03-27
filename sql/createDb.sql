@@ -6,15 +6,15 @@
  * Password salvate in formato MD5
 */
 CREATE TABLE Utente(
-    CF              CHAR(16),
-    Nome            VARCHAR NOT NULL,
-    Cognome         VARCHAR NOT NULL,
-    DataNascita     DATE NOT NULL,
-    Sesso           CHAR(1) NOT NULL,
-    Email           VARCHAR NOT NULL,
-    Passwd          VARCHAR NOT NULL,
-    Verificato      BOOLEAN NOT NULL,
-    Privilegi       INT NOT NULL,
+    CF                  CHAR(16),
+    Nome                VARCHAR NOT NULL,
+    Cognome             VARCHAR NOT NULL,
+    DataNascita         DATE NOT NULL,
+    Sesso               CHAR(1) NOT NULL,
+    Email               VARCHAR NOT NULL,
+    Passwd              VARCHAR NOT NULL,
+    Verificato          BOOLEAN NOT NULL,
+    Privilegi           INT NOT NULL,
     
     PRIMARY KEY (CF)
 );
@@ -26,6 +26,7 @@ CREATE TABLE Utente(
 CREATE TABLE Evento(
     ID                  INT,
     Organizzatore       CHAR(16) NOT NULL,
+    Titolo              VARCHAR NOT NULL,
     Tipo                VARCHAR,
     Luogo               VARCHAR,
     DataOra             DATETIME,
@@ -36,6 +37,19 @@ CREATE TABLE Evento(
 
     PRIMARY KEY (ID),
     FOREIGN KEY (Organizzatore) REFERENCES Utente
+);
+
+/* Tabella delle prenotazioni
+ * Ogni persona può prenotare al massimo una sola volta ogni evento
+*/
+CREATE TABLE Prenotazione(
+    ID_Evento           INT,
+    CF_Utente           CHAR(16),
+    DataOra             DATETIME,
+
+    PRIMARY KEY (ID_Evento, CF_Utente),
+    FOREIGN KEY (CF_Utente) REFERENCES Utente,
+    FOREIGN KEY (ID_Evento) REFERENCES Evento
 );
 
 /* Inserimento utente DBA */
