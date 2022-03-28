@@ -21,5 +21,8 @@ I file vengono organizzati secondo la seguente struttura:
 
 Tutte le pagine vengono salvate in formato .handlebars, tranne quelle che non contengono alcun riferimento ai placeholder di handlebars all'interno, in tal caso hanno estensione .html .
 
+# Avvio
+shell => node index
+indirizzo 127.0.0.1:3000
 # Autori
 @Claziero, @andrea1199
