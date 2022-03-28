@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Login</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/style-signin.css"/>
+        <script src="js/bootstrap.min.js"></script>
+        <script type="application/javascript" src="js/validateSignin.js"></script>
+    </head>
+
+    <body class="text-center">
+        <form action="" class="form-signin" method="post" name="form-login" onsubmit="validaForm()">
+            <a href="home.handlebars">
+                <img class="mb-4" src="img/favicon-32x32.png" width="72"/>
+            </a>
+            <h1 class="h3 mb-3 font-weight-normal">Effettua il login</h1>
+            <input type="email" name="inputEmail" class="form-control" placeholder="Email" required autofocus/>
+            <input type="password" name="inputPassword" class="form-control" placeholder="Password" required/>
+            <div id="divRemember" class="checkbox mb-3">
+                <input type="checkbox" name="rememberMe"/>
+                <label for="rememberMe">Remember me</label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" name="loginButton" type="submit">Sign in</button>
+        </form>
+    </body>
+</html>
