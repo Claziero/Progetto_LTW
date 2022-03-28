@@ -11,15 +11,15 @@ Ogni utente ha anche la possibilità di accedere alla sezione Impostazioni per a
 
 # Organizzazione dei file
 I file vengono organizzati secondo la seguente struttura:
-- I fogli di stile vengono raccolti nella cartella /css
-- Le pagine previste dal sito vengono raccolte in /pages
-  - La sottocartella /pages/utils contiene delle parti di pagina HTML che vengono importati in più pagine, come l'header e il footer che rimangono comuni tra le pagine
+- Tutti i file statici che verranno usati sono nella cartella /public, dove:
+  - I fogli di stile vengono raccolti nella cartella /public/css (anche quelli di bootstrap, solo i necessari)
+  - Gli script JavaScript necessari per le funzioni avanzate del sistema vengono raccolti in /public/js
+- Le pagine previste dal sito vengono raccolte in /views
+  - La sottocartella /views/partials contiene delle parti di pagina HTML che vengono importati in più pagine, come l'header e il footer che rimangono comuni tra le pagine
+  - La sottocartella /views/layouts contiene i layout delle pagine
 - I file riguardanti la strutturazione e la gestione del database vengono raccolti in /sql
-- Gli script JavaScript necessari per le funzioni avanzate del sistema vengono raccolti in /js
-- Files di stile Bootstrap vengono raccolti sotto /bootstrap
-- Script PHP (principalmente per l'interazione con il DB) vengono raccolti sotto /php
 
-Tutte le pagine vengono salvate in formato .php, tranne quelle che non contengono alcun riferimento PHP all'interno, in tal caso hanno estensione .html .
+Tutte le pagine vengono salvate in formato .handlebars, tranne quelle che non contengono alcun riferimento ai placeholder di handlebars all'interno, in tal caso hanno estensione .html .
 
 # Autori
 @Claziero, @andrea1199
