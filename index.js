@@ -29,5 +29,32 @@ app.get('/login', (req, res) => {
     });
 });
 
+// Render della pagina di registrazione
+app.get('/signup', (req, res) => {
+    res.render('signup', {
+        title: "Registrati", 
+        style: "style-signup.css",
+        js: "validateSignup.js"
+    });
+});
+
+// Render della pagina di impostazioni
+app.get('/settings', (req, res) => {
+    res.render('settings', {
+        title: "Impostazioni", 
+        style: "style-settings.css",
+        js: "validateSettings.js"
+    });
+});
+
+// Render della pagina di profilo
+app.get('/profile', (req, res) => {
+    res.render('profile', {
+        title: "Profilo", 
+        style: "style-settings.css", // Usa lo stesso stile di settings
+        js: ""
+    });
+});
+
 // Porta 3000 per il server
 app.listen(3000);
