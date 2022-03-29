@@ -29,5 +29,15 @@ app.get('/login', (req, res) => {
     });
 });
 
+// Render della pagina di registrazione
+app.get('/signup', (req, res) => {
+    res.render('signup', {
+        title: "Signup", 
+        style: "style-signup.css",
+        js: "validateSignup.js"
+    });
+});
+
+
 // Porta 3000 per il server
 app.listen(3000);
