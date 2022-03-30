@@ -31,23 +31,41 @@
       </b>
 
       <label for="sesso"><b>Sesso</b></label>
-      <input type="text" placeholder="inserire sesso " name="sesso" onkeyup='checksex();' required>
+      <input type="text" placeholder="inserire sesso " name="sesso" onkeyup='checkSex' required>
 
+      <!--password-->
 
+      <p>
+        <label for="psw"><b>Password</b></label>
 
-      <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="inserire Password" name="psw" id="password" onkeyup='checkLgh();' required>
+        <label>
+          <input type="checkbox" name="showPsw" style="margin-bottom:15px" onclick="funshowPsw"> mostra
+        </label>
+      </p>
 
-      <input type="password" placeholder="inserire Password" name="psw" id="password" onkeyup='checkLgh();' required>
-
+      <!--password repeat-->
+      <p>
       <label for="psw-repeat"><b>Repeat Password</b></label>
       <input type="password" placeholder="ripetere Password" name="psw-repeat" id="password_repeat" onkeyup='check();'
         required>
+
+            <label>
+          <input type="checkbox" name="showPsw2" style="margin-bottom:15px" onclick="funshowPsw2"> mostra
+        </label>
+
+      </p>
       <span id='message'></b></span>
+
+      <!--remember me-->
+
       <label>
         <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
       </label>
 
       <p>Creando un account accetti <a href="#" style="color:dodgerblue">Termini e Condizioni</a>.</p>
+
+
 
       <div class="clearfix">
         <button type="button" onclick="document.getElementById('id01').style.display='none'"
@@ -56,4 +74,5 @@
       </div>
     </div>
   </form>
+
 </div>
