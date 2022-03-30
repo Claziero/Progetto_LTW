@@ -38,11 +38,11 @@ var checkLgh = function () {
 
 var checkSex = function () {
     var a = document.getElementById('sesso').value;
-    if ((b.length) != 1) {
+    if ((a.length) != 1) {
         document.getElementById('message').style.color = 'red';
         document.getElementById('message').innerHTML = 'inserire singolo carattere per sesso';
     }
-    if ((document.getElementById('sesso').value!='M') && (document.getElementById('sesso').value!='F') && (document.getElementById('sesso').value!='U') && (document.getElementById('sesso').value!='N') ){
+    else if ((document.getElementById('sesso').value!='M') && (document.getElementById('sesso').value!='F') && (document.getElementById('sesso').value!='U') && (document.getElementById('sesso').value!='N') ){
         document.getElementById('message').style.color = 'red'
         document.getElementById('message').innerHTML = 'inserire M = maschio, F = femmina, N = non binario, U = non definito';
     }
