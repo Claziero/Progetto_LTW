@@ -1,12 +1,13 @@
 const express = require('express');
 const {engine} = require('express-handlebars');
+const requirejs = require('requirejs');
+var pg = require('pg');
 
 const app = express();
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
-
 
 // Per usare file di stile css e script javascript
 app.use(express.static("public"));
