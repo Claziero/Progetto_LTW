@@ -7,6 +7,7 @@
 // }
 
 
+
 var check = function () {
     if (document.getElementById('password').value ==
         document.getElementById('password_repeat').value) {
@@ -18,8 +19,10 @@ var check = function () {
     }
 }
 
+
 var checkLgh = function () {
-    if ((document.getElementById('password').innerHTML.length) < 6) {
+    var a = document.getElementById('password').value;
+    if ((a.length) < 6) {
         document.getElementById('message').style.color = 'red';
         document.getElementById('message').innerHTML = 'troppo corta';
     } else {
@@ -32,7 +35,8 @@ var checkLgh = function () {
 }
 
 var checkSex = function () {
-    if ((document.getElementById('sesso').innerHTML.length) != 1) {
+    var a = document.getElementById('sesso').value;
+    if ((b.length) != 1) {
         document.getElementById('message').style.color = 'red';
         document.getElementById('message').innerHTML = 'inserire singolo carattere per sesso';
     }
@@ -42,5 +46,14 @@ var checkSex = function () {
     }
 
 
+}
+
+var funshowPsw = function (){
+    var a = document.getElementById('showPsw');
+    var password = document.getElementById('psw');
+
+    if (a.checked ==true){
+        document.getElementById('psw').type="text";
+    }
 }
 
