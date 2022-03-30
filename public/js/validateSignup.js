@@ -6,6 +6,8 @@
 //     }
 // }
 
+//const { password } = require("pg/lib/defaults");
+
 
 
 var check = function () {
@@ -28,7 +30,7 @@ var checkLgh = function () {
     } else {
         document.getElementById('message').style.color = 'green';
         document.getElementById('message').innerHTML = 'lunghezza OK';
-
+        
     }
 
 
@@ -49,11 +51,22 @@ var checkSex = function () {
 }
 
 var funshowPsw = function (){
-    var a = document.getElementById('showPsw');
-    var password = document.getElementById('psw');
-
-    if (a.checked ==true){
-        document.getElementById('psw').type="text";
+    
+    var txt = document.getElementById('password');
+    if (txt.type== 'password'){
+        txt.type = 'text';
+    }else {
+        txt.type="password";
     }
+ 
 }
 
+var funshowPsw2 = function (){
+    var txt = document.getElementById('password_repeat');
+    if (txt.type== 'password'){
+        txt.type = 'text';
+    }else {
+        txt.type="password";
+    }
+ 
+}
