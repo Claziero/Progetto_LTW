@@ -1,7 +1,9 @@
 const express = require('express');
 const {engine} = require('express-handlebars');
 const requirejs = require('requirejs');
-var pg = require('pg');
+const db = require('./lib/db')
+
+db.loadMainListing(); // Stampa di prova del db
 
 const app = express();
 
