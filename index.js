@@ -69,7 +69,8 @@ app.get('/profile', (req, res) => {
 // Pagina 404 (errore)
 app.use((req, res) => {
     res.render('404', {
-        title: "Error404"
+        title: "Error404", 
+        style: "style-main.css",
     });
 })
 
