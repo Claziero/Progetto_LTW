@@ -1,9 +1,6 @@
 const express = require('express');
 const {engine} = require('express-handlebars');
-const requirejs = require('requirejs');
 const db = require('./lib/db')
-
-db.loadMainListing(); // Stampa di prova del db
 
 const app = express();
 
@@ -15,11 +12,21 @@ app.set('views', './views');
 app.use(express.static("public"));
 
 // Render della homepage
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+
+    // Esegui la query per il main listing
+    var query = await db.loadMainListing();
+    
+    // Formatta tutte le date ottenute
+    query.forEach (elem => {
+        elem['dataora'] = db.formatDate(elem['dataora'].toString());
+    });
+
     res.render('home', {
         title: "Home", 
         style: "style-main.css",
-        js: "homeActions.js"
+        js: "homeActions.js", 
+        mainList: query
     });
 });
 

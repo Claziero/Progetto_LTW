@@ -1,14 +1,15 @@
 <div class="listing jumbotron container border border-dark rounded mb-3">
-    <h3 class="display-6">Nuovo evento</h3>
-    <p class="lead">Evento xy il 20/05/22 19:00</p>
+    <h3 class="display-6">{{titolo}}</h3>
+    <p class="lead">Evento {{tipo}} il {{dataora}}</p>
+    <p class="lead">Posti disponibili: {{postidisponibili}}</p>
     <hr class="my-1">
-    <p>Descrizione evento.</p>
+    <p>{{descrizione}}.</p>
     <p class="lead">
         <a href="#" class="px-1">
-            <button class="btn btn-info btn-lg">Maggiori informazioni</button>
+            <button class="btn btn-info btn-lg" onclick="info('{{dataora}}')">Maggiori informazioni</button>
         </a>
         <a href="#" class="">
-            <button class="btn btn-prenota btn-lg">Prenota</button>
+            <button class="btn btn-prenota btn-lg" onclick="prenota({{id}})">Prenota</button>
         </a>
     </p>
 </div>
