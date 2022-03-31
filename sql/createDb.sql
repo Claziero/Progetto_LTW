@@ -24,7 +24,7 @@ CREATE TABLE Utente(
 */
 CREATE TABLE Evento(
     ID                  INT,
-    Organizzatore       CHAR(16) NOT NULL,
+    Organizzatore       VARCHAR NOT NULL,
     Titolo              VARCHAR NOT NULL,
     Tipo                VARCHAR,
     Luogo               VARCHAR,
