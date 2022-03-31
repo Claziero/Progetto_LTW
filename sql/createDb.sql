@@ -6,17 +6,16 @@
  * Password salvate in formato MD5
 */
 CREATE TABLE Utente(
-    CF                  CHAR(16),
     Nome                VARCHAR NOT NULL,
     Cognome             VARCHAR NOT NULL,
     DataNascita         DATE NOT NULL,
     Sesso               CHAR(1) NOT NULL,
-    Email               VARCHAR NOT NULL,
+    Email               VARCHAR,
     Passwd              VARCHAR NOT NULL,
     Verificato          BOOLEAN NOT NULL,
     Privilegi           INT NOT NULL,
     
-    PRIMARY KEY (CF)
+    PRIMARY KEY (Email)
 );
 
 /* Tabella Eventi organizzati
@@ -44,14 +43,14 @@ CREATE TABLE Evento(
 */
 CREATE TABLE Prenotazione(
     ID_Evento           INT,
-    CF_Utente           CHAR(16),
+    Email_Utente        VARCHAR,
     DataOra             TIMESTAMP,
 
-    PRIMARY KEY (ID_Evento, CF_Utente),
-    FOREIGN KEY (CF_Utente) REFERENCES Utente,
+    PRIMARY KEY (ID_Evento, Email_Utente),
+    FOREIGN KEY (Email_Utente) REFERENCES Utente,
     FOREIGN KEY (ID_Evento) REFERENCES Evento
 );
 
 /* Inserimento utente DBA */
 INSERT INTO Utente VALUES
-    ('DBADBA12X34Y567Z', 'Database', 'Administrator', '2000-01-01', 'M', 'dba@pgsql.com', '74cc1c60799e0a786ac7094b532f01b1', true, 2);
+    ('Database', 'Administrator', '2000-01-01', 'M', 'dba@pgsql.com', '74cc1c60799e0a786ac7094b532f01b1', true, 2);
