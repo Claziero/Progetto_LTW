@@ -51,5 +51,10 @@ a {
 
 .listing {
   width: 100%;
+  display: none;
+}
+
+.buttons-par {
+  display: none;
 }
 
