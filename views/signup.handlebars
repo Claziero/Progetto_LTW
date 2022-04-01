@@ -1,3 +1,18 @@
+<!--
+CREATE TABLE Utente(
+--    Nome                VARCHAR NOT NULL,
+--    Cognome             VARCHAR NOT NULL,
+--    DataNascita         DATE NOT NULL,
+--    Sesso               CHAR(1) NOT NULL,
+--    Email               VARCHAR,
+--    Passwd              VARCHAR NOT NULL,
+    Verificato          BOOLEAN NOT NULL,
+    Privilegi           INT NOT NULL,
+    
+    PRIMARY KEY (Email)
+);
+-->
+
 <!-- Button to open the modal -->
 <button onclick="document.getElementById('id01').style.display='block'">Sign Up</button>
 
@@ -14,12 +29,8 @@
       <input type="text" placeholder="inserire email" name="email" required>
       <!--problema di visualizzazione per type email su opera gx, da verificare  -->
 
-      <label for="CF"><b>CF</b></label>
-      <input type="text" placeholder="inserire CF" name="CF"
-        pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$" required>
-
-      <label for="name"><b>name</b></label>
-      <input type="text" placeholder="inserire name" name="name" required>
+      <label for="name"><b>nome</b></label>
+      <input type="text" placeholder="inserire nome" name="nome" required>
 
       <label for="cognome"><b>cognome</b></label>
       <input type="text" placeholder="inserire cognome" name="cognome" required>
@@ -58,11 +69,7 @@
       <p>
       <span id='message'></b></span>
       </p>
-      <!--remember me-->
 
-      <label>
-        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-      </label>
 
       <p>Creando un account accetti <a href="#" style="color:dodgerblue">Termini e Condizioni</a>.</p>
 
