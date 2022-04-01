@@ -1,218 +1,53 @@
-<!--
-CREATE TABLE Utente(
---    Nome                VARCHAR NOT NULL,
---    Cognome             VARCHAR NOT NULL,
---    DataNascita         DATE NOT NULL,
---    Sesso               CHAR(1) NOT NULL,
---    Email               VARCHAR,
---    Passwd              VARCHAR NOT NULL,
-    Verificato          BOOLEAN NOT NULL,
-    Privilegi           INT NOT NULL,
-    
-    PRIMARY KEY (Email)
-);
--->
+<section class="vh-100 bg-image"
+  style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-<!-- Button to open the modal --
-<button onclick="document.getElementById('id01').style.display='block'">Sign Up</button>
-
-<!-- The Modal (contains the Sign Up form) --
-<div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal"></span>
-  <form>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputEmail4">Email</label>
-        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputPassword4">Password</label>
-        <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputAddress">Address</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-    </div>
-    <div class="form-group">
-      <label for="inputAddress2">Address 2</label>
-      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputCity">City</label>
-        <input type="text" class="form-control" id="inputCity">
-      </div>
-      <div class="form-group col-md-4">
-        <label for="inputState">State</label>
-        <select id="inputState" class="form-control">
-          <option selected>Choose...</option>
-          <option>...</option>
-        </select>
-      </div>
-      <div class="form-group col-md-2">
-        <label for="inputZip">Zip</label>
-        <input type="text" class="form-control" id="inputZip">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck">
-        <label class="form-check-label" for="gridCheck">
-          Check me out
-        </label>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Sign in</button>
-  </form>
-
-</div>
--->
-
-<!--
-  <form class="modal-content" action="/action_page.php">
-    <div class="container">
-      <h1>Sign Up</h1>
-      <p>Compilare il form per creare un nuovo account</p>
-      <hr>
-
-      <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="inserire email" name="email" required>
-      <!--problema di visualizzazione per type email su opera gx, da verificare  --
-
-      <label for="name"><b>nome</b></label>
-      <input type="text" placeholder="inserire nome" name="nome" required>
-
-      <label for="cognome"><b>cognome</b></label>
-      <input type="text" placeholder="inserire cognome" name="cognome" required>
-
-      <label for="dataNascita"><b>Data di nascita</b></label>
-      <input type="date" placeholder="inserire data" name="dataNascita" required>
-       
-       <!--sesso--
-
-      <p>
-      <label for="sesso"><b>Sesso</b></label>
-      <input type="text" placeholder="inserire sesso " name="sesso" id='sesso' onkeyup='checkSex()' required>
-      </p>
-      <!--password--
-
-      <p>
-        <label for="psw"><b>Password</b></label>
-
-        <input type="password" placeholder="inserire Password" name="psw" id="password" onkeyup='checkLgh();' required>
-        <label>
-          <input type="checkbox" name="showPsw" id="showPassword" style="margin-bottom:15px" onclick="funshowPsw()" > mostra
-        </label>
-      </p>
-
-      <!--password repeat--
-      <p>
-      <label for="psw-repeat"><b>Repeat Password</b></label>
-      <input type="password" placeholder="ripetere Password" name="psw-repeat" id="password_repeat" onkeyup='check();'
-        required>
-
-            <label>
-          <input type="checkbox" name="showPsw2" style="margin-bottom:15px" onclick="funshowPsw2()"> mostra
-        </label>
-
-      </p>
-      <p>
-      <span id='message'></b></span>
-      </p>
+              <form action="/examples/actions/confirmation.php" method="post">
+                <h2>Sign Up</h2>
+                <p>Compilare il form per creare un nuovo account!</p>
+                <hr>
+                <!-- email-->
+                <div class="form-outline mb-4">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
+                    <input type="email" class="form-control" name="email" placeholder="Email " required="required">
+                  </div>
+                </div>
+                <div class="form-outline mb-4">
+                  <div class="row">
+                    <div class="col-xs-6"><input type="text" class="form-control" name="nome" placeholder="Nome"
+                        required="required"></div>
+                    <div class="col-xs-6"><input type="text" class="form-control" name="cognome" placeholder="Cognome"
+                        required="required"></div>
+                  </div>
+                </div>
 
 
-      <p>Creando un account accetti <a href="#" style="color:dodgerblue">Termini e Condizioni</a>.</p>
+                <div class="form-outline mb-4">
+                  <label for="data" <b>data di nascita</b></label>
+                  <input type="date" id="data" name="data" required>
+                </div>
+                <div class="form-outline mb-4">
+                  <form class="form-select">
+                    <label class="my-1 mr-2" for="sesso">sesso</label>
+                    <select class="sesso" id="sesso" required>
+                      <option value="M">maschio</option>
+                      <option value="F">femmina</option>
+                      <option value="NB">non binario</option>
+                      <option value="U">altro</option>
 
+                    </select>
 
-
-      <div class="clearfix">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'"
-          class="cancelbtn">Cancel</button>
-        <button type="submit" class="signup">Sign Up</button>
-      </div>
-    </div>
-  </form>
-
-  --
-
-<form>
-  <div class="form-row">
-    <div class="col">
-      <label for="email"><b>Email</b></label>
-      <input type="text" class="form-control" placeholder="inserire email" id="email" required>
-    </div>
-
-    <div class="col">
-      <label for="password"><b>Password</b></label>
-      <input type="text" class="form-control" placeholder="inserire email" id="email" required>
-    </div>
-
-  </div>
-</form>
-
--->
-<!DOCTYPE html>
-<html lang="en">
-<style>
-body {
-  color: #fff;
-  background: #19aa8d;
-  font-family: 'Roboto', sans-serif;
-}
-</style>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
-  <title>Bootstrap Sign up Form with Icons</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
-</head>
-<body>
-  <div class="signup-form">
-    <form action="/examples/actions/confirmation.php" method="post">
-      <h2>Sign Up</h2>
-      <p>Compilare il form per creare un nuovo account!</p>
-      <hr>
-      <!-- email-->
-      <div class="form-group">
-        <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-          <input type="email" class="form-control" name="email" placeholder="Email " required="required">
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="row">
-          <div class="col-xs-6"><input type="text" class="form-control" name="nome" placeholder="Nome" required="required"></div>
-          <div class="col-xs-6"><input type="text" class="form-control" name="cognome" placeholder="Cognome" required="required"></div>
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <label for ="data"<b>data di nascita</b></label>
-        <input type="date" id="data" name="data" required>
-      </div>
-      <div class="form-group">
-        <form class="form-select">
-          <label class="my-1 mr-2" for="sesso">sesso</label>
-          <select class="sesso" id="sesso" required>
-            <option value="M">maschio</option>
-            <option value="F">femmina</option>
-            <option value="NB">non binario</option>
-            <option value="U">altro</option>
-
-          </select>
-      
-      </div>
-      <!--
+                </div>
+                <!--
       <!--nome--
-      <div class="form-group">
+      <div class="form-outline mb-4">
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-user"></i></span>
           <input type="text" class="form-control" name="nome" placeholder="nome" required="required">
@@ -220,7 +55,7 @@ body {
       </div>
 -------------------------------------------------------------------------------------------------
       <!--cognome--
-      <div class="form-group">
+      <div class="form-outline mb-4">
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-user"></i></span>
           <input type="text" class="form-control" name="cognome" placeholder="cognome" required="required">         
@@ -229,51 +64,57 @@ body {
 
       -->
 
-      <!-- password-->
+                <!-- password-->
 
-      <div class="form-group">
-        <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-          <input type="password" class="form-control" name="password" placeholder="Password" id="password" onkeyup='checkLgh();' required="required">
+                <div class="form-outline mb-4">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" name="password" placeholder="Password" id="password"
+                      onkeyup='checkLgh();' required="required">
+                  </div>
+
+
+
+                  <input class="form-check-input" type="checkbox" value="" name="showPsw" id="showPassword"
+                    onclick="funshowPsw()">
+                  <label class="form-check-label" for="flexCheckDefault"> mostra
+                  </label>
+
+                </div>
+
+                <!--password repeat-->
+
+                <div class="form-outline mb-4">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="fa fa-lock"></i>
+                      <i class="fa fa-check"></i>
+                    </span>
+                    <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password"
+                      id="password_repeat" onkeyup='check();' required="required">
+                  </div>
+                  <input class="form-check-input" type="checkbox" value="" name="showPsw2" onclick="funshowPsw2()">
+                  <label class="form-check-label" for="flexCheckDefault"> mostra
+                  </label>
+
+                </div>
+                <div class="form-outline mb-4">
+                  <span id='message'></b></span>
+                </div>
+                <div class="form-outline mb-4">
+                  <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a
+                      href="#">Terms of
+                      Use</a> &amp; <a href="#">Privacy Policy</a></label>
+                </div>
+                <div class="form-outline mb-4">
+                  <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+                </div>
+              </form>
+              <div class="text-center">Already have an account? <a href="login">Login here</a></div>
+            </div>
+          </div>
         </div>
-    
-
-      
-        <input class="form-check-input" type="checkbox" value=""  name="showPsw" id="showPassword"  onclick="funshowPsw()" >
-        <label class="form-check-label" for="flexCheckDefault"> mostra
-        </label>
-
       </div>
-
-      <!--password repeat-->
-
-      <div class="form-group">
-        <div class="input-group">
-          <span class="input-group-addon">
-            <i class="fa fa-lock"></i>
-            <i class="fa fa-check"></i>
-          </span>
-          <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" id="password_repeat"
-            onkeyup='check();' required="required">
-          </div>
-          <input class="form-check-input" type="checkbox" value="" name="showPsw2" onclick="funshowPsw2()">
-          <label class="form-check-label" for="flexCheckDefault"> mostra
-          </label>
-          
-          </div>
-      <div class="form-group">
-        <span id='message'></b></span>
-      </div>
-      <div class="form-group">
-        <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms of
-            Use</a> &amp; <a href="#">Privacy Policy</a></label>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
-      </div>
-      </form>
-      <div class="text-center">Already have an account? <a href="login">Login here</a></div>
-      </div>
-      </body>
-      
-      </html>
+    </div>
+  </div>
+</section>
