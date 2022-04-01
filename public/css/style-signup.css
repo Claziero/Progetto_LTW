@@ -1,113 +1,116 @@
-* {box-sizing: border-box}
-/* Full-width input fields */
-  input[type=text], input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-}
 
-/* Add a background color when the inputs get focus */
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-}
 
-/* Set a style for all buttons */
-button {
-  background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
 
-button:hover {
-  opacity:1;
-}
+    body {
+      color: #fff;
+      background: #19aa8d;
+      font-family: 'Roboto', sans-serif;
+    }
 
-/* Extra styles for the cancel button */
-.cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
-}
+    .form-control,
+    .form-control:focus,
+    .input-group-addon {
+      border-color: #e1e1e1;
+    }
 
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
-  float: left;
-  width: 50%;
-}
+    .form-control,
+    .btn {
+      border-radius: 3px;
+    }
 
-.signupbtn {
-    float: right;
-    width: 50%;
-  }
-  
+    .signup-form {
+      width: 390px;
+      margin: 0 auto;
+      padding: 30px 0;
+    }
 
-/* Add padding to container elements */
-.container {
-  padding: 16px;
-}
+    .signup-form form {
+      color: #999;
+      border-radius: 3px;
+      margin-bottom: 15px;
+      background: #fff;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+      padding: 30px;
+    }
 
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: #474e5d;
-  padding-top: 50px;
-}
+    .signup-form h2 {
+      color: #333;
+      font-weight: bold;
+      margin-top: 0;
+    }
 
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
+    .signup-form hr {
+      margin: 0 -30px 20px;
+    }
 
-/* Style the horizontal ruler */
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
+    .signup-form .form-group {
+      margin-bottom: 20px;
+    }
 
-/* The Close Button (x) */
-.close {
-  position: absolute;
-  right: 35px;
-  top: 15px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #f1f1f1;
-}
+    .signup-form label {
+      font-weight: normal;
+      font-size: 13px;
+    }
 
-.close:hover,
-.close:focus {
-  color: #f44336;
-  cursor: pointer;
-}
+    .signup-form .form-control {
+      min-height: 38px;
+      box-shadow: none !important;
+    }
 
-/* Clear floats */
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
+    .signup-form .input-group-addon {
+      max-width: 42px;
+      text-align: center;
+    }
 
-/* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
-  .cancelbtn, .signupbtn {
-    width: 100%;
-  }
-}
+    .signup-form input[type="checkbox"] {
+      margin-top: 2px;
+    }
+
+    .signup-form .btn {
+      font-size: 16px;
+      font-weight: bold;
+      background: #19aa8d;
+      border: none;
+      min-width: 140px;
+    }
+
+    .signup-form .btn:hover,
+    .signup-form .btn:focus {
+      background: #179b81;
+      outline: none;
+    }
+
+    .signup-form a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .signup-form a:hover {
+      text-decoration: none;
+    }
+
+    .signup-form form a {
+      color: #19aa8d;
+      text-decoration: none;
+    }
+
+    .signup-form form a:hover {
+      text-decoration: underline;
+    }
+
+    .signup-form .fa {
+      font-size: 21px;
+    }
+
+    .signup-form .fa-paper-plane {
+      font-size: 18px;
+    }
+
+    .signup-form .fa-check {
+      color: #fff;
+      left: 17px;
+      top: 18px;
+      font-size: 7px;
+      position: absolute;
+    }
+ 
