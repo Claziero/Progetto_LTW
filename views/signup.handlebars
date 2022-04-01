@@ -8,17 +8,13 @@
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-              <form action="/examples/actions/confirmation.php" method="post">
+              <!-- Form -->
+              <form action="/signup-ok" method="post">
                 <h2>Sign Up</h2>
                 <p>Compilare il form per creare un nuovo account!</p>
                 <hr>
-                <!-- email-->
-                <div class="form-outline mb-4">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-                    <input type="email" class="form-control" name="email" placeholder="Email " required="required">
-                  </div>
-                </div>
+                
+                <!-- Nome e cognome -->
                 <div class="form-outline mb-4">
                   <div class="row">
                     <div class="col-xs-6"><input type="text" class="form-control" name="nome" placeholder="Nome"
@@ -28,7 +24,7 @@
                   </div>
                 </div>
 
-
+                <!-- Data di nascita e sesso -->
                 <div class="form-outline mb-4">
                   <label for="data" <b>data di nascita</b></label>
                   <input type="date" id="data" name="data" required>
@@ -37,35 +33,23 @@
                   <form class="form-select">
                     <label class="my-1 mr-2" for="sesso">sesso</label>
                     <select class="sesso" id="sesso" required>
+                      <option value="" selected></option>
                       <option value="M">maschio</option>
                       <option value="F">femmina</option>
-                      <option value="NB">non binario</option>
+                      <option value="N">non binario</option>
                       <option value="U">altro</option>
-
                     </select>
-
                 </div>
-                <!--
-      <!--nome--
-      <div class="form-outline mb-4">
-        <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-user"></i></span>
-          <input type="text" class="form-control" name="nome" placeholder="nome" required="required">
-        </div>
-      </div>
--------------------------------------------------------------------------------------------------
-      <!--cognome--
-      <div class="form-outline mb-4">
-        <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-user"></i></span>
-          <input type="text" class="form-control" name="cognome" placeholder="cognome" required="required">         
-        </div>
-      </div>
 
-      -->
+                <!-- email-->
+                <div class="form-outline mb-4">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
+                    <input type="email" class="form-control" name="email" placeholder="Email " required="required">
+                  </div>
+                </div>
 
                 <!-- password-->
-
                 <div class="form-outline mb-4">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
@@ -73,17 +57,12 @@
                       onkeyup='checkLgh();' required="required">
                   </div>
 
-
-
                   <input class="form-check-input" type="checkbox" value="" name="showPsw" id="showPassword"
                     onclick="funshowPsw()">
-                  <label class="form-check-label" for="flexCheckDefault"> mostra
-                  </label>
-
+                  <label class="form-check-label" for="flexCheckDefault"> mostra</label>
                 </div>
 
                 <!--password repeat-->
-
                 <div class="form-outline mb-4">
                   <div class="input-group">
                     <span class="input-group-addon">
@@ -94,8 +73,7 @@
                       id="password_repeat" onkeyup='check();' required="required">
                   </div>
                   <input class="form-check-input" type="checkbox" value="" name="showPsw2" onclick="funshowPsw2()">
-                  <label class="form-check-label" for="flexCheckDefault"> mostra
-                  </label>
+                  <label class="form-check-label" for="flexCheckDefault"> mostra</label>
 
                 </div>
                 <div class="form-outline mb-4">
