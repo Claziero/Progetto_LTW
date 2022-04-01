@@ -51,7 +51,7 @@ app.get('/signup', (req, res) => {
 });
 
 // Per prendere i dati della registrazione
-app.post('/signup-ok', (req, res) => {
+app.post('/signupValid', (req, res) => {
     console.log(req.body);
     return res.send(req.body);
 });

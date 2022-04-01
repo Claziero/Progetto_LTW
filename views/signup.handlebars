@@ -6,11 +6,11 @@
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
           <div class="card" style="border-radius: 15px;">
             <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+              <h2 class="text-uppercase text-center mb-5">Crea un account</h2>
 
               <!-- Form -->
-              <form action="/signup-ok" method="post">
-                <h2>Sign Up</h2>
+              <form action="/signupValid" method="post">
+                <h2>Registrati</h2>
                 <p>Compilare il form per creare un nuovo account!</p>
                 <hr>
                 
@@ -24,71 +24,75 @@
                   </div>
                 </div>
 
-                <!-- Data di nascita e sesso -->
+                <!-- Data di nascita -->
                 <div class="form-outline mb-4">
-                  <label for="data" <b>data di nascita</b></label>
+                  <label for="data" <b>Data di nascita</b></label>
                   <input type="date" id="data" name="data" required>
                 </div>
+
+                <!-- Sesso -->
                 <div class="form-outline mb-4">
                   <form class="form-select">
-                    <label class="my-1 mr-2" for="sesso">sesso</label>
+                    <label class="my-1 mr-2" for="sesso">Sesso</label>
                     <select class="sesso" id="sesso" required>
                       <option value="" selected></option>
                       <option value="M">maschio</option>
                       <option value="F">femmina</option>
-                      <option value="N">non binario</option>
                       <option value="U">altro</option>
                     </select>
                 </div>
 
-                <!-- email-->
+                <!-- Email -->
                 <div class="form-outline mb-4">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-                    <input type="email" class="form-control" name="email" placeholder="Email " required="required">
+                    <input type="email" class="form-control" name="email" placeholder="Email " required>
                   </div>
                 </div>
 
-                <!-- password-->
+                <!-- Password -->
                 <div class="form-outline mb-4">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                     <input type="password" class="form-control" name="password" placeholder="Password" id="password"
-                      onkeyup='checkLgh();' required="required">
+                      onchange='checkLgh()' required>
                   </div>
-
-                  <input class="form-check-input" type="checkbox" value="" name="showPsw" id="showPassword"
-                    onclick="funshowPsw()">
+                  <!-- Mostra password -->
+                  <input class="form-check-input" type="checkbox" name="showPsw" onclick="showPwd()">
                   <label class="form-check-label" for="flexCheckDefault"> mostra</label>
                 </div>
 
-                <!--password repeat-->
+                <!-- Password repeat -->
                 <div class="form-outline mb-4">
                   <div class="input-group">
                     <span class="input-group-addon">
                       <i class="fa fa-lock"></i>
                       <i class="fa fa-check"></i>
                     </span>
-                    <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password"
-                      id="password_repeat" onkeyup='check();' required="required">
+                    <input type="password" class="form-control" name="confirm_password" placeholder="Conferma Password"
+                      id="password_repeat" onchange='checkPwdMatch()' required="required">
                   </div>
-                  <input class="form-check-input" type="checkbox" value="" name="showPsw2" onclick="funshowPsw2()">
+                  <!-- Mostra password -->
+                  <input class="form-check-input" type="checkbox" name="showPsw2" onclick="showPwd2()">
                   <label class="form-check-label" for="flexCheckDefault"> mostra</label>
 
+                <!-- Termini e condizioni -->
                 </div>
                 <div class="form-outline mb-4">
                   <span id='message'></b></span>
                 </div>
                 <div class="form-outline mb-4">
-                  <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a
-                      href="#">Terms of
-                      Use</a> &amp; <a href="#">Privacy Policy</a></label>
+                  <label class="checkbox-inline"><input type="checkbox" required="required"> Accetto i 
+                    <a href="#">Termini d'uso e condizioni </a>
+                  </label>
                 </div>
+
+                <!-- Bottone di conferma -->
                 <div class="form-outline mb-4">
-                  <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+                  <button type="submit" class="btn btn-primary btn-lg">Registrati</button>
                 </div>
               </form>
-              <div class="text-center">Already have an account? <a href="login">Login here</a></div>
+              <div class="text-center">Sei già registrato? <a href="login">Accedi</a></div>
             </div>
           </div>
         </div>
