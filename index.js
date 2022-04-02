@@ -1,6 +1,7 @@
 const express = require('express');
 const {engine} = require('express-handlebars');
-const db = require('./lib/db')
+const db = require('./lib/db');
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.set('views', './views');
 
 // Per usare file di stile css e script javascript
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true}));
 
 // Render della homepage
 app.get('/', async (req, res) => {
@@ -46,6 +48,12 @@ app.get('/signup', (req, res) => {
         style: "style-signup.css",
         js: "validateSignup.js"
     });
+});
+
+// Per prendere i dati della registrazione
+app.post('/signupValid', (req, res) => {
+    console.log(req.body);
+    return res.send(req.body);
 });
 
 // Render della pagina di impostazioni

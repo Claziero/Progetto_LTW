@@ -1,72 +1,53 @@
-
-// When the user clicks anywhere outside of the modal, close it
-// window.onclick = function (event) {
-//     if (event.target == modal) {
-//         modal.style.display = "none";
-//     }
-// }
-
-//const { password } = require("pg/lib/defaults");
-
-
-
-var check = function () {
+// Verifica che le due password inserite siano uguali
+function checkPwdMatch () {
     if (document.getElementById('password').value ==
         document.getElementById('password_repeat').value) {
         document.getElementById('message').style.color = 'green';
-        document.getElementById('message').innerHTML = 'matching';
+        document.getElementById('message').innerHTML = '';
+        document.getElementById('password').style.borderColor = 'green';
+        document.getElementById('password_repeat').style.borderColor = 'green';
     } else {
         document.getElementById('message').style.color = 'red';
-        document.getElementById('message').innerHTML = 'not matching';
+        document.getElementById('message').innerHTML = 'Le password non corrispondono';
+        document.getElementById('password_repeat').style.borderColor = 'red';
     }
 }
 
-
-var checkLgh = function () {
+// Verifica la lunghezza minima della password
+function checkLgh () {
     var a = document.getElementById('password').value;
-    if ((a.length) < 6) {
+    if ((a.length) < 8) {
         document.getElementById('message').style.color = 'red';
-        document.getElementById('message').innerHTML = 'troppo corta';
+        document.getElementById('password').style.borderColor = 'red';
+        document.getElementById('message').innerHTML = 'La password deve contenere almeno 8 caratteri';
     } else {
         document.getElementById('message').style.color = 'green';
-        document.getElementById('message').innerHTML = 'lunghezza OK';
-        
+        document.getElementById('password').style.borderColor = 'green';
+        document.getElementById('message').innerHTML = '';
     }
-
-
 }
 
-var checkSex = function () {
-    var a = document.getElementById('sesso').value;
-    if ((a.length) != 1) {
-        document.getElementById('message').style.color = 'red';
-        document.getElementById('message').innerHTML = 'inserire singolo carattere per sesso';
-    }
-    else if ((document.getElementById('sesso').value!='M') && (document.getElementById('sesso').value!='F') && (document.getElementById('sesso').value!='U') && (document.getElementById('sesso').value!='N') ){
-        document.getElementById('message').style.color = 'red'
-        document.getElementById('message').innerHTML = 'inserire M = maschio, F = femmina, N = non binario, U = non definito';
-    }
-
-
-}
-
-var funshowPsw = function (){
-    
+function showPwd () {
     var txt = document.getElementById('password');
-    if (txt.type== 'password'){
+    if (txt.type == 'password') {
         txt.type = 'text';
-    }else {
-        txt.type="password";
+    } else {
+        txt.type = 'password';
     }
- 
 }
 
-var funshowPsw2 = function (){
+function showPwd2 () {
     var txt = document.getElementById('password_repeat');
-    if (txt.type== 'password'){
+    if (txt.type == 'password') {
         txt.type = 'text';
     }else {
-        txt.type="password";
+        txt.type = 'password';
     }
- 
+}
+
+// Funzione per il check del form prima dell'invio al server
+function validaForm() {
+    // Controllare che tutti i campi della form siano validi
+    // In seguito redirezionare verso /signupValid
+    
 }
