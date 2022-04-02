@@ -9,7 +9,7 @@
               <h2 class="text-uppercase text-center mb-5">Crea un account</h2>
 
               <!-- Form -->
-              <form action="/signupValid" method="post">
+              <form onsubmit="return validaForm()" action="/signupValid" method="post">
                 <h2>Registrati</h2>
                 <p>Compilare il form per creare un nuovo account!</p>
                 <hr>
@@ -32,14 +32,13 @@
 
                 <!-- Sesso -->
                 <div class="form-outline mb-4">
-                  <form class="form-select">
-                    <label class="my-1 mr-2" for="sesso">Sesso</label>
-                    <select class="sesso" id="sesso" required>
-                      <option value="" selected></option>
-                      <option value="M">maschio</option>
-                      <option value="F">femmina</option>
-                      <option value="U">altro</option>
-                    </select>
+                  <label class="my-1 mr-2" for="sesso">Sesso</label>
+                  <select name="sesso" id="sesso" required>
+                    <option value="" selected></option>
+                    <option value="M">maschio</option>
+                    <option value="F">femmina</option>
+                    <option value="U">altro</option>
+                  </select>
                 </div>
 
                 <!-- Email -->
@@ -88,11 +87,12 @@
                 </div>
 
                 <!-- Bottone di conferma -->
-                <div class="form-outline mb-4">
+                <div class="form-outline mb-4 text-center">
                   <button type="submit" class="btn btn-primary btn-lg">Registrati</button>
                 </div>
               </form>
               <div class="text-center">Sei già registrato? <a href="login">Accedi</a></div>
+              <div class="text-center">Torna alla <a href="/">Home</a></div>
             </div>
           </div>
         </div>
