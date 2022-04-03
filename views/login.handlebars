@@ -1,8 +1,8 @@
-<!-- Body della pagina di login -->
+<!-- Body della pagina di login --
 <body class="text-center">
     <form action="" class="form-signin" method="post" name="form-login" onsubmit="validaForm()">
         <a href="/">
-            <!-- Aspetto dell'immagine originale: 3.66:1 -->
+            <!-- Aspetto dell'immagine originale: 3.66:1 --
             <img class="mb-4" src="img/icon-transparent.png" alt="home" width="250" height="68"/>
         </a>
         <h1 class="h3 mb-3 font-weight-normal">Effettua il login</h1>
@@ -15,3 +15,70 @@
         <button class="btn btn-lg btn-primary btn-block" name="loginButton" type="submit">Sign in</button>
     </form>
 </body>
+-->
+
+<section class="vh-100 bg-image"
+    style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    
+                    <div class="card" style="border-radius: 15px;">
+                        
+                        <div class="card-body p-4">
+                            
+                            <h2 class="text-uppercase text-center mb-4">Login</h2>
+
+                            <!-- Form -->
+                            <form action="/loginValid" method="post">
+                                <a href="/">
+                                    <!-- Aspetto dell'immagine originale: 3.66:1 -->
+                                    <img src="img/icon-transparent.png" alt="home" width="250" height="68" />
+                                </a>
+                                <p>Inserisci i dati per accedere al tuo account!</p>
+                                <hr>
+
+
+
+                                <!-- Email -->
+                                <div class="form-outline mb-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
+                                        <input type="email" class="form-control" name="email" placeholder="Email "
+                                            required>
+                                    </div>
+                                </div>
+
+                                <!-- Password -->
+                                <div class="form-outline mb-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                        <input type="password" class="form-control" name="password"
+                                            placeholder="Password" id="password" onchange='checkLgh()' required>
+                                    </div>
+                                    <!-- Mostra password -->
+                                    <input class="form-check-input" type="checkbox" name="showPsw" onclick="showPwd()">
+                                    <label class="form-check-label" for="flexCheckDefault"> mostra</label>
+                                </div>
+                                <!-- Remember me -->
+                                <div id="divRemember" class="checkbox mb-3">
+                                    <input type="checkbox" name="rememberMe" />
+                                    <label for="rememberMe">Remember me</label>
+                                </div>
+
+                                <!-- Bottone di conferma -->
+                                <div class="form-outline mb-4">
+                                    <button type="submit" name="loginButton"
+                                        class="btn btn-primary btn-lg">Accedi</button>
+                                </div>
+                            </form>
+                            <div class="text-center">Non hai un account <a href="signup">Registrati
+                                </a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
