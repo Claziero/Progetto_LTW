@@ -38,8 +38,19 @@ function checkSex () {
 
 // verifica che la data inserita sia valida (almeno 18 anni)
 function checkData () {
-    // TBA
-    return true;
+    var today = new Date();
+    var date18 = today;
+    date18.setFullYear = today.getFullYear - 18;
+    signupdata = document.getElementById('data');
+    if ((date18.getTime)<=(today.getTime)){
+        document.getElementById('message').style.color= 'red';
+        document.getElementById('message').innerHTML = 'Devi essere maggiorenne per iscriverti al sito';
+        console.log("data valida");
+        return true;
+    } else {
+        console.log("data non valida");
+        return false;
+    }
 }
 
 // Mostra la password (1)
@@ -58,26 +69,8 @@ function showPwd2 () {
         $('#password_repeat').attr('type','password');
 }
 
-function checkAge (){
-    var today = new Date();
-    var date18 = today;
-    date18.setFullYear = today.getFullYear - 18;
-    signupdata = document.getElementById('data');
-    if ((date18.getTime)<=(today.getTime)){
-        document.getElementById('message').style.color= 'red';
-        document.getElementById('message').innerHTML = 'Devi essere maggiorenne per iscriverti al sito';
-        console.log("data valida");
-        return true;
-    } else {
-        console.log("data non valida");
-        return false;
-    }
-
-}
 
 // Funzione per il check del form prima dell'invio al server
-function validaForm() {
-    
-    // Controllare che tutti i campi della form siano validi
+function validaForm() { // Controllare che tutti i campi della form siano validi
     return (checkLgh() && checkPwdMatch() && checkSex() && checkData());
 }
