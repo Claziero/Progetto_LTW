@@ -50,6 +50,21 @@ app.get('/signup', (req, res) => {
     });
 });
 
+// Per prendere i dati del login
+app.post('/loginValid', (req,res)=>{
+    console.log(req.body);
+    var user = {
+        emai: req.body.email,
+        password: req.body.password
+    };
+    var valid= db.logUser(user);
+    if (valid) {
+        
+    }else {
+
+    }
+});
+
 // Per prendere i dati della registrazione
 app.post('/signupValid', (req, res) => {
     console.log(req.body);
