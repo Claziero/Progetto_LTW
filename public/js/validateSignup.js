@@ -2,49 +2,60 @@ const { ConditionalExpression } = require("requirejs");
 
 // Verifica che le due password inserite siano uguali
 function checkPwdMatch () {
-    if (document.getElementById('password').value ==
-        document.getElementById('password_repeat').value) {
-        document.getElementById('message').style.color = 'green';
-        document.getElementById('message').innerHTML = '';
-        document.getElementById('password').style.borderColor = 'green';
-        document.getElementById('password_repeat').style.borderColor = 'green';
+    if ($('#password').val() == $('#password_repeat').val()) {
+        $('#message').html('');
+        $('#password').attr('style', 'border-color: green');
+        $('#password_repeat').attr('style', 'border-color: green');
+        return true;
     } else {
-        document.getElementById('message').style.color = 'red';
-        document.getElementById('message').innerHTML = 'Le password non corrispondono';
-        document.getElementById('password_repeat').style.borderColor = 'red';
+        $('#message').attr('style', 'color: red');
+        $('#message').html('Le password non corrispondono');
+        $('#password_repeat').attr('style', 'border-color: red');
+        return false;
     }
 }
 
 // Verifica la lunghezza minima della password
 function checkLgh () {
-    var a = document.getElementById('password').value;
-    if ((a.length) < 8) {
-        document.getElementById('message').style.color = 'red';
-        document.getElementById('password').style.borderColor = 'red';
-        document.getElementById('message').innerHTML = 'La password deve contenere almeno 8 caratteri';
+    if ($('#password').val().length < 8) {
+        $('#password').attr('style', 'border-color: red');
+        $('#message').attr('style', 'color: red');
+        $('#message').html('La password deve contenere almeno 8 caratteri');
+        return false;        
     } else {
-        document.getElementById('message').style.color = 'green';
-        document.getElementById('password').style.borderColor = 'green';
-        document.getElementById('message').innerHTML = '';
+        $('#password').attr('style', 'border-color: green');
+        $('#message').attr('style', 'color: green');
+        $('#message').html('');
+        return true;        
     }
 }
 
+// Verifica che il sesso sia tra le scelte ammissibili
+function checkSex () {
+    var a = $('#sesso').val();
+    return (a == 'M' || a == 'F' || a == 'U');
+}
+
+// verifica che la data inserita sia valida (almeno 18 anni)
+function checkData () {
+    // TBA
+    return true;
+}
+
+// Mostra la password (1)
 function showPwd () {
-    var txt = document.getElementById('password');
-    if (txt.type == 'password') {
-        txt.type = 'text';
-    } else {
-        txt.type = 'password';
-    }
+    if ($('#password').attr('type') == 'password')
+        $('#password').attr('type','text');
+    else 
+        $('#password').attr('type','password');
 }
 
+// Mostra la password (2)
 function showPwd2 () {
-    var txt = document.getElementById('password_repeat');
-    if (txt.type == 'password') {
-        txt.type = 'text';
-    }else {
-        txt.type = 'password';
-    }
+    if ($('#password_repeat').attr('type') == 'password') 
+        $('#password_repeat').attr('type','text');
+    else 
+        $('#password_repeat').attr('type','password');
 }
 
 function checkAge (){
@@ -68,6 +79,5 @@ function checkAge (){
 function validaForm() {
     
     // Controllare che tutti i campi della form siano validi
-    // In seguito redirezionare verso /signupValid
-    
+    return (checkLgh() && checkPwdMatch() && checkSex() && checkData());
 }

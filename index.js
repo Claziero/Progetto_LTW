@@ -53,7 +53,22 @@ app.get('/signup', (req, res) => {
 // Per prendere i dati della registrazione
 app.post('/signupValid', (req, res) => {
     console.log(req.body);
-    return res.send(req.body);
+
+    // Inserisci i dati nel db
+    var user = {
+        nome: req.body.nome,
+        cognome: req.body.cognome,
+        datanasc: req.body.data,
+        sesso: req.body.sesso,
+        email: req.body.email,
+        password: req.body.password,
+        validato: true,
+        privilegi: 0
+    };
+    db.insertUser(user);
+
+    // Torna alla home
+    return res.redirect('/');
 });
 
 // Render della pagina di impostazioni
