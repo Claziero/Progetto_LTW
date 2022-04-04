@@ -1,3 +1,5 @@
+const { ConditionalExpression } = require("requirejs");
+
 // Verifica che le due password inserite siano uguali
 function checkPwdMatch () {
     if (document.getElementById('password').value ==
@@ -45,8 +47,26 @@ function showPwd2 () {
     }
 }
 
+function checkAge (){
+    var today = new Date();
+    var date18 = today;
+    date18.setFullYear = today.getFullYear - 18;
+    signupdata = document.getElementById('data');
+    if ((date18.getTime)<=(today.getTime)){
+        document.getElementById('message').style.color= 'red';
+        document.getElementById('message').innerHTML = 'Devi essere maggiorenne per iscriverti al sito';
+        console.log("data valida");
+        return true;
+    } else {
+        console.log("data non valida");
+        return false;
+    }
+
+}
+
 // Funzione per il check del form prima dell'invio al server
 function validaForm() {
+    
     // Controllare che tutti i campi della form siano validi
     // In seguito redirezionare verso /signupValid
     
