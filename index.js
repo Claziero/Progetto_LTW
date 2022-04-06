@@ -2,9 +2,10 @@ const express = require('express');
 const {engine} = require('express-handlebars');
 const db = require('./lib/db');
 const bodyParser = require('body-parser');
-// const session = require('express-session'); TBA
+const session = require('express-session'); 
 
 const app = express();
+var uuid = 0;
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
@@ -13,6 +14,14 @@ app.set('views', './views');
 // Per usare file di stile css e script javascript
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true}));
+app.use(session({
+    secret: 'segreto',
+    resave: false,
+    saveUninitialized: true,
+    unset: 'destroy',
+    name: 'nome cookie sessione',
+    cookie: {maxAge: 1000*60*60*24}, // Durata max. 1 giorno
+}));
 
 // Render della homepage
 app.get('/', async (req, res) => {
@@ -88,6 +97,13 @@ app.post('/loginValid', (req, res) => {
         if (log == 0) {
             console.log("----Utente loggato:----")
             console.log(user.email);
+
+            // Imposta la sessione
+            req.session.user = {
+                email: user.email
+            }
+
+            console.log(req.session);
 
             // Torna alla home
             return res.redirect('/');
