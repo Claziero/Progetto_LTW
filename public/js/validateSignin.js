@@ -1,4 +1,4 @@
-//variabili di ligin
+//variabili di login
 
 //inputEmail
 

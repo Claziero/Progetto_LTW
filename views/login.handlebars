@@ -1,4 +1,4 @@
-<!-- Body della pagina di login --
+<!-- Body della pagina di login
 <body class="text-center">
     <form action="" class="form-signin" method="post" name="form-login" onsubmit="validaForm()">
         <a href="/">
@@ -23,59 +23,41 @@
         <div class="container h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-                    
                     <div class="card" style="border-radius: 15px;">
-                        
                         <div class="card-body p-4">
-                            
-                            
 
                             <!-- Form -->
-                            <form action="/loginValid" method="post">
-                                <a href="/" class="py-2">
+                            <form action="/loginValid" method="post" class="form-signin" onsubmit="validaForm()">
+                                <a href="/" class="">
                                     <!-- Aspetto dell'immagine originale: 3.66:1 -->
-                                    <img src="img/icon-transparent.png" alt="home" width="250" height="68"  />
+                                    <img src="img/icon-transparent.png" alt="home"/>
                                 </a>
 
-                                <p class="py-2"> Inserisci i dati per accedere al tuo account! </p>
+                                <p> Inserisci i dati per accedere al tuo account!</p>
                                 <hr>
 
-
-
                                 <!-- Email -->
-                                <div class="form-outline mb-4">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-                                        <input type="email" class="form-control" name="email" placeholder="Email "
-                                            required>
-                                    </div>
-                                </div>
+                                <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span> <!-- non funziona -->
+                                <input type="email" class="form-control" name="email" placeholder="Email" required>
 
                                 <!-- Password -->
-                                <div class="form-outline mb-4">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                        <input type="password" class="form-control" name="password"
-                                            placeholder="Password" id="password" onchange='checkLgh()' required>
-                                    </div>
-                                    <!-- Mostra password -->
-                                    <input class="form-check-input" type="checkbox" name="showPsw" onclick="showPwd()">
-                                    <label class="form-check-label" for="flexCheckDefault"> mostra</label>
-                                </div>
+                                <input type="password" class="form-control" name="password" placeholder="Password" 
+                                    id="password" onchange='checkLgh()' required>
+                                <!-- Mostra password -->
+                                <input class="form-check-input" type="checkbox" name="showPsw" onclick="showPwd()"/>
+                                <label class="form-check-label" for="flexCheckDefault"> Mostra</label>
+                                <br><br>
                                 <!-- Remember me -->
-                                <div id="divRemember" class="checkbox mb-3">
-                                    <input type="checkbox" name="rememberMe" />
-                                    <label for="rememberMe">Remember me</label>
-                                </div>
+                                <input type="checkbox" name="rememberMe" class="form-check-input"/>
+                                <label for="rememberMe">Remember me</label>
+                                <br>
 
                                 <!-- Bottone di conferma -->
-                                <div class="form-outline mb-4">
-                                    <button type="submit" name="loginButton"
-                                        class="btn btn-primary btn-lg">Accedi</button>
+                                <div class="text-center">
+                                    <button type="submit" name="loginButton" class="btn btn-primary btn-lg btn-login">Accedi</button>
                                 </div>
                             </form>
-                            <div class="text-center">Non hai un account <a href="signup">Registrati
-                                </a></div>
+                            <div class="text-center">Non hai un account? <a href="signup">Registrati</a></div>
                         </div>
                     </div>
                 </div>
