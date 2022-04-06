@@ -38,29 +38,27 @@ function checkSex() {
 
 // verifica che la data inserita sia valida (almeno 18 anni)
 function checkData() {
+    // Data di oggi (N.B. Il mese va da 0 a 11)
     var today = new Date();
-    var date18 = today;
-    var anno= today.getFullYear();
-    console.log(anno);
-    date18.setFullYear
+    today.setFullYear(today.getFullYear() - 18);
+    
+    // Split dei dati della data inserita nel form in AAAA-MM-GG
+    var data = $('#data').val().split('-');
    
-    var signupdata = document.getElementById('data').value;
-    console.log(date18);
-    if ((date18) <= (signupdata)) {
-        // document.getElementById('message').style.color= 'green';
-        // document.getElementById('message').innerHTML = '';
+    if (data[0] > today.getFullYear() ||   // Se l'anno inserito è maggiore di corrente-18
+        (data[0] == today.getFullYear() && data[1] > today.getMonth()+1) || // o se il mese non va bene
+        // o se il giorno non va bene
+        (data[0] == today.getFullYear() && data[1] == today.getMonth()+1 && data[2] > today.getDate())) {
+
+        $('#message').attr('style', 'color: red');
+        $('#message').html('Devi essere maggiorenne per iscriverti al sito');
+        return false;
+    } 
+    // Altrimenti è corretta
+    else {
         $('#message').attr('style', 'color: green');
         $('#message').html('');
-        
-        console.log("data valida");
         return true;
-    } else {
-        // document.getElementById('message').style.color= 'red';
-        $('#message').attr('style', 'color: red');
-        // document.getElementById('message').innerHTML = 'Devi essere maggiorenne per iscriverti al sito';
-        $('#message').html('Devi essere maggiorenne per iscriverti al sito');
-        console.log("data non valida");
-        return false;
     }
 }
 
