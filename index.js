@@ -2,6 +2,7 @@ const express = require('express');
 const {engine} = require('express-handlebars');
 const db = require('./lib/db');
 const bodyParser = require('body-parser');
+// const session = require('express-session'); TBA
 
 const app = express();
 
@@ -50,23 +51,9 @@ app.get('/signup', (req, res) => {
     });
 });
 
-// Per prendere i dati del login
-app.post('/loginValid', (req,res)=>{
-    console.log(req.body);
-    var user = {
-        emai: req.body.email,
-        password: req.body.password
-    };
-    var valid= db.logUser(user);
-    if (valid) {
-        
-    }else {
-
-    }
-});
-
-// Per prendere i dati della registrazione
+// Per registrare un nuovo utente
 app.post('/signupValid', (req, res) => {
+    console.log("----Nuovo utente registrato----")
     console.log(req.body);
 
     // Inserisci i dati nel db
@@ -84,6 +71,54 @@ app.post('/signupValid', (req, res) => {
 
     // Torna alla home
     return res.redirect('/');
+});
+
+// Per prendere i dati del login
+app.post('/loginValid', (req, res) => {
+    console.log("----Nuova richiesta di login----")
+    console.log(req.body);
+
+    var user = {
+        email: req.body.email,
+        password: req.body.password
+    };
+
+    // Verifica le credenziali immesse
+    db.logUser(user).then(log => {
+        if (log == 0) {
+            console.log("----Utente loggato:----")
+            console.log(user.email);
+
+            // Torna alla home
+            return res.redirect('/');
+        }
+        else if (log == -1) {
+            console.log("----Accesso errato: pwd errata----")
+            console.log(user.email);
+            
+            res.render('login', {
+                title: "Login", 
+                style: "style-signin.css",
+                js: "validateSignin.js",
+                email: req.body.email,
+                error: 'La password non è corretta. Riprova'
+            });
+            return;
+        }
+        else if (log == -2) {
+            console.log("----Accesso errato: email errata----")
+            console.log(user.email);
+
+            res.render('login', {
+                title: "Login", 
+                style: "style-signin.css",
+                js: "validateSignin.js",
+                email: req.body.email,
+                error: 'La mail non è registrata. Riprova'
+            });
+            return;
+        }
+    });
 });
 
 // Render della pagina di impostazioni

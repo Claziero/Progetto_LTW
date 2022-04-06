@@ -1,7 +1,7 @@
 /* Inserimento tuple di prova nel DB */
 INSERT INTO Utente VALUES
-    ('Normal', 'User', '2000-01-01', 'M', 'normal@user.com', '74cc1c60799e0a786ac7094b532f01b1', true, 0),
-    ('Promoter', 'User', '2000-01-01', 'M', 'promoter@user.com', '74cc1c60799e0a786ac7094b532f01b1', true, 1);
+    ('Normal', 'User', '2000-01-01', 'M', 'normal@user.com', '63a9f0ea7bb98050796b649e85481845', true, 0),
+    ('Promoter', 'User', '2000-01-01', 'M', 'promoter@user.com', '63a9f0ea7bb98050796b649e85481845', true, 1);
 
 INSERT INTO Evento VALUES
     (1, 'promoter@user.com', 'Torneo di scacchi', 'Torneo', 'Rome, IT', '2022-04-01 10:30', 
