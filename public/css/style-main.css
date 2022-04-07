@@ -45,6 +45,12 @@ a {
   color: black;
 }
 
+.btn-login {
+  background-color: var(--btn-info-color);
+  border-color: transparent;
+  color: black;
+}
+
 .rounded {
   border-radius: 0.75rem !important;
 }

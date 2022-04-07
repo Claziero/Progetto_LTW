@@ -4,8 +4,10 @@ const db = require('./lib/db');
 const bodyParser = require('body-parser');
 const session = require('express-session'); 
 
+const SESS_NAME = 'session';
+const SECRET_STR = 'segreto';
+
 const app = express();
-var uuid = 0;
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
@@ -14,17 +16,40 @@ app.set('views', './views');
 // Per usare file di stile css e script javascript
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true}));
+
+// Per l'uso della sessione 
 app.use(session({
-    secret: 'segreto',
+    secret: SECRET_STR,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     unset: 'destroy',
-    name: 'nome cookie sessione',
-    cookie: {maxAge: 1000*60*60*24}, // Durata max. 1 giorno
+    name: SESS_NAME,
+    cookie: {maxAge: 1000*60*60*1}, // Durata max. 1 ora
 }));
+
+// Funzione per reindirizzare un utente alla pagina di login qualora non fosse loggato
+const redirectLogin = (req, res, next) => {
+    if (!req.session.user) {
+        res.redirect('/login');
+    }
+    else next();
+}
+
+// Funzione per reindirizzare un utente alla home qualora fosse loggato
+const redirectHome = (req, res, next) => {
+    if (req.session.user) {
+        res.redirect('/');
+    }
+    else next();
+}
 
 // Render della homepage
 app.get('/', async (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+    // console.log("[DEBUG] SessionID:" + req.sessionID);
+    // console.log("[DEBUG] Session:");
+    // console.log(req.session);
 
     // Esegui la query per il main listing
     var query = await db.loadMainListing();
@@ -34,16 +59,49 @@ app.get('/', async (req, res) => {
         elem['dataora'] = db.formatDate(elem['dataora'].toString());
     });
 
+    // Se l'utente è loggato allora visualizza il dropdown in alto a destra
+    if (req.session.user) {
+        div = '\
+            <div class="dropdown text-end">\
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"\
+                    data-bs-toggle="dropdown" aria-expanded="false">\
+                    <!--<img src="https://github.com/mdo.png" alt="mdo" width="40" height="40" class="rounded-circle">-->\
+                    Ciao ' + req.session.user.nome +'\
+                </a>\
+                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">\
+                    <li><a class="dropdown-item" href="settings">Impostazioni</a></li>\
+                    <li><a class="dropdown-item" href="profile">Il mio profilo</a></li>\
+                    <li><hr class="dropdown-divider"></li>\
+                    <li><a class="dropdown-item" href="logout">Esci</a></li>\
+                </ul>\
+            </div>';
+    }
+    // Altrimenti mostra solo i pulsanti di login e registrazione
+    else {
+        div = '\
+            <div class="text-end">\
+                <a href="login"><button class="btn btn-primary btn-login">Accedi</button></a>\
+                <a href="signup"><button class="btn btn-primary btn-login">Registrati</button></a>\
+            </div>';
+    }
+
     res.render('home', {
         title: "Home", 
         style: "style-main.css",
         js: "homeActions.js", 
-        mainList: query
+        mainList: query,
+        div: div
     });
 });
 
 // Render della pagina di login
-app.get('/login', (req, res) => {
+app.get('/login', redirectHome, (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+    // console.log("[DEBUG] SessionID:" + req.sessionID);
+    // console.log("[DEBUG] Session:");
+    // console.log(req.session);
+
     res.render('login', {
         title: "Login", 
         style: "style-signin.css",
@@ -52,7 +110,13 @@ app.get('/login', (req, res) => {
 });
 
 // Render della pagina di registrazione
-app.get('/signup', (req, res) => {
+app.get('/signup', redirectHome, (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+    // console.log("[DEBUG] SessionID:" + req.sessionID);
+    // console.log("[DEBUG] Session:");
+    // console.log(req.session);
+
     res.render('signup', {
         title: "Registrati", 
         style: "style-signup.css",
@@ -62,8 +126,9 @@ app.get('/signup', (req, res) => {
 
 // Per registrare un nuovo utente
 app.post('/signupValid', (req, res) => {
-    console.log("----Nuovo utente registrato----")
-    console.log(req.body);
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+    console.log(">>Nuovo utente registrato: " + req.body.email);
 
     // Inserisci i dati nel db
     var user = {
@@ -78,14 +143,22 @@ app.post('/signupValid', (req, res) => {
     };
     db.insertUser(user);
 
+    // Crea la sessione
+    req.session.user = {
+        email: user.email,
+        nome: user.nome.charAt(0).toUpperCase() + user.nome.slice(1)
+    };
+    req.session.views = 0;
+
     // Torna alla home
     return res.redirect('/');
 });
 
 // Per prendere i dati del login
 app.post('/loginValid', (req, res) => {
-    console.log("----Nuova richiesta di login----")
-    console.log(req.body);
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+    console.log(">>Nuova richiesta di login: " + req.body.email);
 
     var user = {
         email: req.body.email,
@@ -94,23 +167,21 @@ app.post('/loginValid', (req, res) => {
 
     // Verifica le credenziali immesse
     db.logUser(user).then(log => {
-        if (log == 0) {
-            console.log("----Utente loggato:----")
-            console.log(user.email);
+        if (typeof log === 'string') {
+            console.log(">>Utente loggato: " + user.email);
 
             // Imposta la sessione
             req.session.user = {
-                email: user.email
+                email: user.email,
+                nome: log.charAt(0).toUpperCase() + log.slice(1)
             }
-
-            console.log(req.session);
+            req.session.views = 0;
 
             // Torna alla home
             return res.redirect('/');
         }
         else if (log == -1) {
-            console.log("----Accesso errato: pwd errata----")
-            console.log(user.email);
+            console.log(">>Accesso errato: pwd errata (" + user.email + ")");
             
             res.render('login', {
                 title: "Login", 
@@ -122,8 +193,7 @@ app.post('/loginValid', (req, res) => {
             return;
         }
         else if (log == -2) {
-            console.log("----Accesso errato: email errata----")
-            console.log(user.email);
+            console.log(">>Accesso errato: mail errata (" + user.email + ")");
 
             res.render('login', {
                 title: "Login", 
@@ -138,7 +208,10 @@ app.post('/loginValid', (req, res) => {
 });
 
 // Render della pagina di impostazioni
-app.get('/settings', (req, res) => {
+app.get('/settings', redirectLogin, (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+
     res.render('settings', {
         title: "Impostazioni", 
         style: "style-settings.css",
@@ -147,11 +220,32 @@ app.get('/settings', (req, res) => {
 });
 
 // Render della pagina di profilo
-app.get('/profile', (req, res) => {
+app.get('/profile', redirectLogin, (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+
     res.render('profile', {
         title: "Profilo", 
         style: "style-settings.css", // Usa lo stesso stile di settings
         js: ""
+    });
+});
+
+// Render della pagina di logout
+app.get('/logout', redirectLogin, (req, res) => {
+    console.log(">>Utente uscito: " + req.session.user.email);
+
+    // Elimina la sessione
+    req.session.destroy(err => {
+        if (err) {
+            return res.redirect('/');
+        }
+
+        res.clearCookie(SESS_NAME);
+    });
+    
+    res.render('logout', {
+        title: "Logout"
     });
 });
 
