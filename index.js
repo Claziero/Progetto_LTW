@@ -128,7 +128,6 @@ app.get('/signup', redirectHome, (req, res) => {
 app.post('/signupValid', (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
     req.session.views += 1;
-    console.log(">>Nuovo utente registrato: " + req.body.email);
 
     // Inserisci i dati nel db
     var user = {
@@ -141,17 +140,34 @@ app.post('/signupValid', (req, res) => {
         validato: true,
         privilegi: 0
     };
-    db.insertUser(user);
 
-    // Crea la sessione
-    req.session.user = {
-        email: user.email,
-        nome: user.nome.charAt(0).toUpperCase() + user.nome.slice(1)
-    };
-    req.session.views = 0;
+    db.insertUser(user).then(sign => {
+        // Se c'è un errore nella registrazione
+        if (sign == -1) {
+            console.log(">>Registrazione errata: email esistente (" + user.email + ")");
 
-    // Torna alla home
-    return res.redirect('/');
+            res.render('signup', {
+                title: "Registrati", 
+                style: "style-signup.css",
+                js: "validateSignup.js",
+                error: 'La mail esiste già. Prova ad accedere'
+            });
+            return;
+        }
+        // Altrimenti vai avanti e crea la sessione
+        else {
+            console.log(">>Nuovo utente registrato: " + req.body.email);
+            
+            req.session.user = {
+                email: user.email,
+                nome: user.nome.charAt(0).toUpperCase() + user.nome.slice(1)
+            };
+            req.session.views = 0;
+    
+            // Torna alla home
+            return res.redirect('/');
+        }
+    });
 });
 
 // Per prendere i dati del login
