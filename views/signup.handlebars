@@ -1,11 +1,11 @@
-<section class="vh-100 bg-image"
-  style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+<section class="bg-image">
   <div class="mask d-flex align-items-center h-100 gradient-custom-3">
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
           <div class="card" style="border-radius: 15px;">
             <div class="card-body p-5">
+              
               <a href="/" class="text-center">
                 <!-- Aspetto dell'immagine originale: 3.66:1 -->
                 <img src="img/icon-transparent.png" alt="home" width="250" height="68" />
@@ -18,12 +18,12 @@
                 <hr>
 
                 <!-- Nome e cognome -->
-                <div class="form-outline mb-4">
+                <div class="form-outline mb-3">
                   <input type="text" class="form-control" name="nome" placeholder="Nome" required />
                   <input type="text" class="form-control" name="cognome" placeholder="Cognome" required />
                 </div>
 
-                <div class="form-outline mb-4">
+                <div class="form-outline mb-3" id="datasesso">
                   <!-- Data di nascita -->
                   <label for="data">Data di nascita</label>
                   <input type="date" id="data" name="data" onchange="checkData()" />
@@ -39,13 +39,13 @@
                 </div>
 
                 <!-- Email -->
-                <div class="form-outline mb-4 input-group">
+                <div class="form-outline mb-3 input-group">
                   <label for="email"><i class="fa fa-paper-plane"></i></label>
                   <input type="email" class="form-control" name="email" placeholder="Email" required />
                 </div>
 
                 <!-- Password -->
-                <div class="form-outline mb-4 input-group">
+                <div class="form-outline mb-3 input-group">
                   <label for="password"><i class="fa fa-lock"></i></label>
                   <input type="password" class="form-control" name="password" placeholder="Password" id="password"
                     onchange='checkLgh()' required />
@@ -56,7 +56,7 @@
                 </div>
 
                 <!-- Password repeat -->
-                <div class="form-outline mb-4 input-group">
+                <div class="form-outline mb-3 input-group">
                   <label for="password_repeat"><i class="fa fa-lock"></i></label>
                   <input type="password" class="form-control" name="password_repeat" placeholder="Conferma Password"
                     id="password_repeat" onchange='checkPwdMatch()' required />
@@ -67,17 +67,17 @@
                 </div>
 
                 <!-- Messaggio di errore -->
-                <div class="form-outline mb-4 text-danger" id='message'>{{error}}</div>
+                <div class="form-outline mb-3 text-danger" id='message'>{{error}}</div>
 
                 <!-- Termini e condizioni -->
-                <div class="form-outline mb-4">
+                <div class="form-outline mb-3">
                   <label class="checkbox-inline"><input type="checkbox" required />
                     Accetto i <a href="#">Termini d'uso e condizioni</a>
                   </label>
                 </div>
 
                 <!-- Bottone di conferma -->
-                <div class="form-outline mb-4 text-center">
+                <div class="form-outline mb-3 text-center">
                   <button type="submit" class="btn btn-primary btn-lg">Registrati</button>
                 </div>
               </form>

@@ -15,12 +15,30 @@ img {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: auto;
   width: 60%;
-  margin-bottom: 3;
 }
 
 .btn {
   background-color: var(--theme-color);
   color: black;
   border-color: transparent;
+}
+
+/* Media queries per l'adattamento a dispositivi mobili */
+@media screen and (max-width: 600px) {
+  img {
+    width: auto;
+  }
+
+  #datasesso {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-height: 720px) {
+  section {
+    height: 100vh;
+  }
 }

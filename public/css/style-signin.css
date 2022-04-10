@@ -41,3 +41,16 @@ img {
   width: 100%;
   margin: auto;
 }
+
+/* Media queries per l'adattamento a dispositivi mobili */
+@media screen and (max-width: 600px) {
+  img {
+    width: auto;
+  }
+}
+
+@media screen and (min-height: 460px) {
+  section {
+    height: 100vh;
+  }
+}
