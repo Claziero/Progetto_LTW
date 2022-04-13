@@ -8,7 +8,7 @@
             <div class="card-body p-4">
 
               <!-- Form -->
-              <form action="/loginValid" method="post" class="form-signin" onsubmit="validaForm()">
+              <form action="/loginValid" method="post" class="form-signin" onsubmit="return validaForm()">
                 <a href="/" class="">
                   <!-- Aspetto dell'immagine originale: 3.66:1 -->
                   <img src="img/icon-transparent.png" alt="home" width="250" height="68"/>
@@ -20,14 +20,13 @@
                 <!-- Email -->
                 <div class="form-outline mb-1 input-group">
                   <label for="email"><i class="fas fa-envelope fa-fw"></i></label> <!-- non funziona -->
-                  <input type="email" class="form-control" name="email" placeholder="Email" value="{{email}}" required>
+                  <input type="email" class="form-control" name="email" placeholder="Email" value="{{email}}" required/>
                 </div>
 
                 <!-- Password -->
                 <div class="form-outline mb-1 input-group">
                   <label for="password"><i class="fa fa-lock"></i></label>
-                  <input type="password" class="form-control" name="password" placeholder="Password" id="password"
-                    onchange='checkLgh()' required>
+                  <input type="password" class="form-control" name="password" placeholder="Password" id="password" required/>
                 </div>
 
                 <!-- Mostra password -->

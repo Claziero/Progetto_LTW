@@ -1,5 +1,9 @@
-<div class="listing jumbotron container border border-dark rounded mb-3">
+<div class="listing jumbotron container border border-dark rounded mb-3" id="e{{id}}">
     <h3 class="display-6">{{titolo}}</h3>
+
+    <!-- Messaggio di errore -->
+    <div class="mb-3 text-danger" id="message">{{error}}</div>
+
     <p class="lead">Evento {{tipo}} il {{dataora}}</p>
     <p class="lead">Posti disponibili: {{postidisponibili}}</p>
     <hr class="my-1">

@@ -8,6 +8,7 @@ const SESS_NAME = 'session';
 const SECRET_STR = 'segreto';
 
 const app = express();
+app.listen(3000); // Porta 3000 per il server
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
@@ -265,13 +266,52 @@ app.get('/logout', redirectLogin, (req, res) => {
     });
 });
 
+// Intercetta le prenotazioni degli eventi
+app.get('/book=*', redirectLogin, (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+
+    // Ottieni l'ID della prenotazione
+    var id = req.originalUrl.split('=')[1];
+
+    // Prova a registrare la prenotazione
+    db.book(id, req.session.user).then(b => {
+        if (b == 0) {
+            console.log(">>[Pren.evento] Prenotazione OK");
+
+            // Redireziona alla pagina del profilo
+            res.redirect('/profile');
+            res.end();
+        }
+        else if (b == -1) {
+            console.log(">>[Pren.evento] Errore nella query");
+
+            // Avvisa l'utente dell'errore
+            res.write("Errore interno durante la prenotazione. Riprova");
+            res.end();
+        }
+        else if (b == -2) {
+            console.log(">>[Pren.evento] Posti non disp");
+
+            // Avvisa l'utente dell'errore
+            res.write("Siamo spiacenti, ma i posti disponibili sono terminati!");
+            res.end();
+        }
+        else if (b == -3) {
+            console.log(">>[Pren.evento] Utente già registrato");
+
+            // Avvisa l'utente dell'errore
+            res.write("Attenzione! Sei già prenotato per questo evento. Visita il tuo profilo.");
+            res.end();
+        }
+    });
+});
+
+
 // Pagina 404 (errore)
 app.use((req, res) => {
     res.render('404', {
         title: "Error404", 
         style: "style-main.css",
     });
-})
-
-// Porta 3000 per il server
-app.listen(3000);
+});
