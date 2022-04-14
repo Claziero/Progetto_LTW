@@ -301,12 +301,42 @@ app.get('/info=*', redirectLogin, async (req, res) => {
     // Ottieni l'ID dell'evento
     var id = req.originalUrl.split('info=')[1];
 
+    // Esegui la query
     var query = await db.info(id);
 
+    // Invia i risultati (in formato JSON)
     res.send(query[0]);
     res.end();
+});
 
+// Intercetta le ricerche di eventi
+app.get('/search=*', async (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
 
+    // Ottieni il testo della ricerca
+    var src = req.originalUrl.split('search=')[1];
+    console.log(src);
+
+    // Esegui la query
+    var query = await db.search(src);
+    console.log(query);
+
+    // Formatta tutte le date ottenute
+    query.forEach (elem => {
+        elem['dataora'] = db.formatDate(elem['dataora'].toString());
+    });
+
+    res.send(query);
+    res.end();
+
+    // Renderizza la nuova pagina
+    // res.render('src', {
+    //     title: "Search", 
+    //     style: "style-main.css",
+    //     js: "homeActions.js", 
+    //     mainList: query,
+    // });
 });
 
 

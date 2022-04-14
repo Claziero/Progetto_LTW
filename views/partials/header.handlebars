@@ -16,9 +16,9 @@
             </ul>
 
             <!-- Barra di ricerca -->
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                <input type="search" class="form-control" placeholder="Cerca evento..." aria-label="Search">
-            </form>
+            <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                <input id="src" type="search" onchange="search()" class="form-control" placeholder="Cerca evento..." aria-label="Search">
+            </div>
 
             <!-- Dropdown/buttons se loggato -->
             {{#if log}}
