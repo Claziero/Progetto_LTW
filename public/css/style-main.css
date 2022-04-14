@@ -60,7 +60,7 @@ a {
   display: none;
 }
 
-.buttons-par {
+.buttons-par, #luogo, #organizzatore {
   display: none;
 }
 

@@ -258,7 +258,7 @@ app.get('/book=*', redirectLogin, (req, res) => {
     req.session.views += 1;
 
     // Ottieni l'ID della prenotazione
-    var id = req.originalUrl.split('=')[1];
+    var id = req.originalUrl.split('book=')[1];
 
     // Prova a registrare la prenotazione
     db.book(id, req.session.user).then(b => {
@@ -291,6 +291,22 @@ app.get('/book=*', redirectLogin, (req, res) => {
             res.end();
         }
     });
+});
+
+// Intercetta le richieste di info sugli eventi
+app.get('/info=*', redirectLogin, async (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+
+    // Ottieni l'ID dell'evento
+    var id = req.originalUrl.split('info=')[1];
+
+    var query = await db.info(id);
+
+    res.send(query[0]);
+    res.end();
+
+
 });
 
 

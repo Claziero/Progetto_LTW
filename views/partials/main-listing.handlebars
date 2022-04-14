@@ -1,19 +1,27 @@
 <div class="listing jumbotron container border border-dark rounded mb-3" id="e{{id}}">
-    <h3 class="display-6">{{titolo}}</h3>
+    <h3 id="titolo" class="display-6">{{titolo}}</h3>
 
     <!-- Messaggio di errore -->
-    <div class="mb-3 text-danger" id="message">{{error}}</div>
+    <div class="mb-3 text-danger" id="message"></div>
 
-    <p class="lead">Evento {{tipo}} il {{dataora}}</p>
-    <p class="lead">Posti disponibili: {{postidisponibili}}</p>
+    <p id="tipo" class="lead">Tipo evento: {{tipo}}</p>
+    <p id="dataora" class="lead"><i class="fa-solid fa-calendar-days"></i> {{dataora}}</p>
+    <p id="posti" class="lead"><i class="fa-solid fa-chair"></i> Posti disponibili: {{postidisponibili}}</p>
     <hr class="my-1">
-    <p>{{descrizione}}.</p>
+
+    <p id="desc"><i class="fa-solid fa-align-justify"></i> {{descrizione}}.</p>
+
+    <!-- Informazioni aggiuntive -->
+    <p id="luogo" class="lead"><i class="fa-solid fa-map-location-dot"></i></p>
+    <p id="organizzatore" class="lead"><i class="fa-solid fa-user-tag"></i></p>
+
+    <!-- Pulsanti -->
     <p class="lead buttons-par">
-        <a href="#" class="px-1">
-            <button class="btn btn-info btn-lg" onclick="info('{{id}}')">Maggiori informazioni</button>
+        <a class="px-1">
+            <button id="info" class="btn btn-info btn-lg" onclick="info('{{id}}')">Maggiori informazioni</button>
         </a>
-        <a href="#" class="px-1">
-            <button class="btn btn-prenota btn-lg" onclick="prenota({{id}})">Prenota</button>
+        <a class="px-1">
+            <button id="prenota" class="btn btn-prenota btn-lg" onclick="prenota({{id}})">Prenota</button>
         </a>
     </p>
 </div>
