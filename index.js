@@ -76,6 +76,7 @@ app.get('/', async (req, res) => {
                     <li><a class="dropdown-item" href="logout">Esci</a></li>\
                 </ul>\
             </div>';
+        logged = true;
     }
     // Altrimenti mostra solo i pulsanti di login e registrazione
     else {
@@ -84,6 +85,7 @@ app.get('/', async (req, res) => {
                 <a href="login"><button class="btn btn-primary btn-login">Accedi</button></a>\
                 <a href="signup"><button class="btn btn-primary btn-login">Registrati</button></a>\
             </div>';
+        logged = false;
     }
 
     res.render('home', {
@@ -91,7 +93,8 @@ app.get('/', async (req, res) => {
         style: "style-main.css",
         js: "homeActions.js", 
         mainList: query,
-        div: div
+        div: div,
+        log: logged
     });
 });
 

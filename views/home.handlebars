@@ -3,20 +3,25 @@
     <!-- Includi l'header -->
     {{> header}}
 
-    <!-- Può essere utile fare il fade-in dei blocchi evento-->
-
+    <!-- Fading dei blocchi evento -->
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             $(".listing").fadeIn(1500);
-
-            $(".listing").hover(function(){
-                $(".buttons-par", this).fadeIn("fast");
-            }, function(){
-                $(".buttons-par", this).fadeOut("fast");
-            });
         });
     </script>
-    
+
+    <!-- Se l'utente è loggato allora fai comparire i pulsanti, altrimenti no -->
+    {{#if log}}
+        <script>
+            $(document).ready(function() {
+                $(".listing").hover(function() {
+                    $(".buttons-par", this).fadeIn("fast");
+                }, function() {
+                    $(".buttons-par", this).fadeOut("fast");
+                });
+            });
+        </script>
+    {{/if}}
 
     <!-- Per ogni elemento della query crea un nuovo elemento -->
     {{#each mainList}}
