@@ -62,30 +62,13 @@ app.get('/', async (req, res) => {
 
     // Se l'utente è loggato allora visualizza il dropdown in alto a destra
     if (req.session.user) {
-        div = '\
-            <div class="dropdown text-end">\
-                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"\
-                    data-bs-toggle="dropdown" aria-expanded="false">\
-                    <!--<img src="https://github.com/mdo.png" alt="mdo" width="40" height="40" class="rounded-circle">-->\
-                    Ciao ' + req.session.user.nome +'\
-                </a>\
-                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">\
-                    <li><a class="dropdown-item" href="settings">Impostazioni</a></li>\
-                    <li><a class="dropdown-item" href="profile">Il mio profilo</a></li>\
-                    <li><hr class="dropdown-divider"></li>\
-                    <li><a class="dropdown-item" href="logout">Esci</a></li>\
-                </ul>\
-            </div>';
         logged = true;
+        utente = req.session.user.nome;
     }
     // Altrimenti mostra solo i pulsanti di login e registrazione
     else {
-        div = '\
-            <div class="text-end">\
-                <a href="login"><button class="btn btn-primary btn-login">Accedi</button></a>\
-                <a href="signup"><button class="btn btn-primary btn-login">Registrati</button></a>\
-            </div>';
         logged = false;
+        utente = '';
     }
 
     res.render('home', {
@@ -93,7 +76,7 @@ app.get('/', async (req, res) => {
         style: "style-main.css",
         js: "homeActions.js", 
         mainList: query,
-        div: div,
+        utente: utente,
         log: logged
     });
 });
