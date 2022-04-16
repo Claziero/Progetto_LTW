@@ -316,27 +316,41 @@ app.get('/search=*', async (req, res) => {
 
     // Ottieni il testo della ricerca
     var src = req.originalUrl.split('search=')[1];
-    console.log(src);
 
     // Esegui la query
     var query = await db.search(src);
-    console.log(query);
 
     // Formatta tutte le date ottenute
     query.forEach (elem => {
         elem['dataora'] = db.formatDate(elem['dataora'].toString());
     });
 
-    res.send(query);
-    res.end();
+    // Se l'utente è loggato allora visualizza il dropdown in alto a destra
+    if (req.session.user) {
+        logged = true;
+        utente = req.session.user.nome;
+    }
+    // Altrimenti mostra solo i pulsanti di login e registrazione
+    else {
+        logged = false;
+        utente = '';
+    }
+
+    // Se la query non restituisce risultati allora segnalalo
+    if (query.length == 0) 
+        error = 'La ricerca non ha prodotto risultati! Riprova';
+    else error = false;
 
     // Renderizza la nuova pagina
-    // res.render('src', {
-    //     title: "Search", 
-    //     style: "style-main.css",
-    //     js: "homeActions.js", 
-    //     mainList: query,
-    // });
+    res.render('home', {
+        title: "Ricerca", 
+        style: "style-main.css",
+        js: "homeActions.js", 
+        mainList: query,
+        utente: utente,
+        log: logged,
+        error: error
+    });
 });
 
 

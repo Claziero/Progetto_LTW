@@ -61,3 +61,13 @@ function displayError(error) {
             $("#e"+n+" #message").html(error.target.responseText);
     }
 }
+
+// Funzione per la ricerca di un evento dalla barra di testo
+function search() {
+    // Recupera il testo all'interno della barra
+    var src = $("#src").val();
+
+    // Reindirizza alla pagina di ricerca
+    window.location.replace("/search=" + src);
+    return;
+}
