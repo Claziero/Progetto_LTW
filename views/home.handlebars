@@ -14,10 +14,11 @@
     {{#if log}}
         <script>
             $(document).ready(function() {
-                $(".listing").hover(function() {
-                    $(".buttons-par", this).fadeIn("fast");
-                }, function() {
-                    $(".buttons-par", this).fadeOut("fast");
+                $(".listing").click(function() {
+                    if ($(".buttons-par", this).css("display") == "none")
+                        $(".buttons-par", this).fadeIn("fast");
+                    else 
+                        $(".buttons-par", this).fadeOut("fast");
                 });
             });
         </script>
