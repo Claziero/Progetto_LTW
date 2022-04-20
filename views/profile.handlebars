@@ -21,7 +21,6 @@ Nome                VARCHAR NOT NULL,
 <body>
     {{> header}}
 
-
     <div class="container-xl px-4 mt-4">
         <!-- Account page navigation-->
 
@@ -30,86 +29,77 @@ Nome                VARCHAR NOT NULL,
             <div class="col-xl-4">
                 <!-- Profile picture card-->
                 <div class="card mb-4 mb-xl-0">
-
                     <div class="card-body text-center">
                         <!-- Profile picture image-->
-                        <img class="img-account-profile rounded-circle mb-2"
-                            src="" alt="">
+                        <img class="img-account-profile rounded-circle mb-2" src="" alt="">
                         <!-- Profile picture help block-->
-                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                        <div class="small font-italic text-muted mb-4">JPG/PNG fino a 5 MB</div>
                         <!-- Profile picture upload button-->
-                        <span>File Upload<input type="file" id="photo" name="photo"
-                                accept="image/png, image/jpeg"></span>
+                        <span>Carica l'immagine<input type="file" id="photo" name="photo" accept="image/png, image/jpeg"></span>
                     </div>
                 </div>
             </div>
+
             <div class="col-xl-8">
                 <!-- Account details card-->
                 <div class="card mb-4">
-                    <div class="card-header">il tuo account</div>
+                    <div class="card-header">Il tuo account</div>
                     <div class="card-body">
                         <form>
                             <!-- Form Group (mail)-->
                             <div class="mb-3">
-                                <label class="small mb-1" for="inputMail">Mail</label>
-                                <input class="form-control" id="inputMail" type="email" placeholder="Inserire Mail"
-                                    value="mail">
+                                <label class="small mb-1" for="inputMail">Email</label>
+                                <input class="form-control" id="inputMail" type="email" placeholder="Inserire email"/>
                             </div>
                             <!-- Form Row  -->
                             <div class="row gx-3 mb-3">
                                 <!-- Form Group (nome)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputNome">Nome</label>
-                                    <input class="form-control" id="inputNome" type="text" placeholder="Inserire nome"
-                                        value="nome">
+                                    <input class="form-control" id="inputNome" type="text" placeholder="Inserire nome"/>
                                 </div>
                                 <!-- Form Group (cognome)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputCognome">Cognome</label>
-                                    <input class="form-control" id="inputCognome" type="text"
-                                        placeholder="Inserire cognome" value="Cognome">
+                                    <input class="form-control" id="inputCognome" type="text" placeholder="Inserire cognome"/>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <!-- Data di nascita -->
                                 <label class="small mb-1" for="data">Data di nascita</label>
-                                <input class="form-control" type="date" id="data" name="data" />
+                                <input class="form-control" type="date" id="data" name="data"/>
                             </div>
-
 
                             <!-- Form Row-->
                             <div class="row gx-3 mb-3">
-                                
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputPhone">Password</label>
-                                    <input class="form-control" id="inputPhone" type="password"
-                                        placeholder="enter a new password" value="psw">
+                                    <input class="form-control" id="inputPhone" type="password" placeholder="enter a new password"/>
                                 </div>
                                 
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="psw-repeat">Repeat password</label>
-                                    <input class="form-control" id="psw-repeat" type="password" name="psw-repeat"
-                                        placeholder="repeat your password" value="">
+                                    <label class="small mb-1" for="psw-repeat">Ripeti password</label>
+                                    <input class="form-control" id="psw-repeat" type="password" name="psw-repeat" placeholder="Ripeti password"/>
                                 </div>
                             </div>
                             <!-- Save changes button-->
                             <button class="btn btn-primary" type="button">Conferma</button>
-
-
-
                         </form>
-
-
                     </div>
                 </div>
 
                 <div class="card mb-4">
-                    le mie prenotazioni:
+                    <div class="card-header">Le tue prenotazioni</div>
+                    <div class="card-body">
+                        <!-- TBC -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-       <!-- Includi il footer -->
-    {{> footer}}/
+
+    <!-- Includi il footer -->
+    {{> footer}}
+
 </body>

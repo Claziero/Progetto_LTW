@@ -227,10 +227,19 @@ app.get('/profile', redirectLogin, (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
     req.session.views += 1;
 
+    // Se l'utente è loggato allora visualizza il dropdown in alto a destra
+    if (req.session.user) {
+        logged = true;
+        utente = req.session.user.nome;
+    }
+
     res.render('profile', {
         title: "Profilo", 
-        style: "style-settings.css", // Usa lo stesso stile di settings
-        js: ""
+        //style: "style-settings.css", // Usa lo stesso stile di settings
+        style: "style-main.css",
+        js: "",
+        log: logged,
+        utente: utente
     });
 });
 
