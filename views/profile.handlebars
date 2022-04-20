@@ -1,23 +1,4 @@
 <!-- Usare il foglio di stile style-profile.css per tutti gli stili usati -->
-
-
-
-
-<!--
-<dt><strong>nome</strong></dt>
-<i class="fa fa-pencil"></i>
-
-
-Nome                VARCHAR NOT NULL,
-    Cognome             VARCHAR NOT NULL,
-    DataNascita         DATE NOT NULL,
-    Sesso               CHAR(1) NOT NULL,
-    Email               VARCHAR,
-    Passwd              VARCHAR NOT NULL,
-    Verificato          BOOLEAN NOT NULL,
-    Privilegi           INT NOT NULL,
--->
-
 <body>
     {{> header}}
 
@@ -30,65 +11,13 @@ Nome                VARCHAR NOT NULL,
                 <!-- Profile picture card-->
                 <div class="card mb-4 mb-xl-0">
                     <div class="card-body text-center">
-                        <!-- Profile picture image-->
-                        <img class="img-account-profile rounded-circle mb-2" src="" alt="">
-                        <!-- Profile picture help block-->
-                        <div class="small font-italic text-muted mb-4">JPG/PNG fino a 5 MB</div>
-                        <!-- Profile picture upload button-->
-                        <span>Carica l'immagine<input type="file" id="photo" name="photo" accept="image/png, image/jpeg"></span>
+                        Menu di navigazione
+                        <!-- TBC -->
                     </div>
                 </div>
             </div>
 
             <div class="col-xl-8">
-                <!-- Account details card-->
-                <div class="card mb-4">
-                    <div class="card-header">Il tuo account</div>
-                    <div class="card-body">
-                        <form>
-                            <!-- Form Group (mail)-->
-                            <div class="mb-3">
-                                <label class="small mb-1" for="inputMail">Email</label>
-                                <input class="form-control" id="inputMail" type="email" placeholder="Inserire email"/>
-                            </div>
-                            <!-- Form Row  -->
-                            <div class="row gx-3 mb-3">
-                                <!-- Form Group (nome)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputNome">Nome</label>
-                                    <input class="form-control" id="inputNome" type="text" placeholder="Inserire nome"/>
-                                </div>
-                                <!-- Form Group (cognome)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputCognome">Cognome</label>
-                                    <input class="form-control" id="inputCognome" type="text" placeholder="Inserire cognome"/>
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <!-- Data di nascita -->
-                                <label class="small mb-1" for="data">Data di nascita</label>
-                                <input class="form-control" type="date" id="data" name="data"/>
-                            </div>
-
-                            <!-- Form Row-->
-                            <div class="row gx-3 mb-3">
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputPhone">Password</label>
-                                    <input class="form-control" id="inputPhone" type="password" placeholder="enter a new password"/>
-                                </div>
-                                
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="psw-repeat">Ripeti password</label>
-                                    <input class="form-control" id="psw-repeat" type="password" name="psw-repeat" placeholder="Ripeti password"/>
-                                </div>
-                            </div>
-                            <!-- Save changes button-->
-                            <button class="btn btn-primary" type="button">Conferma</button>
-                        </form>
-                    </div>
-                </div>
-
                 <div class="card mb-4">
                     <div class="card-header">Le tue prenotazioni</div>
                     <div class="card-body">

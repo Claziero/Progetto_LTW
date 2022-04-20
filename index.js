@@ -215,10 +215,19 @@ app.get('/settings', redirectLogin, (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
     req.session.views += 1;
 
+    // Se l'utente è loggato allora visualizza il dropdown in alto a destra
+    if (req.session.user) {
+        logged = true;
+        utente = req.session.user.nome;
+    }
+
     res.render('settings', {
         title: "Impostazioni", 
-        style: "style-settings.css",
-        js: "validateSettings.js"
+        // style: "style-settings.css",
+        style: "style-main.css",
+        js: "validateSettings.js",
+        log: logged,
+        utente: utente
     });
 });
 
