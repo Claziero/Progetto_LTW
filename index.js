@@ -231,6 +231,48 @@ app.get('/settings', redirectLogin, (req, res) => {
     });
 });
 
+// Intercetta i cambi dati del profilo utente
+app.post('/changeUser', redirectLogin, (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+
+    // Inserisci i dati nel db
+    var user = {
+        nome: req.body.nome,
+        cognome: req.body.cognome,
+        datanasc: req.body.data,
+        email: req.session.user.email,
+        oldpwd: req.body.oldPsw,
+        newpwd: req.body.password
+    };
+
+    db.changeUser(user).then(b => {
+        // Se c'è un errore nella registrazione
+        if (b == -1) {
+            console.log(">>Errore nel cambio dati (" + user.email + ")");
+
+            res.render('settings', {
+                title: "Impostazioni", 
+                // style: "style-settings.css",
+                style: "style-main.css",
+                js: "validateSettings.js",
+                log: logged,
+                utente: utente,
+                error: 'Errore durante l\'aggiornamento dei dati. Riprova'
+            });
+            return;
+        }
+        // Altrimenti vai avanti e crea la sessione
+        else if (b == 0) {
+            console.log(">>Cambio dati effettuato (" + req.session.user.email + ")");
+            
+            res.redirect("/logout");
+            res.end();
+            return;
+        }
+    });
+});
+
 // Render della pagina di profilo
 app.get('/profile', redirectLogin, async (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina

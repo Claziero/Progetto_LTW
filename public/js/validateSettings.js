@@ -1,5 +1,5 @@
 function showSetPwd1 () {
-    var txt = document.getElementById('inputPsw');
+    var txt = document.getElementById('password');
     if (txt.type == 'password') {
         txt.type = 'text';
     } else {
@@ -8,7 +8,7 @@ function showSetPwd1 () {
 }
 
 function showSetPwd2() {
-    var txt = document.getElementById('psw-repeat');
+    var txt = document.getElementById('password_repeat');
     if (txt.type == 'password') {
         txt.type = 'text';
     } else {
@@ -21,27 +21,33 @@ function showSetPwd2() {
 function checkLghSet() {
     if ($('#password').val().length < 8) {
         $('#password').attr('style', 'border-color: red');
-        $('#messageSet').attr('style', 'color: red');
-        $('#messageSet').html('La password deve contenere almeno 8 caratteri');
+        $('#message').attr('style', 'color: red');
+        $('#message').html('La password deve contenere almeno 8 caratteri');
         return false;
     } else {
         $('#password').attr('style', 'border-color: green');
-        $('#messageSet').attr('style', 'color: green');
-        $('#messageSet').html('');
+        $('#message').attr('style', 'color: green');
+        $('#message').html('');
         return true;
     }
 }
 
 function checkPwdMatch() {
     if ($('#password').val() == $('#password_repeat').val()) {
-        $('#messageSet').html('');
+        $('#message').html('');
         $('#password').attr('style', 'border-color: green');
         $('#password_repeat').attr('style', 'border-color: green');
         return true;
     } else {
-        $('#messageSet').attr('style', 'color: red');
-        $('#messageSet').html('Le password non corrispondono');
+        $('#message').attr('style', 'color: red');
+        $('#message').html('Le password non corrispondono');
         $('#password_repeat').attr('style', 'border-color: red');
         return false;
     }
+}
+
+// Funzione per il controllo dei campi immessi prima della submit
+function validaForm() {
+    // COMPLETARE
+    return true;
 }

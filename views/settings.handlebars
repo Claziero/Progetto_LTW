@@ -28,24 +28,19 @@
                 <div class="card mb-4">
                     <div class="card-header">Il tuo account</div>
                     <div class="card-body">
-                        <form>
-                            <!-- Form Group (mail)-->
-                            <div class="mb-3">
-                                <label class="small mb-1" for="inputMail">Email</label>
-                                <input class="form-control" id="inputMail" type="email" placeholder="Inserire email" />
-                            </div>
+                        <form action="/changeUser" method="POST" onsubmit="return validaForm()">
                             <!-- Form Row  -->
                             <div class="row gx-3 mb-3">
                                 <!-- Form Group (nome)-->
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="inputNome">Nome</label>
-                                    <input class="form-control" id="inputNome" type="text"
+                                    <label class="small mb-1" for="nome">Nome</label>
+                                    <input class="form-control" id="nome" name="nome" type="text"
                                         placeholder="Inserire nome" />
                                 </div>
                                 <!-- Form Group (cognome)-->
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="inputCognome">Cognome</label>
-                                    <input class="form-control" id="inputCognome" type="text"
+                                    <label class="small mb-1" for="cognome">Cognome</label>
+                                    <input class="form-control" id="cognome" name="cognome" type="text"
                                         placeholder="Inserire cognome" />
                                 </div>
                             </div>
@@ -57,22 +52,23 @@
                             </div>
 
                             <div class="mb-3">
-                                <!-- Data di nascita -->
+                                <!-- Password attuale -->
                                 <label class="small mb-1" for="oldPsw">Password attuale</label>
-                                <input class="form-control" type="password" id="oldPsw" />
+                                <input class="form-control" type="password" id="oldPsw" name="oldPsw"
+                                    placeholder="Inserisci la password attuale" />
                             </div>
 
                             <!-- Form Row-->
                             <div class="row gx-3 mb-3">
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="inputPsw">Nuova password</label>
-                                    <input class="form-control" id="inputPsw" type="password"
-                                        placeholder="enter a new password" onchange="checkLghSet" />
+                                    <label class="small mb-1" for="password">Nuova password</label>
+                                    <input class="form-control" id="password" type="password" name="password"
+                                        placeholder="Inserisci una nuova password" onchange="checkLghSet" />
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="psw-repeat">Ripeti password</label>
-                                    <input class="form-control" id="psw-repeat" type="password" name="psw-repeat"
+                                    <label class="small mb-1" for="password_repeat">Ripeti password</label>
+                                    <input class="form-control" id="password_repeat" type="password" name="psw-repeat"
                                         placeholder="Ripeti password" onchange='checkPwdMatch()'/>
                                 </div>
                             </div>
@@ -92,10 +88,10 @@
                             </div>
 
                             <!-- Messaggio di errore -->
-                            <div class="form-outline mb-3 text-danger" id='messageSet'>{{error}}</div>
+                            <div class="form-outline mb-3 text-danger" id='message'>{{error}}</div>
 
                             <!-- Save changes button-->
-                            <button class="btn btn-primary" type="button">Conferma</button>
+                            <button class="btn btn-primary" type="submit">Conferma</button>
                         </form>
                     </div>
                 </div>
