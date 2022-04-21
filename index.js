@@ -232,7 +232,7 @@ app.get('/settings', redirectLogin, (req, res) => {
 });
 
 // Render della pagina di profilo
-app.get('/profile', redirectLogin, (req, res) => {
+app.get('/profile', redirectLogin, async (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
     req.session.views += 1;
 
@@ -242,11 +242,21 @@ app.get('/profile', redirectLogin, (req, res) => {
         utente = req.session.user.nome;
     }
 
+    // Esegui la query per il main listing
+    var query = await db.prenotazioni(req.session.user.email);
+    
+    // Formatta tutte le date ottenute
+    query.forEach (elem => {
+        elem['dataora'] = db.formatDate(elem['dataora'].toString());
+    });
+
     res.render('profile', {
         title: "Profilo", 
         //style: "style-settings.css", // Usa lo stesso stile di settings
         style: "style-main.css",
-        js: "",
+        js: "profileActions.js",
+        prenotazioni: query,
+        notEmpty: query.length > 0,
         log: logged,
         utente: utente
     });
@@ -308,6 +318,34 @@ app.get('/book=*', redirectLogin, (req, res) => {
             res.write("Attenzione! Sei già prenotato per questo evento. Visita il tuo profilo.");
             res.end();
         }
+    });
+});
+
+// Intercetta le disdette degli eventi
+app.get('/unbook=*', redirectLogin, (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+
+    // Ottieni l'ID della prenotazione
+    var id = req.originalUrl.split('unbook=')[1];
+
+    // Prova a registrare la prenotazione
+    db.unbook(id, req.session.user.email).then(b => {
+        // Se è andata a buon fine l'eliminazione
+        if (b == 0) 
+            console.log(">>[Pren.evento] Disdetta OK");
+
+        // Altrimenti se c'è stato un errore nella query
+        else if (b == -1)
+            console.log(">>[Pren.evento] Errore nella query");
+
+        // Altrimenti se non c'è stata un'eliminazione
+        else if (b == -2) 
+            console.log(">>[Pren.evento] Disdetta FAILED");
+
+        // Redireziona alla pagina del profilo
+        res.redirect('/profile');
+        res.end();
     });
 });
 

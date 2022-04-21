@@ -7,7 +7,7 @@
 
         <hr class="mt-0 mb-4">
         <div class="row">
-            <div class="col-xl-4">
+            <div class="col-xl-3">
                 <!-- Profile picture card-->
                 <div class="card mb-4 mb-xl-0">
                     <div class="card-body text-center">
@@ -17,11 +17,35 @@
                 </div>
             </div>
 
-            <div class="col-xl-8">
+            <div class="col-xl-9">
                 <div class="card mb-4">
                     <div class="card-header">Le tue prenotazioni</div>
                     <div class="card-body">
                         <!-- TBC -->
+                        {{#if notEmpty}}
+                            <table class="table">
+                                <!-- Header della tabella -->
+                                <tr>
+                                    <th>Titolo evento</th>
+                                    <th>Data evento</th>
+                                    <th>Azioni</th>
+                                </tr>
+
+                                <!-- Dati prenotazioni -->
+                                {{#each prenotazioni}}
+                                    <tr>
+                                        <td>{{titolo}}</td>
+                                        <td>{{dataora}}</td>
+                                        <td>
+                                            <button class="btn btn-danger" onclick="unbook({{id}})">Disdici</button>
+                                        </td>
+                                    </tr>
+                                {{/each}}
+                            </table>
+
+                        {{else}}
+                            Non ci sono prenotazioni recenti.
+                        {{/if}}
                     </div>
                 </div>
             </div>
