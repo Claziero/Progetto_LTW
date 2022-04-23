@@ -1,4 +1,4 @@
-const { type } = require("express/lib/response");
+// const { type } = require("express/lib/response");
 
 function showSetPwd1 () {
     var txt = document.getElementById('password');
@@ -49,22 +49,13 @@ function checkPwdMatch() {
 }
 
 function enableChanges(){
-    
-    var el = document.getElementById('bottone');
-    if (el.type == 'button' ){
-        el.type='submit';
-        el.value = 'conferma';
-        document.getElementById('nome').removeAttribute('readonly');
-        document.getElementById('cognome').removeAttribute('readonly');
-        document.getElementById('data').removeAttribute('readonly');
-        document.getElementById('oldPsw').removeAttribute('readonly');
-        document.getElementById('password').removeAttribute('readonly');
-        document.getElementById('password_repeat').removeAttribute('readonly');
-
-
-    }
-
-
+    $("#btnModifica").hide();
+    $('#nome').removeAttr('readonly');
+    $('#cognome').removeAttr('readonly');
+    $('#data').removeAttr('readonly');
+    $('#oldPsw').removeAttr('readonly');
+    $('#password').removeAttr('readonly');
+    $('#password_repeat').removeAttr('readonly');
 }
 
 

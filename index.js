@@ -211,7 +211,7 @@ app.post('/loginValid', (req, res) => {
 });
 
 // Render della pagina di impostazioni
-app.get('/settings', redirectLogin, (req, res) => {
+app.get('/settings', redirectLogin, async (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
     req.session.views += 1;
 
@@ -221,13 +221,23 @@ app.get('/settings', redirectLogin, (req, res) => {
         utente = req.session.user.nome;
     }
 
+    // Prendi i dati utente da mettere nei campi
+    var userData = await db.getUserData(req.session.user.email);
+
+    // Formatta la data in YYYY-MM-DD
+    var d = new Date(userData[0].datanascita);
+    var data = d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
+
     res.render('settings', {
         title: "Impostazioni", 
         // style: "style-settings.css",
         style: "style-main.css",
         js: "validateSettings.js",
         log: logged,
-        utente: utente
+        utente: utente,
+        nome: userData[0].nome,
+        cognome: userData[0].cognome,
+        data: data
     });
 });
 

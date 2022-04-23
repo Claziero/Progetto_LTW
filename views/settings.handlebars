@@ -26,7 +26,9 @@
             <div class="col-xl-8">
                 <!-- Account details card-->
                 <div class="card mb-4">
-                    <div class="card-header">Il tuo account</div>
+                    <div class="card-header">Il tuo account
+                        <button class="btn btn-primary" onclick="enableChanges()" id="btnModifica">Modifica</button>
+                    </div>
                     <div class="card-body">
                         <form action="/changeUser" method="POST" onsubmit="return validaForm()">
                             <!-- Form Row  -->
@@ -35,20 +37,20 @@
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="nome">Nome</label>
                                     <input class="form-control" id="nome" name="nome" type="text" 
-                                        placeholder="Inserire nome" readonly />
+                                        placeholder="Inserire nome" value="{{nome}}" readonly />
                                 </div>
                                 <!-- Form Group (cognome)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="cognome">Cognome</label>
                                     <input class="form-control" id="cognome" name="cognome" type="text" 
-                                        placeholder="Inserire cognome" readonly />
+                                        placeholder="Inserire cognome" value="{{cognome}}" readonly />
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <!-- Data di nascita -->
                                 <label class="small mb-1" for="data">Data di nascita</label> 
-                                <input class="form-control" type="date" id="data" name="data" readonly/>
+                                <input class="form-control" type="date" id="data" name="data" value="{{data}}" readonly/>
                             </div>
 
                             <div class="mb-3">
@@ -82,13 +84,11 @@
                                 </div>
                             </div>
 
-
                             <!-- Messaggio di errore -->
                             <div class="form-outline mb-3 text-danger" id='message'>{{error}}</div>
-
                             
                             <!-- Save changes button-->
-                            <input class="btn btn-primary" id="bottone" type='button' value="Modifica" onclick="enableChanges()"></input>
+                            <button class="btn btn-primary" type="submit">Conferma</button>
                         </form>
                     </div>
                 </div>
