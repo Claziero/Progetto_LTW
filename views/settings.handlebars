@@ -34,64 +34,61 @@
                                 <!-- Form Group (nome)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="nome">Nome</label>
-                                    <input class="form-control" id="nome" name="nome" type="text"
-                                        placeholder="Inserire nome" />
+                                    <input class="form-control" id="nome" name="nome" type="text" 
+                                        placeholder="Inserire nome" readonly />
                                 </div>
                                 <!-- Form Group (cognome)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="cognome">Cognome</label>
-                                    <input class="form-control" id="cognome" name="cognome" type="text"
-                                        placeholder="Inserire cognome" />
+                                    <input class="form-control" id="cognome" name="cognome" type="text" 
+                                        placeholder="Inserire cognome" readonly />
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <!-- Data di nascita -->
-                                <label class="small mb-1" for="data">Data di nascita</label>
-                                <input class="form-control" type="date" id="data" name="data" />
+                                <label class="small mb-1" for="data">Data di nascita</label> 
+                                <input class="form-control" type="date" id="data" name="data" readonly/>
                             </div>
 
                             <div class="mb-3">
                                 <!-- Password attuale -->
                                 <label class="small mb-1" for="oldPsw">Password attuale</label>
-                                <input class="form-control" type="password" id="oldPsw" name="oldPsw"
+                                <input class="form-control" type="password" id="oldPsw" name="oldPsw" readonly
                                     placeholder="Inserisci la password attuale" />
                             </div>
 
                             <!-- Form Row-->
                             <div class="row gx-3 mb-3">
+                                <!--pass-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="password">Nuova password</label>
-                                    <input class="form-control" id="password" type="password" name="password"
+                                    <input class="form-control" id="password" type="password" name="password"  readonly
                                         placeholder="Inserisci una nuova password" onchange="checkLghSet" />
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="password_repeat">Ripeti password</label>
-                                    <input class="form-control" id="password_repeat" type="password" name="psw-repeat"
-                                        placeholder="Ripeti password" onchange='checkPwdMatch()'/>
-                                </div>
-                            </div>
-
-                            <div class="row gx-3 mb-3">
-                                <div class="col-md-6">
+                                <!--showpass-->
                                     <input class="form-check-input" type="checkbox" name="showPsw2"
                                         onclick="showSetPwd1()">
                                     <label for="password_repeat"><i class="fa fa-eye"></i></label>
                                 </div>
-
+                                <!--pass2-->
                                 <div class="col-md-6">
+                                    <label class="small mb-1" for="password_repeat">Ripeti password</label>
+                                    <input class="form-control" id="password_repeat" type="password" name="psw-repeat" readonly
+                                        placeholder="Ripeti password" onchange='checkPwdMatch()' />
+                                <!--showpass-->
                                     <input class="form-check-input" type="checkbox" name="showPsw2"
                                         onclick="showSetPwd2()">
                                     <label for="password_repeat"><i class="fa fa-eye"></i></label>
                                 </div>
                             </div>
 
+
                             <!-- Messaggio di errore -->
                             <div class="form-outline mb-3 text-danger" id='message'>{{error}}</div>
 
+                            
                             <!-- Save changes button-->
-                            <button class="btn btn-primary" type="submit">Conferma</button>
+                            <input class="btn btn-primary" id="bottone" type='button' value="Modifica" onclick="enableChanges()"></input>
                         </form>
                     </div>
                 </div>

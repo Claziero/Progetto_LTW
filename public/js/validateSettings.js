@@ -1,3 +1,5 @@
+const { type } = require("express/lib/response");
+
 function showSetPwd1 () {
     var txt = document.getElementById('password');
     if (txt.type == 'password') {
@@ -45,6 +47,26 @@ function checkPwdMatch() {
         return false;
     }
 }
+
+function enableChanges(){
+    
+    var el = document.getElementById('bottone');
+    if (el.type == 'button' ){
+        el.type='submit';
+        el.value = 'conferma';
+        document.getElementById('nome').removeAttribute('readonly');
+        document.getElementById('cognome').removeAttribute('readonly');
+        document.getElementById('data').removeAttribute('readonly');
+        document.getElementById('oldPsw').removeAttribute('readonly');
+        document.getElementById('password').removeAttribute('readonly');
+        document.getElementById('password_repeat').removeAttribute('readonly');
+
+
+    }
+
+
+}
+
 
 // Funzione per il controllo dei campi immessi prima della submit
 function validaForm() {
