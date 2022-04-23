@@ -50,6 +50,7 @@ function checkPwdMatch() {
 
 function enableChanges(){
     $("#btnModifica").hide();
+    $('#btnSubmit').removeAttr('hidden');
     $('#nome').removeAttr('readonly');
     $('#cognome').removeAttr('readonly');
     $('#data').removeAttr('readonly');
