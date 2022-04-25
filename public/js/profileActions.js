@@ -42,3 +42,18 @@ function showAdmin(){
     document.getElementById('adminTab').setAttribute('class', 'nav-link active');
 
 }
+
+
+function setDates(){
+    var today= new Date();
+    var nextYear=today.setFullYear()+1;
+    console.log('today');
+    console.log(nextYear);
+    //$('#dataTime').attr('min', 'today');
+    $('#dataTime').attr('max', 'nextYear');
+    
+    document.getElementById('dataTime').setAttribute('min', today);
+    document.getElementById('dataTime').setAttribute('max', nextYear);
+    
+
+}
