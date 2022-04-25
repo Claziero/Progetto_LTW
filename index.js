@@ -296,7 +296,8 @@ app.get('/profile', redirectLogin, async (req, res) => {
 
     // Esegui la query per il main listing
     var query = await db.prenotazioni(req.session.user.email);
-    
+    var livello = (await db.getLevel(req.session.user.email))[0].privilegi;
+    console.log('livello' +livello);
     // Formatta tutte le date ottenute
     query.forEach (elem => {
         elem['dataora'] = db.formatDate(elem['dataora'].toString());
@@ -310,7 +311,9 @@ app.get('/profile', redirectLogin, async (req, res) => {
         prenotazioni: query,
         notEmpty: query.length > 0,
         log: logged,
-        utente: utente
+        utente: utente,
+        privilegi: livello==1
+
     });
 });
 
