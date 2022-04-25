@@ -43,17 +43,14 @@ function showAdmin(){
 
 }
 
-
+// Funzione per settare la data minima e massima di creazione di un evento
 function setDates(){
-    var today= new Date();
-    var nextYear=today.setFullYear()+1;
-    console.log('today');
-    console.log(nextYear);
-    //$('#dataTime').attr('min', 'today');
-    $('#dataTime').attr('max', 'nextYear');
-    
-    document.getElementById('dataTime').setAttribute('min', today);
-    document.getElementById('dataTime').setAttribute('max', nextYear);
-    
+    var nextYear = new Date();
+    nextYear.setFullYear(nextYear.getFullYear() + 1);
 
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    $('#dataTime').attr('min', tomorrow.toISOString().slice(0, 16));
+    $('#dataTime').attr('max', nextYear.toISOString().slice(0, 16));
 }

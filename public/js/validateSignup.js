@@ -36,7 +36,7 @@ function checkSex() {
     return (a == 'M' || a == 'F' || a == 'U');
 }
 
-// verifica che la data inserita sia valida (almeno 18 anni)
+// Verifica che la data inserita sia valida (almeno 18 anni)
 function checkData() {
     // Data di oggi (N.B. Il mese va da 0 a 11)
     var today = new Date();

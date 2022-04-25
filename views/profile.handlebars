@@ -24,28 +24,24 @@
             <ul class="nav nav-tabs" id="prof-tab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link" id="prenotazioniTab" data-toggle="tab" onclick="showPrenotazioni()"
-                        href="#prenotazioni" role="tab" aria-controls="home" aria-selected="true">prenotazioni</a>
+                        role="tab" aria-controls="home" aria-selected="true">Prenotazioni</a>
 
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" id="creaTab" data-toggle="tab" onclick="showEvento()" role="tab"
-                        aria-controls="creaEvento" aria-selected="true">crea nuovo evento </a>
+                        aria-controls="creaEvento" aria-selected="true">Crea nuovo evento </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" id="adminTab" data-toggle="tab" onclick="showAdmin()" href="#admin" role="tab"
-                        aria-controls="admin" aria-selected="false">gestione Organizzatori</a>
+                    <a class="nav-link" id="adminTab" data-toggle="tab" onclick="showAdmin()" role="tab"
+                        aria-controls="admin" aria-selected="false">Gestione organizzatori</a>
 
                 </li>
-
-
             </ul>
 
-            <div class="tab-conten" id="prof-tabContent">
-
-
+            <div class="tab-content" id="prof-tabContent">
                 <div class="tab-pane fade" id="prenotazioni" role="tabpanel" aria-labelledby="prenotazioni-tab">
-
+                    <br>
                     {{#if notEmpty}}
                     <table class="table">
                         <!-- Header della tabella -->
@@ -76,21 +72,21 @@
                 <div class="tab-pane fade show active" id="creaEvento" role="tabpanel" aria-labelledby="creaEvento-tab">
 
                     {{#if privilegi}}
+                    <br>
                     <form action="/createEvent" method="post" class="form-signin" onsubmit="return validaForm()">
-
-
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
                                     <input type="text" class="form-control" id='eventTitle' placeholder="Titolo Evento">
                                 </div>
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-                                    <select name="type" id="eventType" required>
 
-                                        <option value="" selected>Tipo</option>
-                                        <option value="singolo">singolo</option>
-                                        <option value="torne">torneo</option>
-                                        <option value="altro">altro</option>
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                    <label for="eventType">Tipo</label>
+                                    <select name="type" id="eventType" required>
+                                        <option value="" selected></option>
+                                        <option value="singolo">Singolo</option>
+                                        <option value="torne">Torneo</option>
+                                        <option value="altro">Altro</option>
                                     </select>
                                 </div>
                             </div>
@@ -98,25 +94,18 @@
                         </div>
                         <div class="form-group col-md-6">
 
-
                             <div class="form-outline mb-3" id="dateType">
                                 <!-- Data evento -->
                                 <label for="data">Data e ora</label>
-                                <input type="datetime-local" id="dataTime" name="dataTime" value="2018-06-12T19:30"
-                                    min="2022-02-12T20:30" max="2023-02-12T20:30" onclick="setDates()">
-
-
+                                <input type="datetime-local" id="dataTime" name="dataTime" onclick="setDates()">
                             </div>
                             <hr>
-
+                        </div>
                     </form>
-
-
 
                     {{else}}
                     Chiedi a un admin per organizzare il tuo evento
                     {{/if}}
-
                 </div>
 
                 <div class="tab-pane fade" id="admin" role="tabpanel" aria-labelledby="admin-Tab">
@@ -126,15 +115,8 @@
                 </div>
 
             </div>
-
         </div>
-
-
-
-
     </div>
-
-
 
 
     <!-- Includi il footer -->
