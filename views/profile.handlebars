@@ -23,15 +23,15 @@
         <div class="col-xl-9">
             <ul class="nav nav-tabs" id="prof-tab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link" id="prenotazioniTab" data-toggle="tab" onclick="showPrenotazioni()"
+                    <a class="nav-link active" id="prenotazioniTab" data-toggle="tab" onclick="showPrenotazioni()"
                         role="tab" aria-controls="home" aria-selected="true">Prenotazioni</a>
 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" id="creaTab" data-toggle="tab" onclick="showEvento()" role="tab"
+                    <a class="nav-link " id="creaTab" data-toggle="tab" onclick="showEvento()" role="tab"
                         aria-controls="creaEvento" aria-selected="true">Crea nuovo evento </a>
                 </li>
-
+                
                 <li class="nav-item">
                     <a class="nav-link" id="adminTab" data-toggle="tab" onclick="showAdmin()" role="tab"
                         aria-controls="admin" aria-selected="false">Gestione organizzatori</a>
@@ -40,7 +40,8 @@
             </ul>
 
             <div class="tab-content" id="prof-tabContent">
-                <div class="tab-pane fade" id="prenotazioni" role="tabpanel" aria-labelledby="prenotazioni-tab">
+                <div class="tab-pane fade show active" id="prenotazioni" role="tabpanel"
+                    aria-labelledby="prenotazioni-tab">
                     <br>
                     {{#if notEmpty}}
                     <table class="table">
@@ -69,39 +70,77 @@
 
                 </div>
 
-                <div class="tab-pane fade show active" id="creaEvento" role="tabpanel" aria-labelledby="creaEvento-tab">
+                <div class="tab-pane fade " id="creaEventoPage" role="tabpanel" aria-labelledby="creaEvento-tab">
 
                     {{#if privilegi}}
                     <br>
-                    <form action="/createEvent" method="post" class="form-signin" onsubmit="return validaForm()">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-                                    <input type="text" class="form-control" id='eventTitle' placeholder="Titolo Evento">
-                                </div>
+                    <form action="/createEvent" method="post" id="creaEvento" class="form-signin"
+                        onsubmit="return validaCreazione()">
 
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-                                    <label for="eventType">Tipo</label>
-                                    <select name="type" id="eventType" required>
-                                        <option value="" selected></option>
-                                        <option value="singolo">Singolo</option>
-                                        <option value="torne">Torneo</option>
-                                        <option value="altro">Altro</option>
-                                    </select>
-                                </div>
+
+                        <!-- Titolo + luogo -->
+                        <div class="row">
+                            <div class="col col-xs-3">
+                                <input type="text" class="form-control" id='titolo' placeholder="Titolo Evento"/>
                             </div>
+
+                            <div class="col">
+                                <input type="text" class="form-control" id='location' placeholder="Luogo"/>
+                            </div>
+
 
                         </div>
-                        <div class="form-group col-md-6">
 
-                            <div class="form-outline mb-3" id="dateType">
-                                <!-- Data evento -->
-                                <label for="data">Data e ora</label>
-                                <input type="datetime-local" id="dataTime" name="dataTime" onclick="setDates()">
+                        <!-- Tipo+ dataora + posti -->
+
+                        <div class="row">
+
+                            <!-- Tipo evento -->
+                            <div class="col">
+                                <label for="eventType">Tipo</label>
+                                <br>
+                                <select name="type" id="eventType" required>
+                                    <option value="" selected></option>
+                                    <option value="singolo">Singolo</option>
+                                    <option value="torne">Torneo</option>
+                                    <option value="altro">Altro</option>
+                                </select>
                             </div>
-                            <hr>
+
+                            <!-- Data evento -->
+                            <div class="col">
+                                <div class="form-outline mb-3" id="dateType">
+                                    <label for="data">Data e ora</label>
+                                    <br>
+                                    <input type="datetime-local" id="dataTime" name="dataTime" onclick="setDates()">
+                                </div>
+                            </div>
+
+
+                            <!-- Posti disponibili -->
+                            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                <label for="posti">posti</label>
+                                <br>
+                                <input type="number" id="posti" name="posti" min="2">
+                            </div>
                         </div>
                     </form>
+                    <br>
+
+                    <!-- descrizione -->
+                    <div class="col">
+                        <div class="row"> 
+                            <label for="descrizione">Descrizione:</label>
+                            <br>
+                            <textarea rows="5" cols="50" form="creaEvento" id="descrizione" placeholder="Scrivi qui..."></textarea>
+                        </div>
+
+                        <!--submit-->
+                        <dic class="row">
+                            <button type="submit" class="btn btn-primary" id="creaEventoBtn" form="creaEvento">Conferma</button>
+                        </dic>
+                    </div>
+
 
                     {{else}}
                     Chiedi a un admin per organizzare il tuo evento
@@ -113,6 +152,7 @@
 
                     </div>
                 </div>
+                
 
             </div>
         </div>

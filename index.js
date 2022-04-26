@@ -157,6 +157,24 @@ app.post('/signupValid', (req, res) => {
     });
 });
 
+app.post('/createEvent'), (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+
+    // Inserisci i dati nel db
+    var event = {
+        titolo : req.body.titolo,
+        luogo : req.body.location,
+        tipo : req.body.eventType,
+        data : req.body.dataTime,
+        posti : req.body.posti,
+        descrizione : req.body.descrizione
+
+    };
+    //db.insertEvent(event);
+    console.log(event);
+
+}
 // Per prendere i dati del login
 app.post('/loginValid', (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina

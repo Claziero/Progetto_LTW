@@ -11,7 +11,7 @@ function showEvento(){
     document.getElementById('prenotazioni').setAttribute('class', 'tab-pane fade ');
     document.getElementById('prenotazioniTab').setAttribute('class', 'nav-link');
 
-    document.getElementById('creaEvento').setAttribute('class', 'tab-pane fade show active');
+    document.getElementById('creaEventoPage').setAttribute('class', 'tab-pane fade show active');
     document.getElementById('creaTab').setAttribute('class', 'nav-link active');
 
     document.getElementById('admin').setAttribute('class', 'tab-pane fade');
@@ -23,7 +23,7 @@ function showPrenotazioni(){
     document.getElementById('prenotazioni').setAttribute('class', 'tab-pane fade show active ');
     document.getElementById('prenotazioniTab').setAttribute('class', 'nav-link active');
 
-    document.getElementById('creaEvento').setAttribute('class', 'tab-pane fade');
+    document.getElementById('creaEventoPage').setAttribute('class', 'tab-pane fade');
     document.getElementById('creaTab').setAttribute('class', 'nav-link');
 
     document.getElementById('admin').setAttribute('class', 'tab-pane fade');
@@ -35,7 +35,7 @@ function showAdmin(){
     document.getElementById('prenotazioni').setAttribute('class', 'tab-pane fade ');
     document.getElementById('prenotazioniTab').setAttribute('class', 'nav-link');
 
-    document.getElementById('creaEvento').setAttribute('class', 'tab-pane fade');
+    document.getElementById('creaEventoPage').setAttribute('class', 'tab-pane fade');
     document.getElementById('creaTab').setAttribute('class', 'nav-link ');
 
     document.getElementById('admin').setAttribute('class', 'tab-pane fade show active');
@@ -53,4 +53,9 @@ function setDates(){
 
     $('#dataTime').attr('min', tomorrow.toISOString().slice(0, 16));
     $('#dataTime').attr('max', nextYear.toISOString().slice(0, 16));
+}
+
+function validaCreazione(){
+    //TBC
+    return true;
 }
