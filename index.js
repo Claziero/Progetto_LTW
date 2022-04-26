@@ -81,21 +81,6 @@ app.get('/', async (req, res) => {
     });
 });
 
-// Render della pagina di login
-app.get('/login', redirectHome, (req, res) => {
-    // Incrementa il contatore di visualizzazioni della pagina
-    req.session.views += 1;
-    // console.log("[DEBUG] SessionID:" + req.sessionID);
-    // console.log("[DEBUG] Session:");
-    // console.log(req.session);
-
-    res.render('login', {
-        title: "Login", 
-        style: "style-signin.css",
-        js: "validateSignin.js"
-    });
-});
-
 // Render della pagina di registrazione
 app.get('/signup', redirectHome, (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
@@ -157,24 +142,21 @@ app.post('/signupValid', (req, res) => {
     });
 });
 
-app.post('/createEvent'), (req, res) => {
+// Render della pagina di login
+app.get('/login', redirectHome, (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
     req.session.views += 1;
+    // console.log("[DEBUG] SessionID:" + req.sessionID);
+    // console.log("[DEBUG] Session:");
+    // console.log(req.session);
 
-    // Inserisci i dati nel db
-    var event = {
-        titolo : req.body.titolo,
-        luogo : req.body.location,
-        tipo : req.body.eventType,
-        data : req.body.dataTime,
-        posti : req.body.posti,
-        descrizione : req.body.descrizione
+    res.render('login', {
+        title: "Login", 
+        style: "style-signin.css",
+        js: "validateSignin.js"
+    });
+});
 
-    };
-    //db.insertEvent(event);
-    console.log(event);
-
-}
 // Per prendere i dati del login
 app.post('/loginValid', (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
@@ -312,7 +294,7 @@ app.get('/profile', redirectLogin, async (req, res) => {
         utente = req.session.user.nome;
     }
 
-    // Esegui la query per il main listing
+    // Esegui la query per le prenotazioni
     var query = await db.prenotazioni(req.session.user.email);
 
     // Esegui la query per prendere il livello di privilegi
@@ -351,6 +333,44 @@ app.get('/logout', redirectLogin, (req, res) => {
     
     res.render('logout', {
         title: "Logout"
+    });
+});
+
+app.post('/createEvent', redirectLogin, (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+
+    // Recupera i dati inseriti
+    var event = {
+        organizzatore: req.session.user.email,
+        titolo: req.body.titolo,
+        luogo: req.body.location,
+        tipo: req.body.eventType,
+        data: req.body.dateTime,
+        posti: req.body.posti,
+        descrizione: req.body.descrizione
+    };
+
+    // Inserisci l'evento nel db
+    db.insertEvent(event).then(b => {
+        // Se c'è un errore nell'inserimento dell'evento
+        if (b == -1) {
+            console.log(">>Errore in inserimento evento (" + user.email + ")");
+
+            //TBC
+            res.redirect("/profile");
+            res.end();
+            return;
+        }
+        // Altrimenti vai avanti e redireziona alla home
+        else if (b == 0) {
+            console.log(">>Inserimento evento effettuato (" + req.session.user.email + ")");
+            
+            //TBC
+            res.redirect("/");
+            res.end();
+            return;
+        }
     });
 });
 

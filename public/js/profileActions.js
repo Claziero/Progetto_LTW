@@ -51,8 +51,8 @@ function setDates(){
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
 
-    $('#dataTime').attr('min', tomorrow.toISOString().slice(0, 16));
-    $('#dataTime').attr('max', nextYear.toISOString().slice(0, 16));
+    $('#dateTime').attr('min', tomorrow.toISOString().slice(0, 16));
+    $('#dateTime').attr('max', nextYear.toISOString().slice(0, 16));
 }
 
 function validaCreazione(){

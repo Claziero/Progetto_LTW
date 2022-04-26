@@ -3,23 +3,13 @@
 <body>
     {{> header}}
 
+    <!-- Messaggio di errore -->
+    <div class="form-outline mb-3 text-danger" id='errorMsg'>{{error}}</div>
+
+    <!-- Messaggio di successo -->
+    <div class="form-outline mb-3 text-success" id='successMsg'>{{success}}</div>
+
     <div class="container-xl px-4 mt-4">
-        <!-- Account page navigation
-
-        <div class="row">
-            <div class="col-xl-3">
-                <!-- Profile picture card--
-                <div class="card mb-4 mb-xl-0">
-                    <div class="card-body text-center">
-                        Menu di navigazione
-                        <!-- TBC --
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- cambio layout-->
-
         <div class="col-xl-9">
             <ul class="nav nav-tabs" id="prof-tab" role="tablist">
                 <li class="nav-item">
@@ -29,7 +19,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " id="creaTab" data-toggle="tab" onclick="showEvento()" role="tab"
-                        aria-controls="creaEvento" aria-selected="true">Crea nuovo evento </a>
+                        aria-controls="creaEvento" aria-selected="true">Crea nuovo evento</a>
                 </li>
                 
                 <li class="nav-item">
@@ -77,33 +67,28 @@
                     <form action="/createEvent" method="post" id="creaEvento" class="form-signin"
                         onsubmit="return validaCreazione()">
 
-
-                        <!-- Titolo + luogo -->
+                        <!-- Titolo e luogo dell'evento -->
                         <div class="row">
                             <div class="col col-xs-3">
-                                <input type="text" class="form-control" id='titolo' placeholder="Titolo Evento"/>
+                                <input type="text" class="form-control" name='titolo' placeholder="Titolo Evento"/>
                             </div>
 
                             <div class="col">
-                                <input type="text" class="form-control" id='location' placeholder="Luogo"/>
+                                <input type="text" class="form-control" name='location' placeholder="Luogo"/>
                             </div>
-
-
                         </div>
 
-                        <!-- Tipo+ dataora + posti -->
-
+                        <!-- Tipo, dataora e posti -->
                         <div class="row">
-
                             <!-- Tipo evento -->
                             <div class="col">
                                 <label for="eventType">Tipo</label>
                                 <br>
-                                <select name="type" id="eventType" required>
+                                <select name="eventType" required>
                                     <option value="" selected></option>
-                                    <option value="singolo">Singolo</option>
-                                    <option value="torne">Torneo</option>
-                                    <option value="altro">Altro</option>
+                                    <option value="Singolo">Singolo</option>
+                                    <option value="Torneo">Torneo</option>
+                                    <option value="Altro">Altro</option>
                                 </select>
                             </div>
 
@@ -112,16 +97,15 @@
                                 <div class="form-outline mb-3" id="dateType">
                                     <label for="data">Data e ora</label>
                                     <br>
-                                    <input type="datetime-local" id="dataTime" name="dataTime" onclick="setDates()">
+                                    <input type="datetime-local" id="dateTime" name="dateTime" onclick="setDates()">
                                 </div>
                             </div>
 
-
                             <!-- Posti disponibili -->
                             <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-                                <label for="posti">posti</label>
+                                <label for="posti">Posti</label>
                                 <br>
-                                <input type="number" id="posti" name="posti" min="2">
+                                <input type="number" name="posti" min="2">
                             </div>
                         </div>
                     </form>
@@ -130,9 +114,9 @@
                     <!-- descrizione -->
                     <div class="col">
                         <div class="row"> 
-                            <label for="descrizione">Descrizione:</label>
+                            <label for="descrizione">Descrizione</label>
                             <br>
-                            <textarea rows="5" cols="50" form="creaEvento" id="descrizione" placeholder="Scrivi qui..."></textarea>
+                            <textarea rows="5" cols="50" form="creaEvento" name="descrizione" placeholder="Scrivi qui..."></textarea>
                         </div>
 
                         <!--submit-->
@@ -141,7 +125,6 @@
                         </dic>
                     </div>
 
-
                     {{else}}
                     Chiedi a un admin per organizzare il tuo evento
                     {{/if}}
@@ -149,15 +132,12 @@
 
                 <div class="tab-pane fade" id="admin" role="tabpanel" aria-labelledby="admin-Tab">
                     <div class="card mb-4">
-
+                        ADMIN
                     </div>
                 </div>
-                
-
             </div>
         </div>
     </div>
-
 
     <!-- Includi il footer -->
     {{> footer}}
