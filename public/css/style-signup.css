@@ -25,6 +25,10 @@ img {
   border-color: transparent;
 }
 
+.input-group-text {
+  background-color: white;
+}
+
 /* Media queries per l'adattamento a dispositivi mobili */
 @media screen and (max-width: 600px) {
   img {

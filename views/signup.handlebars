@@ -23,47 +23,49 @@
                   <input type="text" class="form-control" name="cognome" placeholder="Cognome" required />
                 </div>
 
-                <div class="form-outline mb-3" id="datasesso">
+                <div class="row mb-3" id="datasesso">
                   <!-- Data di nascita -->
-                  <label for="data">Data di nascita</label>
-                  <input type="date" id="data" name="data" onchange="checkData()" />
+                  <div class="col col-xs-6">
+                    <label for="data">Data di nascita</label>
+                    <input type="date" id="data" name="data" class="form-control" onchange="checkData()" />
+                  </div>
 
                   <!-- Sesso -->
-                  <label class="my-1" for="sesso">Sesso</label>
-                  <select name="sesso" id="sesso" required>
-                    <option value="" selected></option>
-                    <option value="M">maschio</option>
-                    <option value="F">femmina</option>
-                    <option value="U">altro</option>
-                  </select>
+                  <div class="col col-xs-6">
+                    <label for="sesso">Sesso</label>
+                    <select name="sesso" id="sesso" class="form-select" required>
+                      <option value="" selected></option>
+                      <option value="M">maschio</option>
+                      <option value="F">femmina</option>
+                      <option value="U">altro</option>
+                    </select>
+                  </div>
                 </div>
 
                 <!-- Email -->
                 <div class="form-outline mb-3 input-group">
-                  <label for="email"><i class="fa fa-envelope fa-fw"></i></label>
+                  <div class="input-group-text"><i class="fa fa-envelope fa-fw"></i></div>
                   <input type="email" class="form-control" name="email" placeholder="Email" required />
                 </div>
 
                 <!-- Password -->
                 <div class="form-outline mb-3 input-group">
-                  <label for="password"><i class="fa fa-lock"></i></label>
+                  <div class="input-group-text"><i class="fa fa-lock fa-fw"></i></div>
                   <input type="password" class="form-control" name="password" placeholder="Password" id="password"
                     onchange='checkLgh()' required />
 
                   <!-- Mostra password -->
-                  <input class="form-check-input" type="checkbox" name="showPsw" onclick="showPwd()">
-                  <label for="password"><i class="fa fa-eye"></i></label>
+                  <div class="input-group-text" onclick="showPwd()"><i class="fa fa-eye"></i></div>
                 </div>
 
                 <!-- Password repeat -->
                 <div class="form-outline mb-3 input-group">
-                  <label for="password_repeat"><i class="fa fa-lock"></i></label>
+                  <div class="input-group-text"><i class="fa fa-lock fa-fw"></i></div>
                   <input type="password" class="form-control" name="password_repeat" placeholder="Conferma Password"
                     id="password_repeat" onchange='checkPwdMatch()' required />
 
                   <!-- Mostra password -->
-                  <input class="form-check-input" type="checkbox" name="showPsw2" onclick="showPwd2()">
-                  <label for="password_repeat"><i class="fa fa-eye"></i></label>
+                  <div class="input-group-text" onclick="showPwd2()"><i class="fa fa-eye"></i></div>
                 </div>
 
                 <!-- Messaggio di errore -->
