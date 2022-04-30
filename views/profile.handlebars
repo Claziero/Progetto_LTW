@@ -3,141 +3,148 @@
 <body>
     {{> header}}
 
-    <!-- Messaggio di errore -->
-    <div class="form-outline mb-3 text-danger" id='errorMsg'>{{error}}</div>
+    <section id="profileSection">
+        <!-- Messaggio di errore -->
+        <div class="form-outline mb-3 text-danger" id='errorMsg'>{{error}}</div>
 
-    <!-- Messaggio di successo -->
-    <div class="form-outline mb-3 text-success" id='successMsg'>{{success}}</div>
+        <!-- Messaggio di successo -->
+        <div class="form-outline mb-3 text-success" id='successMsg'>{{success}}</div>
 
-    <div class="container-xl px-4 mt-4">
-        <div class="col-xl-9">
-            <ul class="nav nav-tabs" id="prof-tab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="prenotazioniTab" data-toggle="tab" onclick="showPrenotazioni()"
-                        role="tab" aria-controls="home" aria-selected="true">Prenotazioni</a>
+        <div class="container-xl px-4 mt-4">
+            <div class="col-xl">
+                <ul class="nav nav-tabs" id="prof-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="prenotazioniTab" data-toggle="tab" onclick="showPrenotazioni()"
+                            role="tab" aria-controls="home" aria-selected="true">Prenotazioni</a>
+                    </li>
 
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " id="creaTab" data-toggle="tab" onclick="showEvento()" role="tab"
-                        aria-controls="creaEvento" aria-selected="true">Crea nuovo evento</a>
-                </li>
-                
-                <li class="nav-item">
-                    <a class="nav-link" id="adminTab" data-toggle="tab" onclick="showAdmin()" role="tab"
-                        aria-controls="admin" aria-selected="false">Gestione organizzatori</a>
+                    <li class="nav-item">
+                        <a class="nav-link " id="creaTab" data-toggle="tab" onclick="showEvento()" role="tab"
+                            aria-controls="creaEvento" aria-selected="true">Crea nuovo evento</a>
+                    </li>
 
-                </li>
-            </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" id="adminTab" data-toggle="tab" onclick="showAdmin()" role="tab"
+                            aria-controls="admin" aria-selected="false">Gestione organizzatori</a>
+                    </li>
+                </ul>
 
-            <div class="tab-content" id="prof-tabContent">
-                <div class="tab-pane fade show active" id="prenotazioni" role="tabpanel"
-                    aria-labelledby="prenotazioni-tab">
-                    <br>
-                    {{#if notEmpty}}
-                    <table class="table">
-                        <!-- Header della tabella -->
-                        <tr>
-                            <th>Titolo evento</th>
-                            <th>Data evento</th>
-                            <th>Azioni</th>
-                        </tr>
+                <div class="tab-content" id="prof-tabContent">
+                    <div class="tab-pane fade show active" id="prenotazioni" role="tabpanel"
+                        aria-labelledby="prenotazioni-tab">
+                        <br>
+                        {{#if notEmpty}}
+                        <table class="table">
+                            <!-- Header della tabella -->
+                            <tr>
+                                <th>Titolo evento</th>
+                                <th>Data evento</th>
+                                <th>Azioni</th>
+                            </tr>
 
-                        <!-- Dati prenotazioni -->
-                        {{#each prenotazioni}}
-                        <tr>
-                            <td>{{titolo}}</td>
-                            <td>{{dataora}}</td>
-                            <td>
-                                <button class="btn btn-danger" onclick="unbook({{id}})">Disdici</button>
-                            </td>
-                        </tr>
-                        {{/each}}
-                    </table>
+                            <!-- Dati prenotazioni -->
+                            {{#each prenotazioni}}
+                            <tr>
+                                <td>{{titolo}}</td>
+                                <td>{{dataora}}</td>
+                                <td>
+                                    <button class="btn btn-danger" onclick="unbook({{id}})">Disdici</button>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </table>
 
-                    {{else}}
-                    Non ci sono prenotazioni recenti.
-                    {{/if}}
+                        {{else}}
+                        Non ci sono prenotazioni recenti.
+                        {{/if}}
+                    </div>
 
-                </div>
+                    <div class="tab-pane fade" id="creaEventoPage" role="tabpanel" aria-labelledby="creaEvento-tab">
 
-                <div class="tab-pane fade " id="creaEventoPage" role="tabpanel" aria-labelledby="creaEvento-tab">
+                        {{#if privilegi}}
+                        <form action="/createEvent" method="post" id="creaEvento" class="form-signin my-3"
+                            onsubmit="return validaCreazione()">
 
-                    {{#if privilegi}}
-                    <br>
-                    <form action="/createEvent" method="post" id="creaEvento" class="form-signin"
-                        onsubmit="return validaCreazione()">
-
-                        <!-- Titolo e luogo dell'evento -->
-                        <div class="row">
-                            <div class="col col-xs-3">
-                                <input type="text" class="form-control" name='titolo' placeholder="Titolo Evento"/>
-                            </div>
-
-                            <div class="col">
-                                <input type="text" class="form-control" name='location' placeholder="Luogo"/>
-                            </div>
-                        </div>
-
-                        <!-- Tipo, dataora e posti -->
-                        <div class="row">
-                            <!-- Tipo evento -->
-                            <div class="col">
-                                <label for="eventType">Tipo</label>
-                                <br>
-                                <select name="eventType" required>
-                                    <option value="" selected></option>
-                                    <option value="Singolo">Singolo</option>
-                                    <option value="Torneo">Torneo</option>
-                                    <option value="Altro">Altro</option>
-                                </select>
-                            </div>
-
-                            <!-- Data evento -->
-                            <div class="col">
-                                <div class="form-outline mb-3" id="dateType">
-                                    <label for="data">Data e ora</label>
+                            <!-- Titolo e luogo dell'evento -->
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="titolo">Titolo</label>
                                     <br>
-                                    <input type="datetime-local" id="dateTime" name="dateTime" onclick="setDates()">
+                                    <input type="text" class="form-control" name='titolo' placeholder="Titolo Evento" required/>
+                                </div>
+
+                                <div class="col">
+                                    <label for="location">Luogo</label>
+                                    <br>
+                                    <input type="text" class="form-control" name='location' placeholder="Luogo" required/>
                                 </div>
                             </div>
 
-                            <!-- Posti disponibili -->
-                            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-                                <label for="posti">Posti</label>
+                            <!-- Tipo, dataora e posti -->
+                            <div class="row mb-3">
+                                <!-- Tipo evento -->
+                                <div class="col col-xl-4">
+                                    <label for="eventType">Tipo</label>
+                                    <br>
+                                    <select name="eventType" class="form-select" required>
+                                        <option value="" selected></option>
+                                        <option value="Singolo">Singolo</option>
+                                        <option value="Torneo">Torneo</option>
+                                        <option value="Altro">Altro</option>
+                                    </select>
+                                </div>
+
+                                <!-- Data evento -->
+                                <div class="col col-xl-4">
+                                    <label for="dateTime">Data e ora</label>
+                                    <br>
+                                    <input type="datetime-local" class="form-control" id="dateTime" name="dateTime"
+                                        onclick="setDates()" required/>
+                                </div>
+
+                                <!-- Posti disponibili -->
+                                <div class="col col-xl-4">
+                                    <label for="posti">Posti</label>
+                                    <br>
+                                    <input type="number" class="form-control" name="posti" min="2" required/>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Descrizione e pulsanti -->
+                        <div class="row">
+                            <!-- Descrizione -->
+                            <div class="col-xl-9">
+                                <label for="descrizione">Descrizione</label>
                                 <br>
-                                <input type="number" name="posti" min="2">
+                                <textarea rows="5" cols="100" class="form-control" form="creaEvento" name="descrizione"
+                                    placeholder="Descrizione dell'evento" required></textarea>
+                            </div>
+
+                            <!-- Submit e reset -->
+                            <div class="col-xl-3 text-center py-4 px-3">
+                                <button type="submit" class="btn btn-primary my-3" id="creaEventoBtn"
+                                    form="creaEvento">Conferma</button>
+                                <br>
+                                <button type="reset" class="btn btn-secondary" id="resetBtn"
+                                    form="creaEvento">Reset</button>
                             </div>
                         </div>
-                    </form>
-                    <br>
 
-                    <!-- descrizione -->
-                    <div class="col">
-                        <div class="row"> 
-                            <label for="descrizione">Descrizione</label>
-                            <br>
-                            <textarea rows="5" cols="50" form="creaEvento" name="descrizione" placeholder="Scrivi qui..."></textarea>
-                        </div>
-
-                        <!--submit-->
-                        <dic class="row">
-                            <button type="submit" class="btn btn-primary" id="creaEventoBtn" form="creaEvento">Conferma</button>
-                        </dic>
+                        {{else}}
+                        Chiedi a un admin per organizzare il tuo evento
+                        {{/if}}
                     </div>
 
-                    {{else}}
-                    Chiedi a un admin per organizzare il tuo evento
-                    {{/if}}
-                </div>
-
-                <div class="tab-pane fade" id="admin" role="tabpanel" aria-labelledby="admin-Tab">
-                    <div class="card mb-4">
-                        ADMIN
+                    <div class="tab-pane fade" id="admin" role="tabpanel" aria-labelledby="admin-Tab">
+                        <div class="card mb-4">
+                            ADMIN
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- Includi il footer -->
     {{> footer}}

@@ -30,9 +30,11 @@
     {{/if}}
 
     <!-- Per ogni elemento della query crea un nuovo elemento -->
-    {{#each mainList}}
-        {{> main-listing}}
-    {{/each}}
+    <section id="mainSection">
+        {{#each mainList}}
+            {{> main-listing}}
+        {{/each}}
+    </section>
 
     <!-- Includi il footer -->
     {{> footer}}

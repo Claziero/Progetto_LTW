@@ -308,7 +308,7 @@ app.get('/profile', redirectLogin, async (req, res) => {
     res.render('profile', {
         title: "Profilo", 
         //style: "style-settings.css", // Usa lo stesso stile di settings
-        style: "style-main.css",
+        style: "style-profile.css",
         js: "profileActions.js",
         prenotazioni: query,
         notEmpty: query.length > 0,
