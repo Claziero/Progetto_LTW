@@ -24,6 +24,11 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" id="rimuoviTab" data-toggle="tab" onclick="showRimozione()" role="tab"
+                            aria-controls="admin" aria-selected="false">Elimina eventi</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" id="adminTab" data-toggle="tab" onclick="showAdmin()" role="tab"
                             aria-controls="admin" aria-selected="false">Gestione organizzatori</a>
                     </li>
@@ -140,6 +145,35 @@
                         <div class="card mb-4">
                             ADMIN
                         </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="rimozioni" role="tabpanel"
+                        aria-labelledby="rimozioni-tab">
+                        <br>
+                        {{#if numOrg}}
+                        <table class="table">
+                            <!-- Header della tabella -->
+                            <tr>
+                                <th>Titolo evento</th>
+                                <th>Data evento</th>
+                                <th>Azioni</th>
+                            </tr>
+
+                            <!-- Dati organizzazioni -->
+                            {{#each organizzazioni}}
+                            <tr>
+                                <td>{{titolo}}</td>
+                                <td>{{dataora}}</td>
+                                <td>
+                                    <button class="btn btn-danger" onclick="remove({{id}})">Rimuovi</button>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </table>
+
+                        {{else}}
+                        Non hai organizzato eventi.
+                        {{/if}}
                     </div>
                 </div>
             </div>

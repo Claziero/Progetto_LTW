@@ -299,6 +299,16 @@ app.get('/profile', redirectLogin, async (req, res) => {
 
     // Esegui la query per prendere il livello di privilegi
     var livello = (await db.getLevel(req.session.user.email))[0].privilegi;
+
+    // Se sei un organizzatore allora cerca anche gli eventi organizzati
+    if (livello == 1) {
+        var org = await db.organizzazioni(req.session.user.email);
+
+        // Formatta tutte le date ottenute
+        org.forEach (elem => {
+            elem['dataora'] = db.formatDate(elem['dataora'].toString());
+        });
+    }
     
     // Formatta tutte le date ottenute
     query.forEach (elem => {
@@ -314,7 +324,9 @@ app.get('/profile', redirectLogin, async (req, res) => {
         notEmpty: query.length > 0,
         log: logged,
         utente: utente,
-        privilegi: livello == 1
+        privilegi: livello == 1,
+        numOrg: org.length > 0,
+        organizzazioni: org
     });
 });
 
@@ -411,6 +423,34 @@ app.get('/book=*', redirectLogin, (req, res) => {
             // Avvisa l'utente dell'errore
             res.write("Attenzione! Sei già prenotato per questo evento. Visita il tuo profilo.");
             res.end();
+        }
+    });
+});
+
+// Intercetta le eliminazioni degli eventi
+app.get('/remove=*', redirectLogin, (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+
+    // Ottieni l'ID della prenotazione
+    var id = req.originalUrl.split('remove=')[1];
+
+    // Prova a registrare la prenotazione
+    db.deleteEvent(id).then(b => {
+        if (b == 0) {
+            console.log(">>[Rimozione.evento] Rimozione OK");
+
+            // Redireziona alla pagina del profilo
+            res.redirect('/profile');
+            res.end();
+        }
+        else if (b == -1) {
+            console.log(">>[Rimozione.evento] Errore nella query");
+
+            //TBC
+            res.redirect("/");
+            res.end();
+            return;            
         }
     });
 });

@@ -7,6 +7,15 @@ function unbook(id) {
     return;
 }
 
+// Funzione per eliminare un evento (organizzatore)
+function remove(id) {
+    console.log("Rimozione evento ID=" + id);
+
+    // Reindirizza alla pagina di rimozione
+    window.location.replace("/remove=" + id);
+    return;
+}
+
 function showEvento(){
     document.getElementById('prenotazioni').setAttribute('class', 'tab-pane fade ');
     document.getElementById('prenotazioniTab').setAttribute('class', 'nav-link');
@@ -16,6 +25,9 @@ function showEvento(){
 
     document.getElementById('admin').setAttribute('class', 'tab-pane fade');
     document.getElementById('adminTab').setAttribute('class', 'nav-link');
+
+    document.getElementById('rimozioni').setAttribute('class', 'tab-pane fade');
+    document.getElementById('rimuoviTab').setAttribute('class', 'nav-link');
 
 }
 
@@ -29,6 +41,9 @@ function showPrenotazioni(){
     document.getElementById('admin').setAttribute('class', 'tab-pane fade');
     document.getElementById('adminTab').setAttribute('class', 'nav-link');
 
+    document.getElementById('rimozioni').setAttribute('class', 'tab-pane fade');
+    document.getElementById('rimuoviTab').setAttribute('class', 'nav-link');
+
 }
 
 function showAdmin(){
@@ -40,6 +55,24 @@ function showAdmin(){
 
     document.getElementById('admin').setAttribute('class', 'tab-pane fade show active');
     document.getElementById('adminTab').setAttribute('class', 'nav-link active');
+
+    document.getElementById('rimozioni').setAttribute('class', 'tab-pane fade');
+    document.getElementById('rimuoviTab').setAttribute('class', 'nav-link');
+
+}
+
+function showRimozione(){
+    document.getElementById('prenotazioni').setAttribute('class', 'tab-pane fade ');
+    document.getElementById('prenotazioniTab').setAttribute('class', 'nav-link');
+
+    document.getElementById('creaEventoPage').setAttribute('class', 'tab-pane fade');
+    document.getElementById('creaTab').setAttribute('class', 'nav-link ');
+
+    document.getElementById('admin').setAttribute('class', 'tab-pane fade');
+    document.getElementById('adminTab').setAttribute('class', 'nav-link');
+
+    document.getElementById('rimozioni').setAttribute('class', 'tab-pane fade show active');
+    document.getElementById('rimuoviTab').setAttribute('class', 'nav-link active');
 
 }
 
