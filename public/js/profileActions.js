@@ -16,64 +16,85 @@ function remove(id) {
     return;
 }
 
+// Funzione per mostrare la tab per creare un evento (organizzatore)
 function showEvento(){
-    document.getElementById('prenotazioni').setAttribute('class', 'tab-pane fade ');
-    document.getElementById('prenotazioniTab').setAttribute('class', 'nav-link');
+    $('#prenotazioni').attr('class', 'tab-pane fade ');
+    $('#prenotazioniTab').attr('class', 'nav-link');
 
-    document.getElementById('creaEventoPage').setAttribute('class', 'tab-pane fade show active');
-    document.getElementById('creaTab').setAttribute('class', 'nav-link active');
+    $('#creaEventoPage').attr('class', 'tab-pane fade show active');
+    $('#creaTab').attr('class', 'nav-link active');
 
-    document.getElementById('admin').setAttribute('class', 'tab-pane fade');
-    document.getElementById('adminTab').setAttribute('class', 'nav-link');
+    $('#admin').attr('class', 'tab-pane fade');
+    $('#adminTab').attr('class', 'nav-link');
 
-    document.getElementById('rimozioni').setAttribute('class', 'tab-pane fade');
-    document.getElementById('rimuoviTab').setAttribute('class', 'nav-link');
-
+    $('#rimozioni').attr('class', 'tab-pane fade');
+    $('#rimuoviTab').attr('class', 'nav-link');
 }
 
+// Funzione per mostrare la tab di gestione delle prenotazioni (organizzatore)
 function showPrenotazioni(){
-    document.getElementById('prenotazioni').setAttribute('class', 'tab-pane fade show active ');
-    document.getElementById('prenotazioniTab').setAttribute('class', 'nav-link active');
+    $('#prenotazioni').attr('class', 'tab-pane fade show active ');
+    $('#prenotazioniTab').attr('class', 'nav-link active');
 
-    document.getElementById('creaEventoPage').setAttribute('class', 'tab-pane fade');
-    document.getElementById('creaTab').setAttribute('class', 'nav-link');
+    $('#creaEventoPage').attr('class', 'tab-pane fade');
+    $('#creaTab').attr('class', 'nav-link');
 
-    document.getElementById('admin').setAttribute('class', 'tab-pane fade');
-    document.getElementById('adminTab').setAttribute('class', 'nav-link');
+    $('#admin').attr('class', 'tab-pane fade');
+    $('#adminTab').attr('class', 'nav-link');
 
-    document.getElementById('rimozioni').setAttribute('class', 'tab-pane fade');
-    document.getElementById('rimuoviTab').setAttribute('class', 'nav-link');
+    $('#rimozioni').attr('class', 'tab-pane fade');
+    $('#rimuoviTab').attr('class', 'nav-link');
 
+    $('#beorganizer').attr('class', 'tab-pane fade');
+    $('#beOrganizerTab').attr('class', 'nav-link');
 }
 
+// Funzione per mostrare la tab amministratore (organizzatore)
 function showAdmin(){
-    document.getElementById('prenotazioni').setAttribute('class', 'tab-pane fade ');
-    document.getElementById('prenotazioniTab').setAttribute('class', 'nav-link');
+    $('#prenotazioni').attr('class', 'tab-pane fade ');
+    $('#prenotazioniTab').attr('class', 'nav-link');
 
-    document.getElementById('creaEventoPage').setAttribute('class', 'tab-pane fade');
-    document.getElementById('creaTab').setAttribute('class', 'nav-link ');
+    $('#creaEventoPage').attr('class', 'tab-pane fade');
+    $('#creaTab').attr('class', 'nav-link ');
 
-    document.getElementById('admin').setAttribute('class', 'tab-pane fade show active');
-    document.getElementById('adminTab').setAttribute('class', 'nav-link active');
+    $('#admin').attr('class', 'tab-pane fade show active');
+    $('#adminTab').attr('class', 'nav-link active');
 
-    document.getElementById('rimozioni').setAttribute('class', 'tab-pane fade');
-    document.getElementById('rimuoviTab').setAttribute('class', 'nav-link');
-
+    $('#rimozioni').attr('class', 'tab-pane fade');
+    $('#rimuoviTab').attr('class', 'nav-link');
 }
 
+// Funzione per mostrare la tab per rimuovere un evento (organizzatore)
 function showRimozione(){
-    document.getElementById('prenotazioni').setAttribute('class', 'tab-pane fade ');
-    document.getElementById('prenotazioniTab').setAttribute('class', 'nav-link');
+    $('#prenotazioni').attr('class', 'tab-pane fade ');
+    $('#prenotazioniTab').attr('class', 'nav-link');
 
-    document.getElementById('creaEventoPage').setAttribute('class', 'tab-pane fade');
-    document.getElementById('creaTab').setAttribute('class', 'nav-link ');
+    $('#creaEventoPage').attr('class', 'tab-pane fade');
+    $('#creaTab').attr('class', 'nav-link ');
 
-    document.getElementById('admin').setAttribute('class', 'tab-pane fade');
-    document.getElementById('adminTab').setAttribute('class', 'nav-link');
+    $('#admin').attr('class', 'tab-pane fade');
+    $('#adminTab').attr('class', 'nav-link');
 
-    document.getElementById('rimozioni').setAttribute('class', 'tab-pane fade show active');
-    document.getElementById('rimuoviTab').setAttribute('class', 'nav-link active');
+    $('#rimozioni').attr('class', 'tab-pane fade show active');
+    $('#rimuoviTab').attr('class', 'nav-link active');
+}
 
+// Funzione per mostrare la tab per essere organizzatore (utente normale)
+function showBeOrganizer(){
+    $('#prenotazioniNormal').attr('class', 'tab-pane fade');
+    $('#prenotazioniNormalTab').attr('class', 'nav-link');
+
+    $('#beOrganizer').attr('class', 'tab-pane fade show active');
+    $('#beOrganizerTab').attr('class', 'nav-link active');
+}
+
+// Funzione per mostrare le prenotazioni (utente normale)
+function showPrenotazioniNormal(){
+    $('#prenotazioniNormal').attr('class', 'tab-pane fade show active');
+    $('#prenotazioniNormalTab').attr('class', 'nav-link active');
+
+    $('#beOrganizer').attr('class', 'tab-pane fade');
+    $('#beOrganizerTab').attr('class', 'nav-link');
 }
 
 // Funzione per settare la data minima e massima di creazione di un evento

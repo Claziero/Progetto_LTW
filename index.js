@@ -301,8 +301,10 @@ app.get('/profile', redirectLogin, async (req, res) => {
     var livello = (await db.getLevel(req.session.user.email))[0].privilegi;
 
     // Se sei un organizzatore allora cerca anche gli eventi organizzati
+    orgs = false;
     if (livello == 1) {
         var org = await db.organizzazioni(req.session.user.email);
+        orgs = true;
 
         // Formatta tutte le date ottenute
         org.forEach (elem => {
@@ -325,7 +327,7 @@ app.get('/profile', redirectLogin, async (req, res) => {
         log: logged,
         utente: utente,
         privilegi: livello == 1,
-        numOrg: org.length > 0,
+        numOrg: orgs,
         organizzazioni: org
     });
 });

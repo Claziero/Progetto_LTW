@@ -13,11 +13,13 @@
         <div class="container-xl px-4 mt-4">
             <div class="col-xl">
                 <ul class="nav nav-tabs" id="prof-tab" role="tablist">
+                    
+                    <!-- Utente organizzatore -->
+                    {{#if privilegi}}
                     <li class="nav-item">
                         <a class="nav-link active" id="prenotazioniTab" data-toggle="tab" onclick="showPrenotazioni()"
                             role="tab" aria-controls="home" aria-selected="true">Prenotazioni</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link " id="creaTab" data-toggle="tab" onclick="showEvento()" role="tab"
                             aria-controls="creaEvento" aria-selected="true">Crea nuovo evento</a>
@@ -25,16 +27,32 @@
 
                     <li class="nav-item">
                         <a class="nav-link" id="rimuoviTab" data-toggle="tab" onclick="showRimozione()" role="tab"
-                            aria-controls="admin" aria-selected="false">Elimina eventi</a>
+                            aria-controls="rimuoviEvento" aria-selected="false">Elimina eventi</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" id="adminTab" data-toggle="tab" onclick="showAdmin()" role="tab"
                             aria-controls="admin" aria-selected="false">Gestione organizzatori</a>
                     </li>
+
+                    <!-- Utente normale -->
+                    {{else}}
+                    <li class="nav-item">
+                        <a class="nav-link active" id="prenotazioniNormalTab" data-toggle="tab" onclick="showPrenotazioniNormal()"
+                            role="tab" aria-controls="home" aria-selected="true">Prenotazioni</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" id="beOrganizerTab" data-toggle="tab" onclick="showBeOrganizer()" role="tab"
+                            aria-controls="beOrganizer" aria-selected="false">Diventa organizzatore</a>
+                    </li>
+                    {{/if}}
                 </ul>
 
                 <div class="tab-content" id="prof-tabContent">
+
+                    <!-- Utente organizzatore -->
+                    {{#if privilegi}} 
                     <div class="tab-pane fade show active" id="prenotazioni" role="tabpanel"
                         aria-labelledby="prenotazioni-tab">
                         <br>
@@ -65,8 +83,6 @@
                     </div>
 
                     <div class="tab-pane fade" id="creaEventoPage" role="tabpanel" aria-labelledby="creaEvento-tab">
-
-                        {{#if privilegi}}
                         <form action="/createEvent" method="post" id="creaEvento" class="form-signin my-3"
                             onsubmit="return validaCreazione()">
 
@@ -135,20 +151,15 @@
                                     form="creaEvento">Reset</button>
                             </div>
                         </div>
-
-                        {{else}}
-                        Chiedi a un admin per organizzare il tuo evento
-                        {{/if}}
                     </div>
 
                     <div class="tab-pane fade" id="admin" role="tabpanel" aria-labelledby="admin-Tab">
-                        <div class="card mb-4">
+                        <div class="">
                             ADMIN
                         </div>
                     </div>
 
-                    <div class="tab-pane fade" id="rimozioni" role="tabpanel"
-                        aria-labelledby="rimozioni-tab">
+                    <div class="tab-pane fade" id="rimozioni" role="tabpanel" aria-labelledby="rimozioni-tab">
                         <br>
                         {{#if numOrg}}
                         <table class="table">
@@ -175,6 +186,47 @@
                         Non hai organizzato eventi.
                         {{/if}}
                     </div>
+
+                    <!-- Utente normale -->
+                    {{else}}
+                    <div class="tab-pane fade show active" id="prenotazioniNormal" role="tabpanel"
+                        aria-labelledby="prenotazioni-tab">
+                        <br>
+                        {{#if notEmpty}}
+                        <table class="table">
+                            <!-- Header della tabella -->
+                            <tr>
+                                <th>Titolo evento</th>
+                                <th>Data evento</th>
+                                <th>Azioni</th>
+                            </tr>
+
+                            <!-- Dati prenotazioni -->
+                            {{#each prenotazioni}}
+                            <tr>
+                                <td>{{titolo}}</td>
+                                <td>{{dataora}}</td>
+                                <td>
+                                    <button class="btn btn-danger" onclick="unbook({{id}})">Disdici</button>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </table>
+
+                        {{else}}
+                        Non ci sono prenotazioni recenti.
+                        {{/if}}
+                    </div>
+
+                    <div class="tab-pane fade" id="beOrganizer" role="tabpanel" aria-labelledby="beorganizer-Tab">
+                        <div class="mt-3">
+                            Vuoi diventare un'organizzatore? Richiedi l'autorizzazione ad un organizzatore.
+                            <br>
+                            <!-- TBC -->
+                            <button class="btn btn-primary" onclick="#">Richiedi</button>
+                        </div>
+                    </div>
+                    {{/if}}
                 </div>
             </div>
         </div>
