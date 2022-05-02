@@ -3,6 +3,7 @@
  * Privilegi=0 => Utente standard
  * Privilegi=1 => Utente organizzatore 
  * Privilegi=2 => DBA (massimo livello di privilegi)
+ * Privilegi=3 => Utente standard in attesa di diventare organizzatore
  * Password salvate in formato MD5
 */
 CREATE TABLE Utente(
