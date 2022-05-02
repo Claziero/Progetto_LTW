@@ -6,7 +6,9 @@
 
     <p id="tipo" class="lead">Tipo evento: {{tipo}}</p>
     <p id="dataora" class="lead"><i class="fa-solid fa-calendar-days"></i> {{dataora}}</p>
+    {{#if disponibile}}
     <p id="posti" class="lead"><i class="fa-solid fa-chair"></i> Posti disponibili: {{postidisponibili}}</p>
+    {{/if}}
     <hr class="my-1">
 
     <p id="desc"><i class="fa-solid fa-align-justify"></i> {{descrizione}}.</p>
@@ -20,8 +22,10 @@
         <a class="px-1">
             <button id="info" class="btn btn-info btn-lg" onclick="info({{id}})">Maggiori informazioni</button>
         </a>
+        {{#if disponibile}}
         <a class="px-1">
             <button id="prenota" class="btn btn-prenota btn-lg" onclick="prenota({{id}})">Prenota</button>
         </a>
+        {{/if}}
     </p>
 </div>
