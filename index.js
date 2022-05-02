@@ -300,18 +300,24 @@ app.get('/profile', redirectLogin, async (req, res) => {
     // Esegui la query per prendere il livello di privilegi
     var livello = (await db.getLevel(req.session.user.email))[0].privilegi;
 
-    orgs = false;
-    email = null;
+    var orgs = false;
+    var email = null;
+    var reqs = false;
 
-    // Se sei un organizzatore allora cerca anche gli eventi organizzati
+    // Se sei un organizzatore 
     if (livello == 1) {
+        // Cerca anche gli eventi organizzati
         var org = await db.organizzazioni(req.session.user.email);
-        orgs = true;
+        orgs = org.length > 0;
 
         // Formatta tutte le date ottenute
         org.forEach (elem => {
             elem['dataora'] = db.formatDate(elem['dataora'].toString());
         });
+
+        // Cerca anche eventuali richieste di diventare organizzatore
+        var richieste = await db.getRequests();
+        reqs = richieste.length > 0;
     }
 
     // Altrimenti sei un utente normale che può chiedere di essere organizzatore
@@ -335,7 +341,9 @@ app.get('/profile', redirectLogin, async (req, res) => {
         numOrg: orgs,
         organizzazioni: org,
         email: email,
-        richiesta: livello == 3
+        richiesta: livello == 3,
+        utenti: richieste,
+        requests: reqs
     });
 });
 
@@ -458,6 +466,60 @@ app.get('/beOrganizer=*', redirectLogin, (req, res) => {
 
             // Avvisa l'utente dell'errore
             res.write("[0]Errore interno durante la richiesta. Riprova");
+            res.end();
+        }
+    });
+});
+
+// Intercetta le accettazioni delle richieste di essere organizzatori degli eventi
+app.get('/acceptUser=*', redirectLogin, (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+
+    // Ottieni l'email dell'utente
+    var email = req.originalUrl.split('acceptUser=')[1];
+
+    // Prova a registrare la prenotazione
+    db.acceptRequest(email).then(b => {
+        if (b == 0) {
+            console.log(">>[Richiesta organ.] Richiesta Accettata (" + email + ")");
+
+            // Redireziona alla pagina del profilo
+            res.redirect('/profile');
+            res.end();
+        }
+        else if (b == -1) {
+            console.log(">>[Richiesta organ.] Errore nella query (" + email + ")");
+
+            // Redireziona alla pagina del profilo
+            res.redirect('/profile');
+            res.end();
+        }
+    });
+});
+
+// Intercetta le declinazioni delle richieste di essere organizzatori degli eventi
+app.get('/declineUser=*', redirectLogin, (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+
+    // Ottieni l'email dell'utente
+    var email = req.originalUrl.split('declineUser=')[1];
+
+    // Prova a registrare la prenotazione
+    db.declineRequest(email).then(b => {
+        if (b == 0) {
+            console.log(">>[Richiesta organ.] Richiesta Respinta (" + email + ")");
+
+            // Redireziona alla pagina del profilo
+            res.redirect('/profile');
+            res.end();
+        }
+        else if (b == -1) {
+            console.log(">>[Richiesta organ.] Errore nella query (" + email + ")");
+
+            // Redireziona alla pagina del profilo
+            res.redirect('/profile');
             res.end();
         }
     });

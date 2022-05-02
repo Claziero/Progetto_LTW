@@ -159,9 +159,35 @@
 
                     <!-- TAB admin -->
                     <div class="tab-pane fade" id="admin" role="tabpanel" aria-labelledby="admin-Tab">
-                        <div class="">
-                            ADMIN
-                        </div>
+                        {{#if requests}}
+                        <table class="table mt-3">
+                            <!-- Header della tabella -->
+                            <tr>
+                                <th>Nome</th>
+                                <th>Cognome</th>
+                                <th>Email</th>
+                                <th>Azioni</th>
+                            </tr>
+
+                            <!-- Dati degli utenti -->
+                            {{#each utenti}}
+                            <tr>
+                                <td>{{nome}}</td>
+                                <td>{{cognome}}</td>
+                                <td>{{email}}</td>
+                                <td>
+                                    <button class="btn btn-success" onclick="acceptUser('{{email}}')">Accetta</button>
+                                    <button class="btn btn-danger" onclick="declineUser('{{email}}')">Respingi</button>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </table>
+
+                        {{else}}
+                            <div class="mt-3">
+                                Non ci sono nuove richieste.
+                            </div>
+                        {{/if}}
                     </div>
 
                     <!-- TAB rimuovi evento -->
@@ -188,7 +214,9 @@
                         </table>
 
                         {{else}}
-                        Non hai organizzato eventi.
+                            <div class="mt-3">
+                                Non hai organizzato eventi.
+                            </div>
                         {{/if}}
                     </div>
 

@@ -16,6 +16,24 @@ function remove(id) {
     return;
 }
 
+// Funzione per accettare una nuova richiesta di organizzatore (organizzatore)
+function acceptUser(email) {
+    console.log("Accetta organizzatore utente=" + email);
+
+    // Reindirizza alla pagina di accettazione
+    window.location.replace("/acceptUser=" + email);
+    return;
+}
+
+// Funzione per respingere una nuova richiesta di organizzatore (organizzatore)
+function declineUser(email) {
+    console.log("Respingi organizzatore utente=" + email);
+
+    // Reindirizza alla pagina di respinta
+    window.location.replace("/declineUser=" + email);
+    return;
+}
+
 // Funzione per mostrare la tab di gestione delle prenotazioni (organizzatore)
 function showPrenotazioni() {
     $('#prenotazioni').attr('class', 'tab-pane fade show active ');
