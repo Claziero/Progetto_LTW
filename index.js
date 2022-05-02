@@ -337,12 +337,15 @@ app.get('/settings', redirectLogin, async (req, res) => {
 
     // Formatta la data in YYYY-MM-DD
     var d = new Date(userData[0].datanascita);
-    var data = d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
+    var data = d.getFullYear() + '-';
+    if (d.getMonth() < 8) data += '0' 
+        data += (d.getMonth() + 1) + '-';
+    if (d.getDate() < 10) data += '0' 
+        data += d.getDate();
 
     res.render('settings', {
         title: "Impostazioni", 
-        // style: "style-settings.css",
-        style: "style-main.css",
+        style: "style-settings.css",
         js: "validateSettings.js",
         log: logged,
         utente: utente,

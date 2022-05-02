@@ -1,23 +1,26 @@
-// const { type } = require("express/lib/response");
-
-function showSetPwd1 () {
-    var txt = document.getElementById('password');
-    if (txt.type == 'password') {
-        txt.type = 'text';
-    } else {
-        txt.type = 'password';
-    }
+// Funzione per mostrare la vecchia password
+function showSetPwd0() {
+    if ($('#oldPsw').attr('type') == 'password')
+        $('#oldPsw').attr('type', 'text');
+    else 
+        $('#oldPsw').attr('type', 'password');
 }
 
+// Funzione per mostrare la prima (nuova) password
+function showSetPwd1() {
+    if ($('#password').attr('type') == 'password')
+        $('#password').attr('type', 'text');
+    else 
+        $('#password').attr('type', 'password');
+}
+
+// Funzione per mostrare la seconda (nuova) password
 function showSetPwd2() {
-    var txt = document.getElementById('password_repeat');
-    if (txt.type == 'password') {
-        txt.type = 'text';
-    } else {
-        txt.type = 'password';
-    }
+    if ($('#password_repeat').attr('type') == 'password')
+        $('#password_repeat').attr('type', 'text');
+    else 
+        $('#password_repeat').attr('type', 'password');
 }
-
 
 // Verifica la lunghezza minima della password
 function checkLghSet() {
@@ -34,6 +37,7 @@ function checkLghSet() {
     }
 }
 
+// Funzione per verificare la correttezza delle password immesse
 function checkPwdMatch() {
     if ($('#password').val() == $('#password_repeat').val()) {
         $('#message').html('');
@@ -48,20 +52,19 @@ function checkPwdMatch() {
     }
 }
 
-function enableChanges(){
+// Funzione per abilitare la modifica della form
+function enableChanges() {
     $("#btnModifica").hide();
     $('#btnSubmit').removeAttr('hidden');
     $('#nome').removeAttr('readonly');
     $('#cognome').removeAttr('readonly');
-    $('#data').removeAttr('readonly');
     $('#oldPsw').removeAttr('readonly');
     $('#password').removeAttr('readonly');
     $('#password_repeat').removeAttr('readonly');
 }
 
-
 // Funzione per il controllo dei campi immessi prima della submit
 function validaForm() {
-    // COMPLETARE
-    return true;
+    // TBC
+    return checkLghSet() && checkPwdMatch();
 }
