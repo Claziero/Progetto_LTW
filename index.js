@@ -118,6 +118,80 @@ app.get('/highlights', async (req, res) => {
     });
 });
 
+// Render della homepage con eventi "Prossimamente"
+app.get('/nexts', async (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+    // console.log("[DEBUG] SessionID:" + req.sessionID);
+    // console.log("[DEBUG] Session:");
+    // console.log(req.session);
+
+    // Esegui la query per il main listing
+    var query = await db.loadNexts();
+    
+    // Formatta tutte le date ottenute
+    query.forEach (elem => {
+        elem['dataora'] = db.formatDate(elem['dataora'].toString());
+    });
+
+    // Se l'utente è loggato allora visualizza il dropdown in alto a destra
+    if (req.session.user) {
+        logged = true;
+        utente = req.session.user.nome;
+    }
+    // Altrimenti mostra solo i pulsanti di login e registrazione
+    else {
+        logged = false;
+        utente = '';
+    }
+
+    res.render('home', {
+        title: "Prossimamente", 
+        style: "style-main.css",
+        js: "homeActions.js", 
+        mainList: query,
+        utente: utente,
+        log: logged
+    });
+});
+
+// Render della homepage con eventi passati
+app.get('/passed', async (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+    // console.log("[DEBUG] SessionID:" + req.sessionID);
+    // console.log("[DEBUG] Session:");
+    // console.log(req.session);
+
+    // Esegui la query per il main listing
+    var query = await db.loadPassed();
+    
+    // Formatta tutte le date ottenute
+    query.forEach (elem => {
+        elem['dataora'] = db.formatDate(elem['dataora'].toString());
+    });
+
+    // Se l'utente è loggato allora visualizza il dropdown in alto a destra
+    if (req.session.user) {
+        logged = true;
+        utente = req.session.user.nome;
+    }
+    // Altrimenti mostra solo i pulsanti di login e registrazione
+    else {
+        logged = false;
+        utente = '';
+    }
+
+    res.render('home', {
+        title: "Eventi passati", 
+        style: "style-main.css",
+        js: "homeActions.js", 
+        mainList: query,
+        utente: utente,
+        log: logged
+    });
+});
+
 // Render della pagina di registrazione
 app.get('/signup', redirectHome, (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
