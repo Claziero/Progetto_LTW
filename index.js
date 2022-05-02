@@ -300,8 +300,10 @@ app.get('/profile', redirectLogin, async (req, res) => {
     // Esegui la query per prendere il livello di privilegi
     var livello = (await db.getLevel(req.session.user.email))[0].privilegi;
 
-    // Se sei un organizzatore allora cerca anche gli eventi organizzati
     orgs = false;
+    email = null;
+
+    // Se sei un organizzatore allora cerca anche gli eventi organizzati
     if (livello == 1) {
         var org = await db.organizzazioni(req.session.user.email);
         orgs = true;
@@ -311,6 +313,9 @@ app.get('/profile', redirectLogin, async (req, res) => {
             elem['dataora'] = db.formatDate(elem['dataora'].toString());
         });
     }
+
+    // Altrimenti sei un utente normale che può chiedere di essere organizzatore
+    else email = req.session.user.email;
     
     // Formatta tutte le date ottenute
     query.forEach (elem => {
@@ -328,7 +333,9 @@ app.get('/profile', redirectLogin, async (req, res) => {
         utente: utente,
         privilegi: livello == 1,
         numOrg: orgs,
-        organizzazioni: org
+        organizzazioni: org,
+        email: email,
+        richiesta: livello == 3
     });
 });
 
@@ -424,6 +431,33 @@ app.get('/book=*', redirectLogin, (req, res) => {
 
             // Avvisa l'utente dell'errore
             res.write("Attenzione! Sei già prenotato per questo evento. Visita il tuo profilo.");
+            res.end();
+        }
+    });
+});
+
+// Intercetta le richieste di essere organizzatori degli eventi
+app.get('/beOrganizer=*', redirectLogin, (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+
+    // Ottieni l'email dell'utente
+    var email = req.originalUrl.split('beOrganizer=')[1];
+
+    // Prova a registrare la prenotazione
+    db.beOrganizer(email).then(b => {
+        if (b == 0) {
+            console.log(">>[Richiesta organ.] Richiesta OK");
+
+            // Avvisa l'utente del successo
+            res.write("[1]Richiesta inserita con successo. A breve potresti diventare un organizzatore");
+            res.end();
+        }
+        else if (b == -1) {
+            console.log(">>[Richiesta organ.] Errore nella query");
+
+            // Avvisa l'utente dell'errore
+            res.write("[0]Errore interno durante la richiesta. Riprova");
             res.end();
         }
     });
