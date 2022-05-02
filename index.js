@@ -408,6 +408,9 @@ app.get('/profile', redirectLogin, async (req, res) => {
     // Esegui la query per le prenotazioni
     var query = await db.prenotazioni(req.session.user.email);
 
+    // Esegui la query per lo storico
+    var storico = await db.storico(req.session.user.email);
+
     // Esegui la query per prendere il livello di privilegi
     var livello = (await db.getLevel(req.session.user.email))[0].privilegi;
 
@@ -438,6 +441,9 @@ app.get('/profile', redirectLogin, async (req, res) => {
     query.forEach (elem => {
         elem['dataora'] = db.formatDate(elem['dataora'].toString());
     });
+    storico.forEach (elem => {
+        elem['dataora'] = db.formatDate(elem['dataora'].toString());
+    });
 
     res.render('profile', {
         title: "Profilo", 
@@ -454,7 +460,9 @@ app.get('/profile', redirectLogin, async (req, res) => {
         email: email,
         richiesta: livello == 3,
         utenti: richieste,
-        requests: reqs
+        requests: reqs, 
+        storico: storico,
+        notEmptyStorico: storico.length > 0
     });
 });
 

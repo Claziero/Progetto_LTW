@@ -47,6 +47,9 @@ function showPrenotazioni() {
     
     $('#admin').attr('class', 'tab-pane fade');
     $('#adminTab').attr('class', 'nav-link');
+
+    $('#storico').attr('class', 'tab-pane fade');
+    $('#storicoTab').attr('class', 'nav-link');
 }
 
 // Funzione per mostrare la tab per creare un evento (organizzatore)
@@ -62,6 +65,9 @@ function showEvento() {
     
     $('#admin').attr('class', 'tab-pane fade');
     $('#adminTab').attr('class', 'nav-link');
+
+    $('#storico').attr('class', 'tab-pane fade');
+    $('#storicoTab').attr('class', 'nav-link');
 }
 
 // Funzione per mostrare la tab per rimuovere un evento (organizzatore)
@@ -77,6 +83,9 @@ function showRimozione() {
     
     $('#admin').attr('class', 'tab-pane fade');
     $('#adminTab').attr('class', 'nav-link');
+
+    $('#storico').attr('class', 'tab-pane fade');
+    $('#storicoTab').attr('class', 'nav-link');
 }
 
 // Funzione per mostrare la tab amministratore (organizzatore)
@@ -92,6 +101,27 @@ function showAdmin() {
     
     $('#admin').attr('class', 'tab-pane fade show active');
     $('#adminTab').attr('class', 'nav-link active');
+
+    $('#storico').attr('class', 'tab-pane fade');
+    $('#storicoTab').attr('class', 'nav-link');
+}
+
+// Funzione per mostrare la tab dello storico (organizzatore)
+function showStorico() {
+    $('#prenotazioni').attr('class', 'tab-pane fade ');
+    $('#prenotazioniTab').attr('class', 'nav-link');
+
+    $('#creaEventoPage').attr('class', 'tab-pane fade');
+    $('#creaTab').attr('class', 'nav-link ');
+
+    $('#rimozioni').attr('class', 'tab-pane fade');
+    $('#rimuoviTab').attr('class', 'nav-link');
+    
+    $('#admin').attr('class', 'tab-pane fade');
+    $('#adminTab').attr('class', 'nav-link');
+
+    $('#storico').attr('class', 'tab-pane fade show active');
+    $('#storicoTab').attr('class', 'nav-link active');
 }
 
 // Funzione per mostrare le prenotazioni (utente normale)
@@ -101,6 +131,9 @@ function showPrenotazioniNormal() {
 
     $('#beOrganizer').attr('class', 'tab-pane fade');
     $('#beOrganizerTab').attr('class', 'nav-link');
+
+    $('#storicoNormal').attr('class', 'tab-pane fade');
+    $('#storicoNormalTab').attr('class', 'nav-link');
 }
 
 // Funzione per mostrare la tab per essere organizzatore (utente normale)
@@ -110,6 +143,21 @@ function showBeOrganizer() {
 
     $('#beOrganizer').attr('class', 'tab-pane fade show active');
     $('#beOrganizerTab').attr('class', 'nav-link active');
+
+    $('#storicoNormal').attr('class', 'tab-pane fade');
+    $('#storicoNormalTab').attr('class', 'nav-link');
+}
+
+// Funzione per mostrare la tab dello storico (utente normale)
+function showStoricoNormal() {
+    $('#prenotazioniNormal').attr('class', 'tab-pane fade');
+    $('#prenotazioniNormalTab').attr('class', 'nav-link');
+
+    $('#beOrganizer').attr('class', 'tab-pane fade');
+    $('#beOrganizerTab').attr('class', 'nav-link');
+
+    $('#storicoNormal').attr('class', 'tab-pane fade show active');
+    $('#storicoNormalTab').attr('class', 'nav-link active');
 }
 
 // Funzione per settare la data minima e massima di creazione di un evento
