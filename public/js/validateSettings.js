@@ -1,25 +1,43 @@
 // Funzione per mostrare la vecchia password
 function showSetPwd0() {
-    if ($('#oldPsw').attr('type') == 'password')
+    if ($('#oldPsw').attr('type') == 'password') {
         $('#oldPsw').attr('type', 'text');
-    else 
+        $('#pwdEye0').removeClass('fa-eye');
+        $('#pwdEye0').addClass('fa-eye-slash');
+    }
+    else {
         $('#oldPsw').attr('type', 'password');
+        $('#pwdEye0').removeClass('fa-eye-slash');
+        $('#pwdEye0').addClass('fa-eye');
+    }
 }
 
 // Funzione per mostrare la prima (nuova) password
 function showSetPwd1() {
-    if ($('#password').attr('type') == 'password')
+    if ($('#password').attr('type') == 'password') {
         $('#password').attr('type', 'text');
-    else 
+        $('#pwdEye1').removeClass('fa-eye');
+        $('#pwdEye1').addClass('fa-eye-slash');
+    }
+    else {
         $('#password').attr('type', 'password');
+        $('#pwdEye1').removeClass('fa-eye-slash');
+        $('#pwdEye1').addClass('fa-eye');
+    } 
 }
 
 // Funzione per mostrare la seconda (nuova) password
 function showSetPwd2() {
-    if ($('#password_repeat').attr('type') == 'password')
+    if ($('#password_repeat').attr('type') == 'password') {
         $('#password_repeat').attr('type', 'text');
-    else 
+        $('#pwdEye2').removeClass('fa-eye');
+        $('#pwdEye2').addClass('fa-eye-slash');
+    }
+    else {
         $('#password_repeat').attr('type', 'password');
+        $('#pwdEye2').removeClass('fa-eye-slash');
+        $('#pwdEye2').addClass('fa-eye');
+    }
 }
 
 // Verifica la lunghezza minima della password

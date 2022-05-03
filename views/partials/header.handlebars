@@ -5,7 +5,7 @@
             <!-- Logo -->
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none me-lg-3">
                 <!-- Aspetto dell'immagine originale: 3.66:1 -->
-                <img src="img/icon-transparent.png" alt="home" width="120" height="33" class="">
+                <img src="img/icon-transparent.png" alt="home" width="120" height="33"/>
             </a>
 
             <!-- Navbar -->
@@ -17,7 +17,10 @@
 
             <!-- Barra di ricerca -->
             <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                <input id="src" type="search" onchange="search()" class="form-control" placeholder="Cerca evento..." aria-label="Search">
+                <div class="input-group">
+                    <input id="src" type="search" onchange="search()" class="form-control" placeholder="Cerca evento..." aria-label="Search">
+                    <div class="input-group-text"><i class="fa fa-search"></i></div>
+                </div>
             </div>
 
             <!-- Dropdown/buttons se loggato -->

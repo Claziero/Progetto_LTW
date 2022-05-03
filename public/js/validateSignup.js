@@ -64,18 +64,30 @@ function checkData() {
 
 // Mostra la password (1)
 function showPwd() {
-    if ($('#password').attr('type') == 'password')
+    if ($('#password').attr('type') == 'password') {
         $('#password').attr('type', 'text');
-    else
+        $('#pwdEye1').removeClass('fa-eye');
+        $('#pwdEye1').addClass('fa-eye-slash');
+    }
+    else {
         $('#password').attr('type', 'password');
+        $('#pwdEye1').removeClass('fa-eye-slash');
+        $('#pwdEye1').addClass('fa-eye');
+    }
 }
 
 // Mostra la password (2)
 function showPwd2() {
-    if ($('#password_repeat').attr('type') == 'password')
+    if ($('#password_repeat').attr('type') == 'password') {
         $('#password_repeat').attr('type', 'text');
-    else
+        $('#pwdEye2').removeClass('fa-eye');
+        $('#pwdEye2').addClass('fa-eye-slash');
+    }
+    else {
         $('#password_repeat').attr('type', 'password');
+        $('#pwdEye2').removeClass('fa-eye-slash');
+        $('#pwdEye2').addClass('fa-eye');
+    }
 }
 
 

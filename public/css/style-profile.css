@@ -31,6 +31,10 @@ footer {
     left: 0;
 }
 
+.input-group-text {
+    background-color: white;
+}
+
 /* Media queries per l'adattamento a dispositivi mobili */
 @media screen and (max-width: 600px) {
     footer {

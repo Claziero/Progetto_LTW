@@ -1,18 +1,19 @@
-//variabili di login
 
-//inputEmail
+// Funzione per mostrare la password
+function showPwd () {
+    if ($('#password').attr('type') == 'password') {
+        $('#password').attr('type', 'text');
+        $('#pwdEye').removeClass('fa-eye');
+        $('#pwdEye').addClass('fa-eye-slash');
+    }
+    else {
+        $('#password').attr('type', 'password');
+        $('#pwdEye').removeClass('fa-eye-slash');
+        $('#pwdEye').addClass('fa-eye');
+    }
+}
 
-//inputPassword
 
 function validaForm() {
     return true;
-}
-
-function showPwd () {
-    var txt = document.getElementById('password');
-    if (txt.type == 'password') {
-        txt.type = 'text';
-    } else {
-        txt.type = 'password';
-    }
 }
