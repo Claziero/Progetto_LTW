@@ -335,6 +335,9 @@ app.get('/settings', redirectLogin, async (req, res) => {
     // Prendi i dati utente da mettere nei campi
     var userData = await db.getUserData(req.session.user.email);
 
+    // Esegui la query per prendere il livello di privilegi
+    var livello = (await db.getLevel(req.session.user.email))[0].privilegi;
+
     // Formatta la data in YYYY-MM-DD
     var d = new Date(userData[0].datanascita);
     var data = d.getFullYear() + '-';
@@ -351,7 +354,8 @@ app.get('/settings', redirectLogin, async (req, res) => {
         utente: utente,
         nome: userData[0].nome,
         cognome: userData[0].cognome,
-        data: data
+        data: data,
+        privilegi: livello == 0
     });
 });
 
@@ -484,6 +488,32 @@ app.get('/logout', redirectLogin, (req, res) => {
     
     res.render('logout', {
         title: "Logout"
+    });
+});
+
+// Intercetta le cancellazioni dei profili utente
+app.get('/deleteUser', redirectLogin, (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+
+    var email = req.session.user.email;
+
+    // Prova a registrare la prenotazione
+    db.deleteUser(email).then(b => {
+        if (b == 0) {
+            console.log(">>[Elim. utente] Eliminazione effettuata (" + email + ")");
+
+            // Redireziona alla pagina di logout
+            res.redirect('/logout');
+            res.end();
+        }
+        else if (b == -1) {
+            console.log(">>[Elim. utente] Errore nella query (" + email + ")");
+
+            // Redireziona alla pagina delle impostazioni
+            res.redirect('/settings');
+            res.end();
+        }
     });
 });
 

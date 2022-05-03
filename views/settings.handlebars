@@ -8,8 +8,9 @@
 
         <hr class="mt-0 mb-4">
         <div class="row">
+            <!-- Rimozione account (solo utenti standard) -->
+            {{#if privilegi}}
             <div class="col-xl-4">
-                <!-- Profile picture card-->
                 <div class="card mb-4">
                     <div class="card-header">Il tuo profilo</div>
                     <div class="card-body">
@@ -18,12 +19,20 @@
                         tutte le prenotazioni.<br>
 
                         <!-- Rimuovi l'account -->
-                        <button class="btn btn-danger mt-3" id='btnDeleteAccount' onclick="#">Elimina il mio account</button>
+                        <a href="/deleteUser">
+                            <button class="btn btn-danger mt-3" id='btnDeleteAccount'>Elimina il mio account</button>
+                        </a>
                     </div>
                 </div>
             </div>
+            {{/if}}
 
+            <!-- Sezione account (dimensioni diverse se utente standard/organizzatore) -->
+            {{#if privilegi}}
             <div class="col-xl-8">
+            {{else}}
+            <div class="col-xl-12">
+            {{/if}}
                 <!-- Form -->
                 <div class="card mb-4">
                     <div class="card-header">Il tuo account
