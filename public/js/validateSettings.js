@@ -74,6 +74,7 @@ function checkPwdMatch() {
 function enableChanges() {
     $("#btnModifica").hide();
     $('#btnSubmit').removeAttr('hidden');
+    $('#btnReset').removeAttr('hidden');
     $('#nome').removeAttr('readonly');
     $('#cognome').removeAttr('readonly');
     $('#oldPsw').removeAttr('readonly');
@@ -83,6 +84,5 @@ function enableChanges() {
 
 // Funzione per il controllo dei campi immessi prima della submit
 function validaForm() {
-    // TBC
     return checkLghSet() && checkPwdMatch();
 }
