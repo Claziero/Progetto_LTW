@@ -19,6 +19,7 @@ body {
 
 header {
   background-color: var(--header-color);
+  margin-left: auto;
 }
 
 footer {
@@ -33,6 +34,10 @@ footer {
 
 a {
   text-decoration: none;
+}
+
+.container {
+  max-width: 95%;
 }
 
 .btn-prenota {
@@ -56,7 +61,7 @@ a {
 }
 
 .listing {
-  width: 90%;
+  width: 95%;
   display: none;
 }
 
@@ -70,6 +75,15 @@ a {
 
 .input-group-text {
   background-color: white;
+}
+
+.card-custom {
+  /* max-width: 500px; */
+  display: inline-block;
+}
+
+.card-columns {
+    column-count: 4;
 }
 
 /* Media queries per l'adattamento a dispositivi mobili */
@@ -86,5 +100,21 @@ a {
 
   section {
     min-height: 65vh;
+  }
+
+  .card-columns {
+    column-count: 1;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1100px) {
+  .card-columns {
+    column-count: 2;
+  }
+}
+
+@media screen and (min-width: 1101px) and (max-width: 1600px) {
+  .card-columns {
+    column-count: 3;
   }
 }

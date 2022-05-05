@@ -15,10 +15,7 @@
         <script>
             $(document).ready(function() {
                 $(".listing").click(function() {
-                    if ($(".buttons-par", this).css("display") == "none")
-                        $(".buttons-par", this).fadeIn("fast");
-                    else 
-                        $(".buttons-par", this).fadeOut("fast");
+                    $(".buttons-par", this).slideToggle("fast");
                 });
             });
         </script>
@@ -30,11 +27,13 @@
     {{/if}}
 
     <!-- Per ogni elemento della query crea un nuovo elemento -->
-    <section id="mainSection">
-        {{#each mainList}}
-            {{> main-listing}}
-        {{/each}}
-    </section>
+    <div class="container" id="mainSection">
+        <div class="card-columns mt-3">
+            {{#each mainList}}
+                {{> main-listing}}
+            {{/each}}
+        </div>
+    </div>
 
     <!-- Includi il footer -->
     {{> footer}}
