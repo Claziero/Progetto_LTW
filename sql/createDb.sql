@@ -19,6 +19,14 @@ CREATE TABLE Utente(
     PRIMARY KEY (Email)
 );
 
+/* Tabella per il mapping tra il nome di un immagine e il suo titolo */
+CREATE TABLE ImgMapping(
+    Nome                VARCHAR,
+    Titolo              VARCHAR,
+
+    PRIMARY KEY (Nome)
+);
+
 /* Tabella Eventi organizzati
  * Un evento può essere ancora disponibile oppure già passato (non prenotabile)
  * ed ha un numero limitato di posti.
@@ -37,7 +45,8 @@ CREATE TABLE Evento(
     Immagine            VARCHAR,
 
     PRIMARY KEY (ID),
-    FOREIGN KEY (Organizzatore) REFERENCES Utente
+    FOREIGN KEY (Organizzatore) REFERENCES Utente,
+    FOREIGN KEY (Immagine) REFERENCES ImgMapping
 );
 
 /* Tabella delle prenotazioni

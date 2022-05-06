@@ -3,6 +3,22 @@ INSERT INTO Utente VALUES
     ('Normal', 'User', '2000-01-01', 'M', 'normal@user.com', '63a9f0ea7bb98050796b649e85481845', true, 0),
     ('Promoter', 'User', '2000-01-01', 'M', 'promoter@user.com', '63a9f0ea7bb98050796b649e85481845', true, 1);
 
+INSERT INTO ImgMapping VALUES 
+    ('chess.png', 'Scacchi'),
+    ('wrestling.png', 'Wrestling'),
+    ('boardgame.png', 'Dadi (giochi da tavolo)'),
+    ('armwrestling.png', 'Braccio di ferro'),
+    ('tennis.png', 'Tennis'),
+    ('volleyball.png', 'Pallone da pallavolo'),
+    ('scherma.png', 'Scherma'),
+    ('motocross.png', 'Motocross'),
+    ('demolitionderby.png', 'Autoscontro'),
+    ('sing.png', 'Microfono (canto)'),
+    ('dance.png', 'Ballo'),
+    ('carrace.png', 'F1 (corsa di auto)'),
+    ('soccer.png', 'Pallone da calcio');
+
+
 INSERT INTO Evento VALUES
     -- Eventi passati
     (1, 'promoter@user.com', 'Torneo di scacchi', 'Torneo', 'Roma, IT', '2022-04-01 10:30', 
