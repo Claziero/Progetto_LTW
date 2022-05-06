@@ -15,7 +15,15 @@
         <script>
             $(document).ready(function() {
                 $(".listing").click(function() {
-                    $(".buttons-par", this).slideToggle("fast");
+                    // Condizioni di apparizione pulsanti specifiche per eventi passati
+                    if ($("#info", this).css("display") != "none" || $("#prenota", this).hasClass("btn")) {
+                        if ($(".buttons-par", this).css("display") == "none") {
+                            $(".buttons-par").slideUp("fast");
+                            $(".buttons-par", this).slideDown("fast");
+                        }
+                        else 
+                            $(".buttons-par", this).slideUp("fast");
+                    }
                 });
             });
         </script>

@@ -1,4 +1,5 @@
-<div class="card card-custom mx-3 px-3 mb-3 rounded listing" id="e{{id}}">
+<div class="card card-custom mx-3 px-3 mb-3 rounded listing" id="e{{id}}"
+    style="background-image: url('/img/soccer.png');">
     <h3 id="titolo" class="display-6">{{titolo}}</h3>
 
     <!-- Messaggio di errore -->
@@ -9,18 +10,18 @@
     {{#if disponibile}}
     <p id="posti" class="lead"><i class="fa-solid fa-chair"></i> Posti disponibili: {{postidisponibili}}</p>
     {{/if}}
-    <hr class="my-1">
-
-    <p id="desc"><i class="fa-solid fa-align-justify"></i> {{descrizione}}.</p>
 
     <!-- Informazioni aggiuntive -->
     <p id="luogo" class="lead"><i class="fa-solid fa-map-location-dot"></i></p>
     <p id="organizzatore" class="lead"><i class="fa-solid fa-user-tag"></i></p>
 
+    <hr class="my-1">
+    <p id="desc"><i class="fa-solid fa-align-justify"></i> {{descrizione}}.</p>
+
     <!-- Pulsanti -->
     <p class="lead buttons-par">
         <a class="px-1">
-            <button id="info" class="btn btn-info btn-lg" onclick="info({{id}})">Maggiori informazioni</button>
+            <button id="info" class="btn btn-info btn-lg" onclick="info({{id}})">Informazioni</button>
         </a>
         {{#if disponibile}}
         <a class="px-1">
