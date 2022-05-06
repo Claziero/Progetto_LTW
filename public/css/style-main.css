@@ -63,6 +63,9 @@ a {
 .listing {
   width: 95%;
   display: none;
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .gradient-custom-4 {
