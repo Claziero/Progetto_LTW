@@ -34,6 +34,7 @@ CREATE TABLE Evento(
     Descrizione         VARCHAR,
     Disponibile         BOOLEAN,
     Passato             BOOLEAN,
+    Immagine            VARCHAR,
 
     PRIMARY KEY (ID),
     FOREIGN KEY (Organizzatore) REFERENCES Utente
