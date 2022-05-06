@@ -151,7 +151,7 @@
                         <!-- Descrizione e pulsanti -->
                         <div class="row">
                             <!-- Descrizione -->
-                            <div class="col-xl-9">
+                            <div class="col-xl-8">
                                 <label for="descrizione">Descrizione</label>
                                 <br>
                                 <textarea rows="5" cols="100" class="form-control" form="creaEvento" name="descrizione"
@@ -159,12 +159,27 @@
                             </div>
 
                             <!-- Submit e reset -->
-                            <div class="col-xl-3 text-center py-4 px-3">
-                                <button type="submit" class="btn btn-primary my-3" id="creaEventoBtn"
-                                    form="creaEvento">Conferma</button>
-                                <br>
-                                <button type="reset" class="btn btn-secondary" id="resetBtn"
-                                    form="creaEvento">Reset</button>
+                            <div class="col-xl-4">
+                                <!-- Tipo evento -->
+                                <div>
+                                    <label for="imgEvent">Immagine di sfondo</label>
+                                    <br>
+                                    <select name="imgEvent" class="form-select" form="creaEvento" required>
+                                        <option value="" selected></option>
+                                        {{#each images}}
+                                        <option value="{{immagine}}">{{immagine}}</option>
+                                        {{/each}}
+                                        <option value="Altro">Altro</option>
+                                    </select>
+                                </div>
+
+                                <div class="text-center py-2 px-3">
+                                    <button type="submit" class="btn btn-primary my-3" id="creaEventoBtn"
+                                        form="creaEvento">Conferma</button>
+
+                                    <button type="reset" class="btn btn-secondary" id="resetBtn"
+                                        form="creaEvento">Reset</button>
+                                </div>
                             </div>
                         </div>
                     </div>

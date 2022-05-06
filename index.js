@@ -439,6 +439,9 @@ app.get('/profile', redirectLogin, async (req, res) => {
         // Cerca anche eventuali richieste di diventare organizzatore
         var richieste = await db.getRequests();
         reqs = richieste.length > 0;
+
+        // Ricava la lista delle immagini disponibili
+        var images = await db.getImagesList();
     }
 
     // Altrimenti sei un utente normale che può chiedere di essere organizzatore
@@ -469,7 +472,8 @@ app.get('/profile', redirectLogin, async (req, res) => {
         utenti: richieste,
         requests: reqs, 
         storico: storico,
-        notEmptyStorico: storico.length > 0
+        notEmptyStorico: storico.length > 0,
+        images: images
     });
 });
 
@@ -529,7 +533,8 @@ app.post('/createEvent', redirectLogin, (req, res) => {
         tipo: req.body.eventType,
         data: req.body.dateTime,
         posti: req.body.posti,
-        descrizione: req.body.descrizione
+        descrizione: req.body.descrizione,
+        immagine: req.body.imgEvent
     };
 
     // Inserisci l'evento nel db
