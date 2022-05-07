@@ -1,5 +1,3 @@
-
-
 // Verifica che le due password inserite siano uguali
 function checkPwdMatch() {
     if ($('#password').val() == $('#password_repeat').val()) {
@@ -90,8 +88,8 @@ function showPwd2() {
     }
 }
 
-
 // Funzione per il check del form prima dell'invio al server
-function validaForm() { // Controllare che tutti i campi della form siano validi
+function validaForm() { 
+    // Controlla che tutti i campi della form siano validi
     return (checkLgh() && checkPwdMatch() && checkSex() && checkData());
 }

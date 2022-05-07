@@ -1,6 +1,5 @@
-
 // Funzione per mostrare la password
-function showPwd () {
+function showPwd() {
     if ($('#password').attr('type') == 'password') {
         $('#password').attr('type', 'text');
         $('#pwdEye').removeClass('fa-eye');
@@ -11,9 +10,4 @@ function showPwd () {
         $('#pwdEye').removeClass('fa-eye-slash');
         $('#pwdEye').addClass('fa-eye');
     }
-}
-
-
-function validaForm() {
-    return true;
 }

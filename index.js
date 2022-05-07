@@ -261,7 +261,7 @@ app.get('/login', redirectHome, (req, res) => {
     // console.log("[DEBUG] Session:");
     // console.log(req.session);
 
-    res.render('login', {
+    res.render('signin', {
         title: "Login", 
         style: "style-signin.css",
         js: "validateSignin.js"
@@ -297,7 +297,7 @@ app.post('/loginValid', (req, res) => {
         else if (log == -1) {
             console.log(">>Accesso errato: pwd errata (" + user.email + ")");
             
-            res.render('login', {
+            res.render('signin', {
                 title: "Login", 
                 style: "style-signin.css",
                 js: "validateSignin.js",
@@ -309,7 +309,7 @@ app.post('/loginValid', (req, res) => {
         else if (log == -2) {
             console.log(">>Accesso errato: mail errata (" + user.email + ")");
 
-            res.render('login', {
+            res.render('signin', {
                 title: "Login", 
                 style: "style-signin.css",
                 js: "validateSignin.js",

@@ -1,20 +1,20 @@
 <!-- Body della pagina di login -->
-<section class="bg-image">
-  <div class="mask d-flex align-items-center h-100 gradient-custom-4">
-    <div class="container h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
+<section>
+  <div class="mask d-flex gradient-custom-4">
+    <div class="container">
+      <div class="row d-flex">
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-          <div class="card" style="border-radius: 15px;">
+          <div class="card">
             <div class="card-body p-4">
 
               <!-- Form -->
-              <form action="/loginValid" method="post" class="form-signin" onsubmit="return validaForm()">
-                <a href="/" class="">
+              <form action="/loginValid" method="post" class="form-signin">
+                <a href="/">
                   <!-- Aspetto dell'immagine originale: 3.66:1 -->
                   <img src="img/icon-transparent.png" alt="home" width="250" height="68"/>
                 </a>
 
-                <p> Inserisci i dati per accedere al tuo account!</p>
+                <div> Inserisci i dati per accedere al tuo account!</div>
                 <hr>
 
                 <!-- Email -->
@@ -30,12 +30,6 @@
                   
                   <!-- Mostra password -->
                   <div class="input-group-text" onclick="showPwd()"><i class="fa fa-eye" id="pwdEye"></i></div>
-                </div>
-
-                <!-- Remember me -->
-                <div class="form-outline mb-1">
-                  <input type="checkbox" name="rememberMe" class="form-check-input" />
-                  <label for="rememberMe">Remember me</label>
                 </div>
 
                 <!-- Messaggio di errore -->

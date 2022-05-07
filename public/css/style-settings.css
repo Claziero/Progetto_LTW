@@ -1,3 +1,4 @@
+/* Colori */
 :root {
     --theme-color: rgba(24, 192, 46, 0.534);
     --btn-prenota-color: rgba(8, 211, 41, 0.603);
@@ -6,6 +7,11 @@
     --footer-color: #efefef;
 }
 
+.gradient-custom-4 {
+    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+}
+
+/* Generali */
 html {
     height: 100%;
 }
@@ -33,10 +39,6 @@ footer {
     right: 0;
     bottom: 0;
     left: 0;
-}
-
-.gradient-custom-4 {
-    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
 }
 
 /* Media queries per l'adattamento a dispositivi mobili */

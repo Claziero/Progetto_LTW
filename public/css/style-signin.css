@@ -1,48 +1,58 @@
-
+/* Colori */
 :root {
-  --theme-color: rgba(24, 192, 46, 0.534);
-}
-
-.gradient-custom-3 {
-  background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+    --theme-color: rgba(24, 192, 46, 0.534);
 }
 
 .gradient-custom-4 {
-  background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
 }
 
+/* Generali */
 img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: auto;
-  width: 60%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    width: 60%;
 }
 
 .input-group-text {
-  background-color: white;
+    background-color: white;
 }
 
 .btn-login {
-  background-color: var(--theme-color);
-  color: black;
-  border-color: transparent;
+    background-color: var(--theme-color);
+    color: black;
+    border-color: transparent;
 }
 
 .form-signin {
-  width: 100%;
-  margin: auto;
+    width: 100%;
+    margin: auto;
+}
+
+.card {
+    border-radius: 15px;
+}
+
+.d-flex, .container {
+    height: 100%;
+}
+
+.d-flex {
+    align-items: center;
+    justify-content: center;
 }
 
 /* Media queries per l'adattamento a dispositivi mobili */
 @media screen and (max-width: 600px) {
-  img {
-    width: auto;
-  }
+    img {
+        width: auto;
+    }
 }
 
 @media screen and (min-height: 460px) {
-  section {
-    height: 100vh;
-  }
+    section {
+        height: 100vh;
+    }
 }
