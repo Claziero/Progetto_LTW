@@ -25,6 +25,9 @@ body {
 
 header {
     background-color: var(--header-color);
+    margin-left: auto;
+    padding: 1rem;
+    margin-bottom: 1rem;
 }
 
 .input-group-text {
@@ -33,12 +36,32 @@ header {
 
 footer {
     background-color: var(--footer-color);
-    padding-top: 3rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     width: 100%;
     position: absolute;
     right: 0;
     bottom: 0;
     left: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.d-flex {
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: var(--btn-prenota-color);
+    border-color: transparent;
+    color: black;
+}
+
+label {
+    margin-bottom: .25rem;
 }
 
 /* Media queries per l'adattamento a dispositivi mobili */

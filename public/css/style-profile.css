@@ -25,11 +25,15 @@ body {
 
 header {
     background-color: var(--header-color);
+    margin-left: auto;
+    padding: 1rem;
+    margin-bottom: 1rem;
 }
 
 footer {
     background-color: var(--footer-color);
-    padding-top: 3rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     width: 100%;
     position: absolute;
     right: 0;
@@ -39,6 +43,15 @@ footer {
 
 .input-group-text {
     background-color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+.d-flex {
+    align-items: center;
+    justify-content: center;
 }
 
 /* Media queries per l'adattamento a dispositivi mobili */

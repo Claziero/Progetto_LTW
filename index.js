@@ -119,7 +119,7 @@ app.get('/highlights', async (req, res) => {
 });
 
 // Render della homepage con eventi "Prossimamente"
-app.get('/nexts', async (req, res) => {
+app.get('/next', async (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
     req.session.views += 1;
     // console.log("[DEBUG] SessionID:" + req.sessionID);
@@ -127,7 +127,7 @@ app.get('/nexts', async (req, res) => {
     // console.log(req.session);
 
     // Esegui la query per il main listing
-    var query = await db.loadNexts();
+    var query = await db.loadNext();
     
     // Formatta tutte le date ottenute
     query.forEach (elem => {

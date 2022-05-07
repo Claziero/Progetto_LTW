@@ -1,41 +1,36 @@
-<div class="card mx-2 px-1 mb-3 listing" id="e{{id}}"
-    style="background-image: url('/img/{{immagine}}');">
+<div class="card listing" id="e{{id}}" style="background-image: url('/img/{{immagine}}');">
 
-    <div class="card-inner">
-        <div class="card-front px-3">
-            <div id="titolo" class="display-6 text-center">{{titolo}}</div>
-            <div id="tipo" class="lead mb-2 text-center">Tipo evento: {{tipo}}</div>
+  <div class="card-inner">
+    <div class="card-front">
+      <div id="titolo" class="display-6 text-center">{{titolo}}</div>
+      <div id="tipo" class="lead mb-2 text-center">Tipo evento: {{tipo}}</div>
 
-            <div id="dataora" class="lead"><i class="fa-solid fa-calendar-days"></i> {{dataora}}</div>
-            {{#if disponibile}}
-            <div id="posti" class="lead"><i class="fa-solid fa-chair"></i> Posti disponibili: {{postidisponibili}}</div>
-            {{/if}}
+      <div id="dataora" class="lead"><i class="fa-solid fa-calendar-days"></i> {{dataora}}</div>
+      {{#if disponibile}}
+      <div id="posti" class="lead"><i class="fa-solid fa-chair"></i> Posti disponibili: {{postidisponibili}}</div>
+      {{/if}}
 
-            <!-- Informazioni aggiuntive -->
-            <div id="luogo" class="lead"><i class="fa-solid fa-map-location-dot"></i></div>
-            <div id="organizzatore" class="lead"><i class="fa-solid fa-user-tag"></i></div>
-            
-            <hr class="my-1">
-            <p id="desc"><i class="fa-solid fa-align-justify"></i> {{descrizione}}.</p>
-        </div>
+      <!-- Informazioni aggiuntive -->
+      <div id="luogo" class="lead"><i class="fa-solid fa-map-location-dot"></i></div>
+      <div id="organizzatore" class="lead"><i class="fa-solid fa-user-tag"></i></div>
 
-        <div class="card-back">
-            <!-- Messaggio di errore -->
-            <div class="mt-2 text-danger" id="message"></div>
-
-            <!-- Pulsanti -->
-            <div class="lead buttons-par">
-                <a class="px-1">
-                    <button id="info" class="btn btn-info btn-lg mb-5 mt-5" onclick="info({{id}})">Informazioni</button>
-                </a>
-                <br>
-                {{#if disponibile}}
-                <a class="px-1">
-                    <button id="prenota" class="btn btn-prenota btn-lg" onclick="prenota({{id}})">Prenota</button>
-                </a>
-                {{/if}}
-            </div>
-        </div>
+      <hr class="my-1">
+      <p id="desc"><i class="fa-solid fa-align-justify"></i> {{descrizione}}.</p>
     </div>
+
+    <div class="card-back">
+      <!-- Messaggio di errore -->
+      <div class="mt-2 text-danger" id="message"></div>
+
+      <!-- Pulsanti -->
+      <div class="lead buttons-par">
+        <a><button id="info" class="btn btn-info btn-lg mb-5 mt-5" onclick="info({{id}})">Informazioni</button></a>
+        <br>
+        {{#if disponibile}}
+        <a><button id="prenota" class="btn btn-prenota btn-lg" onclick="prenota({{id}})">Prenota</button></a>
+        {{/if}}
+      </div>
+    </div>
+  </div>
 
 </div>
