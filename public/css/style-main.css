@@ -1,123 +1,133 @@
+/* Colori */
 :root {
-  --theme-color: rgba(24, 192, 46, 0.534);
-  --btn-prenota-color: rgba(8, 211, 41, 0.603);
-  --btn-info-color: rgba(17, 177, 226, 0.534);
-  --header-color: var(--theme-color);
-  --footer-color: #efefef;
-}
-
-html {
-  height: 100%;
-}
-
-body {
-  min-height: 100%;
-  width: 100%;
-  padding-bottom: 5rem;
-  position: relative;
-}
-
-header {
-  background-color: var(--header-color);
-  margin-left: auto;
-}
-
-footer {
-  background-color: var(--footer-color);
-  padding-top: 3rem;
-  width: 100%;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
-.container {
-  max-width: 95%;
-}
-
-.btn-prenota {
-  background-color: var(--btn-prenota-color);
-  color: black;
-}
-
-.btn-info {
-  background-color: var(--btn-info-color);
-  color: black;
-}
-
-.btn-login {
-  background-color: var(--btn-info-color);
-  border-color: transparent;
-  color: black;
-}
-
-.rounded {
-  border-radius: 0.75rem !important;
-}
-
-.listing {
-  width: 95%;
-  display: none;
-  background-size: 60%;
-  background-repeat: no-repeat;
-  background-position: center;
+    --theme-color: rgba(24, 192, 46, 0.534);
+    --btn-prenota-color: rgba(8, 211, 41, 0.603);
+    --btn-info-color: rgba(17, 177, 226, 0.534);
+    --header-color: var(--theme-color);
+    --footer-color: #efefef;
 }
 
 .gradient-custom-4 {
-  background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
 }
 
-.buttons-par, #luogo, #organizzatore {
-  display: none;
+/* Generali */
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    width: 100%;
+    padding-bottom: 5rem;
+    position: relative;
+}
+
+header {
+    background-color: var(--header-color);
+    margin-left: auto;
+}
+
+footer {
+    background-color: var(--footer-color);
+    padding-top: 3rem;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    max-width: 95%;
+}
+
+/* Pulsanti */
+.btn-prenota {
+    background-color: var(--btn-prenota-color);
+    color: black;
+}
+
+.btn-info {
+    background-color: var(--btn-info-color);
+    color: black;
+}
+
+.btn-login {
+    background-color: var(--btn-info-color);
+    border-color: transparent;
+    color: black;
+}
+
+#luogo, #organizzatore {
+    display: none;
 }
 
 .input-group-text {
-  background-color: white;
+    background-color: white;
 }
 
-.card-custom {
-  /* max-width: 500px; */
-  display: inline-block;
+/* Gestione card nella main page */
+.listing {
+    width: 95%;
+    display: none;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-.card-columns {
-    column-count: 4;
+.card-deck {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-gap: .5rem;
+}
+
+.card {
+    border: none;
+    display: inline-block;
+    width: 400px;
+    height: 300px;
+    perspective: 1000px;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    text-align: center;
 }
 
 /* Media queries per l'adattamento a dispositivi mobili */
 @media screen and (max-width: 600px) {
-  footer {
-    bottom: auto;
-    display: flex;
-    flex-direction: column;
-  }
+    footer {
+        bottom: auto;
+        display: flex;
+        flex-direction: column;
+    }
 
-  footer p {
-    margin-bottom: 1;
-  }
+    footer p {
+        margin-bottom: 1;
+    }
 
-  section {
-    min-height: 65vh;
-  }
-
-  .card-columns {
-    column-count: 1;
-  }
-}
-
-@media screen and (min-width: 601px) and (max-width: 1100px) {
-  .card-columns {
-    column-count: 2;
-  }
-}
-
-@media screen and (min-width: 1101px) and (max-width: 1600px) {
-  .card-columns {
-    column-count: 3;
-  }
+    section {
+        min-height: 65vh;
+    }
 }

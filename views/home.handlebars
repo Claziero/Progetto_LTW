@@ -17,12 +17,15 @@
                 $(".listing").click(function() {
                     // Condizioni di apparizione pulsanti specifiche per eventi passati
                     if ($("#info", this).css("display") != "none" || $("#prenota", this).hasClass("btn")) {
-                        if ($(".buttons-par", this).css("display") == "none") {
-                            $(".buttons-par").slideUp("fast");
-                            $(".buttons-par", this).slideDown("fast");
+                        if ($(".card-inner", this).css("transform") == "none") {
+                            // Ruota tutti gli altri nella posizione originale
+                            $(".card-inner").css("transform", "none");
+                            // Ruota l'elemento
+                            $(".card-inner", this).css("transform", "rotateY(180deg)");
                         }
-                        else 
-                            $(".buttons-par", this).slideUp("fast");
+                        else
+                            // Riporta l'elemento in posizione originale
+                            $(".card-inner", this).css("transform", "none");
                     }
                 });
             });
@@ -36,7 +39,7 @@
 
     <!-- Per ogni elemento della query crea un nuovo elemento -->
     <div class="container" id="mainSection">
-        <div class="card-columns mt-3">
+        <div class="card-deck mt-3">
             {{#each mainList}}
                 {{> main-listing}}
             {{/each}}
