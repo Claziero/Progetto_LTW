@@ -7,6 +7,15 @@ function unbook(id) {
     return;
 }
 
+// Funzione per stampare una prenotazione
+function stampa(id) {
+    console.log("Stampa per evento ID=" + id);
+
+    // Reindirizza alla pagina di stampa
+    window.location.replace("/stampa=" + id);
+    return;
+}
+
 // Funzione per eliminare un evento (organizzatore)
 function remove(id) {
     console.log("Rimozione evento ID=" + id);

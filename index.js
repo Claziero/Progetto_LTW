@@ -852,6 +852,31 @@ app.get('/search=*', async (req, res) => {
     });
 });
 
+// Intercetta le richieste di stampa degli eventi
+app.get('/stampa=*', redirectLogin, async (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+
+    // Ottieni l'ID dell'evento
+    var id = req.originalUrl.split('stampa=')[1];
+
+    // Esegui la query
+    var query = await db.getPrintData(id, req.session.user.email);
+    
+    // Formatta tutte le date ottenute
+    query.forEach (elem => {
+        elem['edataora'] = db.formatDate(elem['edataora'].toString());
+        elem['pdataora'] = db.formatDate(elem['pdataora'].toString());
+    });
+
+    // Renderizza la pagina
+    res.render('print', {
+        title: "Stampa", 
+        style: "style-print.css",
+        dati: query
+    });
+});
+
 
 // Pagina 404 (errore)
 app.use((req, res) => {

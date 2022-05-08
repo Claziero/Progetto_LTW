@@ -1,0 +1,57 @@
+<body>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+
+    <!-- Aspetto dell'immagine originale: 3.66:1 -->
+    <div class="text-center">
+        <img src="img/icon-transparent.png" alt="home" width="360" height="98" />
+    </div>
+
+    {{#each dati}}
+    <div>
+        <!-- Informazioni dell'evento -->
+        <div class="header">Informazioni evento</div>
+        <div class="body">
+            <div><span class="italic">Titolo: </span>{{titolo}}</div>
+            <div><span class="italic">Luogo: </span>{{luogo}}</div>
+            <div><span class="italic">Data: </span>{{edataora}}</div>
+        </div>
+
+        <!-- Informazioni sulla prenotazione dell'utente -->
+        <div class="header">La tua prenotazione</div>
+        <div class="body">
+            <div><span class="italic">Nome: </span>{{nome}}</div>
+            <div><span class="italic">Cognome: </span>{{cognome}}</div>
+            <div><span class="italic">Email: </span>{{email}}</div>
+            <div><span class="italic">Data: </span>{{pdataora}}</div>
+        </div>
+
+        <!-- QRCode generato dalla prenotazione -->
+        <div class="header">QR code</div>
+        <div class="body">
+            <div>Ti verrà chiesto di esibire questo codice all'entrata</div>
+            
+            <div id="qrcode"></div>
+            <script type="text/javascript">
+                new QRCode($('#qrcode')[0], {
+                    text: "email={{email}}|id={{id}}",
+                    width: 200,
+                    height: 200
+                });
+            </script>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            Lo staff di EventHub&reg; ti augura buon divertimento!
+        </div>
+
+        <!-- Bottone per la stampa e per tornare indietro -->
+        <div class="text-center">
+            <button class="btn btn-print btn-lg" onclick="print()">Stampa</button>
+
+            <a href="/profile"><button class="btn btn-lg btn-back">Annulla</button></a>
+        </div>
+    </div>
+    {{/each}}
+
+</body>

@@ -49,6 +49,10 @@ a {
     text-decoration: none;
 }
 
+.btn-print {
+    background-color: var(--btn-info-color);
+}
+
 .d-flex {
     align-items: center;
     justify-content: center;
