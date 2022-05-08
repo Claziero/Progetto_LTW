@@ -873,6 +873,7 @@ app.get('/stampa=*', redirectLogin, async (req, res) => {
     res.render('print', {
         title: "Stampa", 
         style: "style-print.css",
+        js: "qrcode.min.js",
         dati: query
     });
 });
