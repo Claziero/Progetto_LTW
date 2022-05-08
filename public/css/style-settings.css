@@ -3,6 +3,7 @@
     --theme-color: rgba(24, 192, 46, 0.534);
     --btn-prenota-color: rgba(8, 211, 41, 0.603);
     --btn-info-color: rgba(17, 177, 226, 0.534);
+    --btn-remove-color: rgb(255, 94, 0);
     --header-color: var(--theme-color);
     --footer-color: #efefef;
 }
@@ -58,6 +59,10 @@ a {
     background-color: var(--btn-prenota-color);
     border-color: transparent;
     color: black;
+}
+
+.btn-remove {
+    background-color: var(--btn-remove-color);
 }
 
 label {

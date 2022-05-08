@@ -84,7 +84,7 @@
                 <td>{{titolo}}</td>
                 <td>{{dataora}}</td>
                 <td>
-                  <button class="btn btn-danger" onclick="unbook({{id}})">Disdici</button>
+                  <button class="btn btn-disdici" onclick="unbook({{id}})">Disdici</button>
                   <button class="btn btn-print" onclick="stampa({{id}})">Stampa</button>
                 </td>
               </tr>
@@ -175,7 +175,7 @@
                 </div>
 
                 <div class="text-center py-2 px-3">
-                  <button type="submit" class="btn btn-primary my-3" id="creaEventoBtn"
+                  <button type="submit" class="btn btn-confirm my-3" id="creaEventoBtn"
                     form="creaEvento">Conferma</button>
 
                   <button type="reset" class="btn btn-secondary" id="resetBtn" form="creaEvento">Reset</button>
@@ -203,8 +203,8 @@
                 <td>{{cognome}}</td>
                 <td>{{email}}</td>
                 <td>
-                  <button class="btn btn-success" onclick="acceptUser('{{email}}')">Accetta</button>
-                  <button class="btn btn-danger" onclick="declineUser('{{email}}')">Respingi</button>
+                  <button class="btn btn-confirm" onclick="acceptUser('{{email}}')">Accetta</button>
+                  <button class="btn btn-disdici" onclick="declineUser('{{email}}')">Respingi</button>
                 </td>
               </tr>
               {{/each}}
@@ -234,7 +234,7 @@
                 <td>{{titolo}}</td>
                 <td>{{dataora}}</td>
                 <td>
-                  <button class="btn btn-danger" onclick="remove({{id}})">Rimuovi</button>
+                  <button class="btn btn-disdici" onclick="remove({{id}})">Rimuovi</button>
                 </td>
               </tr>
               {{/each}}
@@ -296,7 +296,8 @@
                 <td>{{titolo}}</td>
                 <td>{{dataora}}</td>
                 <td>
-                  <button class="btn btn-danger" onclick="unbook({{id}})">Disdici</button>
+                  <button class="btn btn-disdici" onclick="unbook({{id}})">Disdici</button>
+                  <button class="btn btn-print" onclick="stampa({{id}})">Stampa</button>
                 </td>
               </tr>
               {{/each}}
@@ -322,7 +323,7 @@
 
               <!-- Se non hai richiesto di essere organizzatore allora mostra il pulsante (unless == if not) -->
               {{#unless richiesta}}
-              <button class="btn btn-primary mt-3" id="btnRichiedi" onclick="richiediOrg('{{email}}')">Richiedi</button>
+              <button class="btn btn-confirm mt-3" id="btnRichiedi" onclick="richiediOrg('{{email}}')">Richiedi</button>
               {{/unless}}
             </div>
           </div>
