@@ -342,9 +342,9 @@ app.get('/settings', redirectLogin, async (req, res) => {
     var d = new Date(userData[0].datanascita);
     var data = d.getFullYear() + '-';
     if (d.getMonth() < 8) data += '0' 
-        data += (d.getMonth() + 1) + '-';
+    data += (d.getMonth() + 1) + '-';
     if (d.getDate() < 10) data += '0' 
-        data += d.getDate();
+    data += d.getDate();
 
     res.render('settings', {
         title: "Impostazioni", 
@@ -360,7 +360,7 @@ app.get('/settings', redirectLogin, async (req, res) => {
 });
 
 // Intercetta i cambi dati del profilo utente
-app.post('/changeUser', redirectLogin, (req, res) => {
+app.post('/changeUser', redirectLogin, async (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
     req.session.views += 1;
 
@@ -374,28 +374,82 @@ app.post('/changeUser', redirectLogin, (req, res) => {
         newpwd: req.body.password
     };
 
-    db.changeUser(user).then(b => {
-        // Se c'è un errore nella registrazione
-        if (b == -1) {
-            console.log(">>Errore nel cambio dati (" + user.email + ")");
+    // Nel caso l'aggiornamento dei dati non vada a buon fine
+        // Se l'utente è loggato allora visualizza il dropdown in alto a destra
+        if (req.session.user) {
+            logged = true;
+            utente = req.session.user.nome;
+        }
 
+        // Prendi i dati utente da mettere nei campi
+        var userData = await db.getUserData(req.session.user.email);
+
+        // Esegui la query per prendere il livello di privilegi
+        var livello = (await db.getLevel(req.session.user.email))[0].privilegi;
+
+        // Formatta la data in YYYY-MM-DD
+        var d = new Date(userData[0].datanascita);
+        var data = d.getFullYear() + '-';
+        if (d.getMonth() < 8) data += '0' 
+        data += (d.getMonth() + 1) + '-';
+        if (d.getDate() < 10) data += '0' 
+        data += d.getDate();
+
+    // Prova a effettuare il cambiamento
+    db.changeUser(user).then(b => {
+        // Se è andato a buon fine
+        if (b == 0) {
+            console.log(">>Cambio dati effettuato (" + req.session.user.email + ")");
+            
             res.render('settings', {
                 title: "Impostazioni", 
-                // style: "style-settings.css",
-                style: "style-main.css",
+                style: "style-settings.css",
                 js: "validateSettings.js",
                 log: logged,
                 utente: utente,
+                nome: userData[0].nome,
+                cognome: userData[0].cognome,
+                data: data,
+                privilegi: livello == 0,
+                success: 'Cambio dati effettuato con successo. \
+                    Effettua il logout per rendere effettive le modifiche.'
+            });
+            return;
+        }
+        // Se c'è un errore nelle query
+        else if (b == -1) {
+            console.log(">>Errore nel cambio dati (query) (" + user.email + ")");
+
+            res.render('settings', {
+                title: "Impostazioni", 
+                style: "style-settings.css",
+                js: "validateSettings.js",
+                log: logged,
+                utente: utente,
+                nome: userData[0].nome,
+                cognome: userData[0].cognome,
+                data: data,
+                privilegi: livello == 0,
                 error: 'Errore durante l\'aggiornamento dei dati. Riprova'
             });
             return;
         }
-        // Altrimenti vai avanti e crea la sessione
-        else if (b == 0) {
-            console.log(">>Cambio dati effettuato (" + req.session.user.email + ")");
-            
-            res.redirect("/logout");
-            res.end();
+        // Se la password inserita non è corretta
+        else if (b == -2) {
+            console.log(">>Errore nel cambio dati (pwd errata) (" + user.email + ")");
+
+            res.render('settings', {
+                title: "Impostazioni", 
+                style: "style-settings.css",
+                js: "validateSettings.js",
+                log: logged,
+                utente: utente,
+                nome: userData[0].nome,
+                cognome: userData[0].cognome,
+                data: data,
+                privilegi: livello == 0,
+                error: 'Attenzione: la password attuale non è corretta. Riprova'
+            });
             return;
         }
     });

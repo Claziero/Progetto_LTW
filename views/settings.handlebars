@@ -42,7 +42,7 @@
             <button class="btn btn-primary" onclick="enableChanges()" id="btnModifica">Modifica</button>
           </div>
           <div class="card-body">
-            <form action="/changeUser" method="POST" onsubmit="return validaForm()">
+            <form method="POST" action="/changeUser" onsubmit="return validaForm()">
               <div class="row gx-3 mb-3">
                 <!-- Nome -->
                 <div class="col-md-6">
@@ -105,6 +105,9 @@
 
               <!-- Messaggio di errore -->
               <div class="form-outline mb-3 text-danger" id="message">{{error}}</div>
+              
+              <!-- Messaggio di successo -->
+              <div class="form-outline mb-3 text-success" id="success">{{success}}</div>
 
               <!-- Salva le modifiche -->
               <div class="text-center">
