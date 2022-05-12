@@ -3,11 +3,15 @@
     --theme-color: rgba(24, 192, 46, 0.534);
 }
 
-.gradient-custom-4 {
-    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+/* Generali */
+body {
+    background: linear-gradient(
+        to right, 
+        rgba(132, 250, 175, 0.5), 
+        rgba(143, 211, 244, 0.5)),
+        url("/img/logo_80.png");
 }
 
-/* Generali */
 img {
     display: block;
     margin-left: auto;
@@ -42,10 +46,10 @@ img {
 /* Media queries per l'adattamento a dispositivi mobili */
 @media screen and (max-width: 600px) {
     img {
-        width: auto;
+        width: 70%;
     }
-
-    #datasesso {
+    
+    div.row {
         display: flex;
         flex-direction: column;
     }

@@ -138,7 +138,7 @@ div#desc {
 .card-deck {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    grid-gap: 2.5rem;
+    grid-gap: 1.5rem 3.5rem;
     justify-items: center;
 }
 
@@ -172,5 +172,11 @@ div#desc {
 
     section {
         min-height: 65vh;
+    }
+}
+
+@media screen and (max-width: 513px) {
+    .text-end {
+        margin-top: 1rem;
     }
 }
