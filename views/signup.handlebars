@@ -8,19 +8,25 @@
               
               <a href="/" class="text-center">
                 <!-- Aspetto dell'immagine originale: 3.66:1 -->
-                <img src="img/icon-transparent.png" alt="home" width="250" height="68"/>
+                <img src="img/icon-transparent.png" alt="home"/>
               </a>
 
               <!-- Form -->
               <form onsubmit="return validaForm()" action="/signupValid" method="post">
-                <h2>Registrati</h2>
-                <p>Compilare il form per creare un nuovo account!</p>
+                <h2 class="text-center">Registrati</h2>
+                <p class="text-center">Compila il form per creare un nuovo account!</p>
                 <hr>
 
                 <!-- Nome e cognome -->
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" name="nome" placeholder="Nome" required />
-                  <input type="text" class="form-control" name="cognome" placeholder="Cognome" required />
+                <div class="row">
+                  <div class="form-outline mb-3 col col-xs-6">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" name="nome" placeholder="Nome" required />
+                  </div>
+                  <div class="form-outline mb-3 col col-xs-6">
+                    <label for="cognome">Cognome</label>
+                    <input type="text" class="form-control" name="cognome" placeholder="Cognome" required />
+                  </div>
                 </div>
 
                 <div class="row mb-3" id="datasesso">
@@ -35,9 +41,9 @@
                     <label for="sesso">Sesso</label>
                     <select name="sesso" id="sesso" class="form-select" required>
                       <option value="" selected></option>
-                      <option value="M">maschio</option>
-                      <option value="F">femmina</option>
-                      <option value="U">altro</option>
+                      <option value="M">Maschio</option>
+                      <option value="F">Femmina</option>
+                      <option value="U">Altro</option>
                     </select>
                   </div>
                 </div>

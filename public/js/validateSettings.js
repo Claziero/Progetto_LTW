@@ -82,6 +82,18 @@ function enableChanges() {
     $('#password_repeat').removeAttr('readonly');
 }
 
+// Funzione per disabilitare la modifica della form (torna allo stato precedente)
+function disableChanges() {
+    $("#btnModifica").show();
+    $('#btnSubmit').attr('hidden', true);
+    $('#btnReset').attr('hidden', true);
+    $('#nome').attr('readonly', true);
+    $('#cognome').attr('readonly', true);
+    $('#oldPsw').attr('readonly', true);
+    $('#password').attr('readonly', true);
+    $('#password_repeat').attr('readonly', true);
+}
+
 // Funzione per il controllo dei campi immessi prima della submit
 function validaForm() {
     return checkLghSet() && checkPwdMatch();

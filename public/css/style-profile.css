@@ -54,17 +54,39 @@ a {
     background-color: var(--btn-info-color);
 }
 
+.btn-print:hover, .btn-print:active, .btn-print:focus {
+    background-color: rgb(66, 66, 241);
+    color: white;
+}
+
 .btn-confirm {
     background-color: var(--btn-prenota-color);
+}
+
+.btn-confirm:focus, .btn-confirm:active, .btn-confirm:hover {
+    background-color: var(--btn-info-color);
 }
 
 .btn-disdici {
     background-color: var(--btn-disdici-color);
 }
 
+.btn-disdici:hover, .btn-disdici:active, .btn-disdici:focus {
+    background-color: red;
+    color: white;
+}
+
 .d-flex {
     align-items: center;
     justify-content: center;
+}
+
+.nav-item {
+    cursor: pointer;
+}
+
+table {
+    line-height: 200%;
 }
 
 /* Media queries per l'adattamento a dispositivi mobili */
@@ -81,5 +103,9 @@ a {
   
     section {
         min-height: 70vh;
+    }
+
+    .btn {
+        margin-bottom: .25rem;
     }
 }
