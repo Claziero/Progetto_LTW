@@ -14,20 +14,7 @@
   {{#if log}}
   <script>
     $(document).ready(function () {
-      $(".listing").click(function () {
-        // Condizioni di apparizione pulsanti specifiche per eventi passati
-        if ($("#info", this).css("display") != "none" || $("#prenota", this).hasClass("btn")) {
-          if ($(".card-inner", this).css("transform") == "none") {
-            // Ruota tutti gli altri nella posizione originale
-            $(".card-inner").css("transform", "none");
-            // Ruota l'elemento
-            $(".card-inner", this).css("transform", "rotateY(180deg)");
-          }
-          else
-            // Riporta l'elemento in posizione originale
-            $(".card-inner", this).css("transform", "none");
-        }
-      });
+      $(".buttons-par").show();
     });
   </script>
   {{/if}}

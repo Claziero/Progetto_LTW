@@ -54,16 +54,32 @@ app.get('/', async (req, res) => {
 
     // Esegui la query per il main listing
     var query = await db.loadMainListing();
-    
+
     // Formatta tutte le date ottenute
     query.forEach (elem => {
         elem['dataora'] = db.formatDate(elem['dataora'].toString());
     });
-
+    
     // Se l'utente è loggato allora visualizza il dropdown in alto a destra
     if (req.session.user) {
         logged = true;
         utente = req.session.user.nome;
+
+        // Esegui la query per vedere tutte le prenotazioni dell'utente
+        var prenotazioni = await db.prenotazioni(req.session.user.email);
+        
+        // Ricava gli ID degli eventi prenotati
+        var s = []
+        prenotazioni.forEach (elem => {
+            s.push(elem['id']);
+        });
+
+        // Imposta il campo prenotato
+        query.forEach (elem => {
+            if (s.includes(elem['id']))
+                elem['prenotato'] = true;
+            else elem['prenotato'] = false;
+        });
     }
     // Altrimenti mostra solo i pulsanti di login e registrazione
     else {
@@ -101,6 +117,22 @@ app.get('/highlights', async (req, res) => {
     if (req.session.user) {
         logged = true;
         utente = req.session.user.nome;
+
+        // Esegui la query per vedere tutte le prenotazioni dell'utente
+        var prenotazioni = await db.prenotazioni(req.session.user.email);
+        
+        // Ricava gli ID degli eventi prenotati
+        var s = []
+        prenotazioni.forEach (elem => {
+            s.push(elem['id']);
+        });
+
+        // Imposta il campo prenotato
+        query.forEach (elem => {
+            if (s.includes(elem['id']))
+                elem['prenotato'] = true;
+            else elem['prenotato'] = false;
+        });
     }
     // Altrimenti mostra solo i pulsanti di login e registrazione
     else {
@@ -138,6 +170,22 @@ app.get('/next', async (req, res) => {
     if (req.session.user) {
         logged = true;
         utente = req.session.user.nome;
+
+        // Esegui la query per vedere tutte le prenotazioni dell'utente
+        var prenotazioni = await db.prenotazioni(req.session.user.email);
+        
+        // Ricava gli ID degli eventi prenotati
+        var s = []
+        prenotazioni.forEach (elem => {
+            s.push(elem['id']);
+        });
+
+        // Imposta il campo prenotato
+        query.forEach (elem => {
+            if (s.includes(elem['id']))
+                elem['prenotato'] = true;
+            else elem['prenotato'] = false;
+        });
     }
     // Altrimenti mostra solo i pulsanti di login e registrazione
     else {
@@ -792,22 +840,6 @@ app.get('/unbook=*', redirectLogin, (req, res) => {
     });
 });
 
-// Intercetta le richieste di info sugli eventi
-app.get('/info=*', redirectLogin, async (req, res) => {
-    // Incrementa il contatore di visualizzazioni della pagina
-    req.session.views += 1;
-
-    // Ottieni l'ID dell'evento
-    var id = req.originalUrl.split('info=')[1];
-
-    // Esegui la query
-    var query = await db.info(id);
-
-    // Invia i risultati (in formato JSON)
-    res.send(query[0]);
-    res.end();
-});
-
 // Intercetta le ricerche di eventi
 app.get('/search=*', async (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
@@ -828,6 +860,22 @@ app.get('/search=*', async (req, res) => {
     if (req.session.user) {
         logged = true;
         utente = req.session.user.nome;
+
+        // Esegui la query per vedere tutte le prenotazioni dell'utente
+        var prenotazioni = await db.prenotazioni(req.session.user.email);
+        
+        // Ricava gli ID degli eventi prenotati
+        var s = []
+        prenotazioni.forEach (elem => {
+            s.push(elem['id']);
+        });
+
+        // Imposta il campo prenotato
+        query.forEach (elem => {
+            if (s.includes(elem['id']))
+                elem['prenotato'] = true;
+            else elem['prenotato'] = false;
+        });
     }
     // Altrimenti mostra solo i pulsanti di login e registrazione
     else {

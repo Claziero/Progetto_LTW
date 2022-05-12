@@ -1,35 +1,33 @@
 <div class="card listing" id="e{{id}}" style="background-image: url('/img/{{immagine}}');">
 
   <div class="card-inner">
-    <div class="card-front">
-      <div id="titolo">{{titolo}}</div>
-      <div id="tipo">Tipo evento: {{tipo}}</div>
+    <div id="titolo">{{titolo}}</div>
+    <div id="tipo">Tipo evento: {{tipo}}</div>
 
-      <div id="dataora"><i class="fa-solid fa-calendar-days"></i> {{dataora}}</div>
+    <div id="dataora"><i class="fa-solid fa-calendar-days"></i> {{dataora}}</div>
+    {{#if disponibile}}
+    <div id="posti"><i class="fa-solid fa-chair"></i> Posti disponibili: {{postidisponibili}}</div>
+    {{/if}}
+
+    <!-- Informazioni aggiuntive -->
+    <div id="luogo"><i class="fa-solid fa-map-location-dot"></i> {{luogo}}</div>
+    <div id="organizzatore"><i class="fa-solid fa-user-tag"></i> {{organizzatore}}</div>
+
+    <hr class="my-1">
+    <p id="desc">{{descrizione}}</p>
+    
+    <!-- Messaggio di errore -->
+    <div class="mt-2 text-danger" id="message"></div>
+
+    <!-- Pulsanti -->
+    <div class="buttons-par">
       {{#if disponibile}}
-      <div id="posti"><i class="fa-solid fa-chair"></i> Posti disponibili: {{postidisponibili}}</div>
-      {{/if}}
-
-      <!-- Informazioni aggiuntive -->
-      <div id="luogo"><i class="fa-solid fa-map-location-dot"></i></div>
-      <div id="organizzatore"><i class="fa-solid fa-user-tag"></i></div>
-
-      <hr class="my-1">
-      <p id="desc">{{descrizione}}</p>
-    </div>
-
-    <div class="card-back">
-      <!-- Messaggio di errore -->
-      <div class="mt-2 text-danger" id="message"></div>
-
-      <!-- Pulsanti -->
-      <div class="buttons-par">
-        <a><button id="info" class="btn btn-info btn-lg mb-5 mt-5" onclick="info({{id}})">Informazioni</button></a>
-        <br>
-        {{#if disponibile}}
-        <a><button id="prenota" class="btn btn-prenota btn-lg" onclick="prenota({{id}})">Prenota</button></a>
+        {{#if prenotato}}
+        <button class="btn btn-prenotato" disabled>Prenotato</button>
+        {{else}}
+        <button id="prenota" class="btn btn-prenota" onclick="prenota({{id}})">Prenota</button>
         {{/if}}
-      </div>
+      {{/if}}
     </div>
   </div>
 
