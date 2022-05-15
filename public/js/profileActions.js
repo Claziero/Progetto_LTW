@@ -1,3 +1,16 @@
+// Per cambiare la classe dei pulsanti nella navbar
+$(window).resize(function () {
+    if ($(window).width() < 836) {
+        $("#prof-tab").removeClass("nav-tabs");
+        $("#prof-tab").addClass("flex-column nav-pills");
+    }
+
+    if ($(window).width() >= 836) {
+        $("#prof-tab").addClass("nav-tabs");
+        $("#prof-tab").removeClass("flex-column nav-pills");
+    }
+});
+
 // Funzione per disdire una prenotazione
 function unbook(id) {
     console.log("Disdetta per evento ID=" + id);

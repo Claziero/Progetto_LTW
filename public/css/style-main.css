@@ -70,7 +70,6 @@ div#desc {
 /* Gestione card nella main page */
 .listing {
     width: 95%;
-    display: none;
     background-size: 60%;
     background-repeat: no-repeat;
     background-position: center;
@@ -90,7 +89,7 @@ div#desc {
 
 .card {
     border: none;
-    display: inline-block;
+    display: none; /* Per il fading iniziale */
     width: 400px;
     height: 300px;
 }

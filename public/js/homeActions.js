@@ -1,3 +1,8 @@
+// Fading dei blocchi evento
+$(document).ready(function () {
+    $(".card").fadeIn(1500);
+});
+
 // Funzione per prenotare un evento
 function prenota(id) {
     console.log("Prenotazione per evento ID=" + id);

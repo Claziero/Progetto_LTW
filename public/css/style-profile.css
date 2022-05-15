@@ -21,6 +21,19 @@ table {
     line-height: 200%;
 }
 
+.nav-pills {
+    max-width: 250px;
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--btn-prenota-color);
+    color: black;
+}
+
+.nav-pills a:hover {
+    color: black;
+}
+
 /* Pulsanti */
 .btn-print {
     background-color: var(--btn-info-color);
@@ -53,7 +66,9 @@ table {
     section {
         min-height: 75vh;
     }
+}
 
+@media screen and (max-width: 654px) {
     .btn {
         margin-bottom: .25rem;
     }

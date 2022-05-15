@@ -3,13 +3,6 @@
   <!-- Includi l'header -->
   {{> header}}
 
-  <!-- Fading dei blocchi evento -->
-  <script>
-    $(document).ready(function () {
-      $(".listing").fadeIn(1500);
-    });
-  </script>
-
   <!-- Se l'utente è loggato allora fai comparire i pulsanti, altrimenti no -->
   {{#if log}}
   <script>
