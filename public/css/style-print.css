@@ -5,6 +5,7 @@
 /* Generali */
 body {
     background-image: url("/img/logo_95.png");
+    background-repeat: space;
 }
 
 div {
