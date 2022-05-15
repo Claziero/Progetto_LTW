@@ -1,17 +1,4 @@
-/* Colori */
-:root {
-    --theme-color: rgba(24, 192, 46, 0.534);
-    --btn-prenota-color: rgba(8, 211, 41, 0.603);
-    --btn-prenotato-color: rgb(5, 134, 16);
-    --btn-info-color: rgba(17, 177, 226, 0.534);
-    --header-color: var(--theme-color);
-    --footer-color: #efefef;
-    --font-family: "Lato", "Inter", sans-serif;
-}
-
-.gradient-custom-4 {
-    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
-}
+@import "style-common.css";
 
 /* Generali */
 html {
@@ -28,30 +15,6 @@ body {
     font-family: var(--font-family);
 }
 
-header {
-    background-color: var(--header-color);
-    margin-left: auto;
-    padding: 1rem;
-    margin-bottom: 1rem;
-}
-
-footer {
-    background-color: var(--footer-color);
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    width: 100%;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-
-div {
-    font-size: 17px;
-    color: black;
-    font-weight: 100;
-}
-
 div#titolo {
     font-size: 25px;
     text-align: center;
@@ -64,16 +27,8 @@ div#tipo {
     text-align: center;
 }
 
-a {
-    text-decoration: none;
-}
-
-.container {
-    max-width: 95%;
-}
-
-footer > p {
-    margin-bottom: 0;
+div#desc {
+    text-align: justify;
 }
 
 /* Pulsanti */
@@ -110,23 +65,6 @@ footer > p {
     background-color: var(--btn-info-color);
     border-color: transparent;
     color: black;
-}
-
-div#desc {
-    text-align: justify;
-}
-
-.input-group-text {
-    background-color: white;
-}
-
-.d-flex {
-    align-items: center;
-    justify-content: center;
-}
-
-.fa-search {
-    cursor: pointer;
 }
 
 /* Gestione card nella main page */
@@ -167,24 +105,8 @@ div#desc {
 }
 
 /* Media queries per l'adattamento a dispositivi mobili */
-@media screen and (max-width: 600px) {
-    footer {
-        bottom: auto;
-        display: flex;
-        flex-direction: column;
-    }
-
-    footer p {
-        margin-bottom: 1;
-    }
-
+@media screen and (max-width: 621px) {
     section {
         min-height: 65vh;
-    }
-}
-
-@media screen and (max-width: 464px) {
-    .text-end {
-        margin-top: 1rem;
     }
 }

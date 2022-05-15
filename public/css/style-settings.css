@@ -1,18 +1,4 @@
-/* Colori */
-:root {
-    --theme-color: rgba(24, 192, 46, 0.534);
-    --btn-prenota-color: rgba(8, 211, 41, 0.603);
-    --btn-info-color: rgba(17, 177, 226, 0.534);
-    --btn-remove-color: rgb(255, 94, 0);
-    --header-color: var(--theme-color);
-    --footer-color: #efefef;
-    --btn-secondary-color: rgb(95, 98, 100);
-    --font-family: "Lato", "Inter", sans-serif;
-}
-
-.gradient-custom-4 {
-    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
-}
+@import "style-common.css";
 
 /* Generali */
 html {
@@ -27,37 +13,15 @@ body {
     font-family: var(--font-family);
 }
 
-header {
-    background-color: var(--header-color);
-    margin-left: auto;
-    padding: 1rem;
-    margin-bottom: 1rem;
-}
-
-.input-group-text {
-    background-color: white;
-}
-
-footer {
-    background-color: var(--footer-color);
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    width: 100%;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-
-a {
-    text-decoration: none;
-}
-
-.d-flex {
-    align-items: center;
+.card-header {
     justify-content: space-between;
 }
 
+label {
+    margin-bottom: .25rem;
+}
+
+/* Pulsanti */
 .btn-primary {
     background-color: var(--btn-prenota-color);
     border-color: transparent;
@@ -71,7 +35,7 @@ a {
 }
 
 .btn-remove {
-    background-color: var(--btn-remove-color);
+    background-color: var(--btn-disdici-color);
     margin-top: 1rem;
 }
 
@@ -88,23 +52,9 @@ a {
     background-color: black;
 }
 
-label {
-    margin-bottom: .25rem;
-}
-
 /* Media queries per l'adattamento a dispositivi mobili */
-@media screen and (max-width: 600px) {
-    footer {
-        bottom: auto;
-        display: flex;
-        flex-direction: column;
-    }
-  
-    footer p {
-        margin-bottom: 1;
-    }
-  
+@media screen and (max-width: 621px) {  
     section {
-        min-height: 70vh;
+        min-height: 75vh;
     }
 }
