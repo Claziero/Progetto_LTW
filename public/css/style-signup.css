@@ -1,6 +1,7 @@
 /* Colori */
 :root {
     --theme-color: rgba(24, 192, 46, 0.534);
+    --font-family: "Lato", "Inter", sans-serif;
 }
 
 /* Generali */
@@ -10,6 +11,7 @@ body {
         rgba(132, 250, 175, 0.5), 
         rgba(143, 211, 244, 0.5)),
         url("/img/logo_80.png");
+    font-family: var(--font-family);
 }
 
 img {
@@ -41,6 +43,10 @@ img {
 .d-flex {
     align-items: center;
     justify-content: center;
+}
+
+.fa-eye, .fa-eye-slash {
+    cursor: pointer;
 }
 
 /* Media queries per l'adattamento a dispositivi mobili */

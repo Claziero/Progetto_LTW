@@ -6,6 +6,7 @@
     --btn-info-color: rgba(17, 177, 226, 0.534);
     --header-color: var(--theme-color);
     --footer-color: #efefef;
+    --font-family: "Lato", "Inter", sans-serif;
 }
 
 .gradient-custom-4 {
@@ -22,6 +23,9 @@ body {
     width: 100%;
     padding-bottom: 5rem;
     position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: var(--font-family);
 }
 
 header {
@@ -45,7 +49,7 @@ footer {
 div {
     font-size: 17px;
     color: black;
-    font-weight: 300;
+    font-weight: 100;
 }
 
 div#titolo {
@@ -121,6 +125,10 @@ div#desc {
     justify-content: center;
 }
 
+.fa-search {
+    cursor: pointer;
+}
+
 /* Gestione card nella main page */
 .listing {
     width: 95%;
@@ -175,7 +183,7 @@ div#desc {
     }
 }
 
-@media screen and (max-width: 513px) {
+@media screen and (max-width: 464px) {
     .text-end {
         margin-top: 1rem;
     }

@@ -6,6 +6,7 @@
     --btn-disdici-color: rgb(255, 94, 0);
     --header-color: var(--theme-color);
     --footer-color: #efefef;
+    --font-family: "Lato", "Inter", sans-serif;
 }
 
 .gradient-custom-4 {
@@ -22,6 +23,7 @@ body {
     width: 100%;
     padding-bottom: 5rem;
     position: relative;
+    font-family: var(--font-family);
 }
 
 header {
