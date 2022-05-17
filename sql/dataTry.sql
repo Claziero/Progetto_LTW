@@ -21,25 +21,25 @@ INSERT INTO ImgMapping VALUES
 
 INSERT INTO Evento VALUES
     -- Eventi passati
-    (1, 'promoter@user.com', 'Torneo di scacchi', 'Torneo', 'Roma, IT', '2022-04-01 10:30', 
+    (1, 'promoter@user.com', 'Torneo di scacchi', 'Torneo', 'Roma, IT', '2022-04-19 10:30', 
         50, 'Evento torneo di scacchi. 4 persone', False, True, 'chess.png'),
-    (2, 'promoter@user.com', 'Duello di Wrestling', 'Singolo', 'Napoli, IT', '2022-04-10 11:30', 
+    (2, 'promoter@user.com', 'Duello di Wrestling', 'Singolo', 'Napoli, IT', '2022-05-20 11:30', 
         50, 'Evento duello di Wrestling. 2 persone', False, True, 'wrestling.png'),
-    (3, 'promoter@user.com', 'Torneo di giochi da tavolo', 'Torneo', 'Milano, IT', '2022-03-17 12:00',
+    (3, 'promoter@user.com', 'Torneo di giochi da tavolo', 'Torneo', 'Milano, IT', '2022-05-22 12:00',
         20, 'Evento torneo di giochi da tavolo. 4-8 persone', False, True, 'boardgame.png'),
     
     -- Eventi correnti
-    (4, 'promoter@user.com', 'Torneo di braccio di ferro', 'Torneo', 'Roma, IT', '2022-05-05 10:30', 
+    (4, 'promoter@user.com', 'Torneo di braccio di ferro', 'Torneo', 'Roma, IT', '2022-05-24 10:30', 
         40, 'Evento torneo di braccio di ferro. 2 persone', True, False, 'armwrestling.png'),
-    (5, 'promoter@user.com', 'Torneo di tennis', 'Torneo', 'Verona, IT', '2022-05-06 19:30', 
+    (5, 'promoter@user.com', 'Torneo di tennis', 'Torneo', 'Verona, IT', '2022-05-25 19:30', 
         30, 'Evento torneo di tennis. 2 persone', True, False, 'tennis.png'),
-    (6, 'promoter@user.com', 'Partita di pallavolo', 'Singolo', 'Firenze, IT', '2022-05-08 21:00', 
+    (6, 'promoter@user.com', 'Partita di pallavolo', 'Singolo', 'Firenze, IT', '2022-05-30 21:00', 
         90, 'Evento partita di pallavolo. 10 persone', True, False, 'volleyball.png'),
-    (7, 'promoter@user.com', 'Duello di scherma', 'Singolo', 'Napoli, IT', '2022-05-10 11:30', 
+    (7, 'promoter@user.com', 'Duello di scherma', 'Singolo', 'Napoli, IT', '2022-05-31 11:30', 
         30, 'Evento duello di scherma. 2 persone', True, False, 'scherma.png'),
-    (8, 'promoter@user.com', 'Gara di motocross', 'Singolo', 'Milano, IT', '2022-05-15 12:00', 
+    (8, 'promoter@user.com', 'Gara di motocross', 'Singolo', 'Milano, IT', '2022-06-05 12:00', 
         60, 'Evento gara di motocross. 8-12 persone', True, False, 'motocross.png'),
-    (9, 'promoter@user.com', 'Gara di autoscontro', 'Singolo', 'Bari, IT', '2022-05-21 12:00', 
+    (9, 'promoter@user.com', 'Gara di autoscontro', 'Singolo', 'Bari, IT', '2022-06-22 12:00', 
         90, 'Evento gara di autoscontro. 8-12 persone', True, False, 'demolitionderby.png'),
 
     -- Eventi futuri
