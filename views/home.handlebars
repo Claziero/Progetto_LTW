@@ -34,6 +34,21 @@
   <div class="mb-3 text-danger text-center" id="message">{{error}}</div>
   {{/if}}
 
+  <!-- Paginazione -->
+  <nav>
+    <ul class="pagination justify-content-center">
+      <li class="page-item {{prev.disabled}}">
+        <a class="page-link" id="prev" href="#"><span>&laquo;</span></a>
+      </li>
+      {{#each pages}}
+      <li class="page-item {{active}}"><a class="page-link" href="{{link}}">{{num}}</a></li>
+      {{/each}}
+      <li class="page-item {{next.disabled}}">
+        <a class="page-link" id="next" href="#"><span>&raquo;</span></a>
+      </li>
+    </ul>
+  </nav>
+
   <!-- Per ogni elemento della query crea un nuovo elemento -->
   <div class="container" id="mainSection">
     <div class="card-deck mt-3">

@@ -1,6 +1,21 @@
 // Fading dei blocchi evento
 $(document).ready(function () {
     $(".card").fadeIn(1500);
+
+    // Ricava i link per i tasti "precedente" e "successivo" nella paginazione
+    var active = parseInt($("li.active > a").attr("href").split("/")[1]);
+
+    // Link precedente
+    if (active == 2 || isNaN(active)) prev = "/";
+    else prev = "/" + String(active - 1);
+    
+    // Link successivo
+    if (isNaN(active)) next = "/2";
+    else next = "/" + String(active + 1);
+    
+    // Imposta i link
+    $("#prev").attr("href", prev);
+    $("#next").attr("href", next);
 });
 
 // Funzione per prenotare un evento

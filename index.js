@@ -55,6 +55,26 @@ app.get('/', async (req, res) => {
     // Esegui la query per il main listing
     var query = await db.loadMainListing();
 
+    // Conta il numero di eventi per ricavare il numero delle pagine
+    var numPages = Math.ceil(query.length / 12);
+
+    // Imposta i numeri di pagine, i link e gli stati degli elementi <li>
+    var pages = [];
+    for (let i = 1; i <= numPages; i++) pages.push({
+        num: i, 
+        link: '/' + i, 
+        active: ''
+    });
+
+    pages[0]['link'] = '/';
+    pages[0]['active'] = 'active';
+    prev = {disabled: 'disabled'};
+    next = {disabled: ''};
+    
+    // Ritaglia i risultati della query
+    if (numPages > 1) query = query.slice(0, 12);
+    else next['disabled'] = 'disabled';
+
     // Formatta tutte le date ottenute
     query.forEach (elem => {
         elem['dataora'] = db.formatDate(elem['dataora'].toString());
@@ -93,9 +113,97 @@ app.get('/', async (req, res) => {
         js: "homeActions.js", 
         mainList: query,
         utente: utente,
-        log: logged
+        log: logged,
+        pages: pages,
+        prev: prev,
+        next: next
     });
 });
+
+app.get('/[0-9]+', async (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+
+    // Ottieni il numero di pagina richiesta
+    var n = req.originalUrl.split('/')[1];
+    
+    // Esegui la query per il main listing
+    var query = await db.loadMainListing();
+    
+    // Conta il numero di eventi per ricavare il numero delle pagine
+    var numPages = Math.ceil(query.length / 12);
+
+    // Se la pagina richiesta non esiste
+    if (n > numPages) {
+        res.render('404', {
+            title: "Error404", 
+            style: "style-main.css",
+        });
+        return;
+    }
+
+    // Imposta i numeri di pagine, i link e gli stati degli elementi <li>
+    var pages = [];
+    for (let i = 1; i <= numPages; i++) pages.push({
+        num: i, 
+        link: '/' + i, 
+        active: ''
+    });
+    pages[0]['link'] = '/';
+    pages[n - 1]['active'] = 'active';
+    prev = {disabled: ''};
+    next = {disabled: ''};
+
+    // Ritaglia i risultati della query
+    if (numPages > 1) query = query.slice(12 * (n - 1), 12 * n);
+
+    if (n == numPages) next['disabled'] = 'disabled';
+
+    // Formatta tutte le date ottenute
+    query.forEach (elem => {
+        elem['dataora'] = db.formatDate(elem['dataora'].toString());
+    });
+    
+    // Se l'utente è loggato allora visualizza il dropdown in alto a destra
+    if (req.session.user) {
+        logged = true;
+        utente = req.session.user.nome;
+
+        // Esegui la query per vedere tutte le prenotazioni dell'utente
+        var prenotazioni = await db.prenotazioni(req.session.user.email);
+        
+        // Ricava gli ID degli eventi prenotati
+        var s = []
+        prenotazioni.forEach (elem => {
+            s.push(elem['id']);
+        });
+
+        // Imposta il campo prenotato
+        query.forEach (elem => {
+            if (s.includes(elem['id']))
+                elem['prenotato'] = true;
+            else elem['prenotato'] = false;
+        });
+    }
+    // Altrimenti mostra solo i pulsanti di login e registrazione
+    else {
+        logged = false;
+        utente = '';
+    }
+
+    res.render('home', {
+        title: "Home", 
+        style: "style-main.css",
+        js: "homeActions.js", 
+        mainList: query,
+        utente: utente,
+        log: logged,
+        pages: pages,
+        prev: prev,
+        next: next
+    });
+});
+
 
 // Render della homepage con eventi Highlights
 app.get('/highlights', async (req, res) => {
