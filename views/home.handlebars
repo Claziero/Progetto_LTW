@@ -10,6 +10,23 @@
       $(".buttons-par").show();
     });
   </script>
+  {{else}}
+  <!-- Se l'utente non è loggato allora ci sono i pulsanti accedi/registrati
+       che hanno bisogno di margine superiore a pixel diversi dallo standard -->
+  <script>
+    function margin () {
+      if ($(window).width() < 532) {
+        $(".text-end").css("margin-top", "1rem");
+      }
+
+      if ($(window).width() >= 532) {
+        $(".text-end").css("margin-top", "0");
+      }
+    }
+
+    $(window).resize(function() {margin();});
+    $(document).ready(function() {margin();});
+  </script>
   {{/if}}
 
   <!-- Parte di ricerca: se non ci sono risultati allora stampa l'errore -->

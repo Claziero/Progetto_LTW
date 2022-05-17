@@ -105,7 +105,7 @@ div#desc {
 
 /* Media queries per l'adattamento a dispositivi mobili */
 @media screen and (max-width: 621px) {
-    section {
-        min-height: 65vh;
+    #mainSection {
+        min-height: 75vh;
     }
 }

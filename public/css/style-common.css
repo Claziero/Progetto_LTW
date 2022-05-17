@@ -6,7 +6,7 @@
     --btn-prenota-color: rgba(8, 211, 41, 0.603);
     --btn-prenotato-color: rgb(5, 134, 16);
     --btn-info-color: rgba(17, 177, 226, 0.534);
-    --btn-disdici-color: rgb(255, 94, 0);
+    --btn-disdici-color: rgb(253, 122, 46);
     --btn-secondary-color: rgb(95, 98, 100);
     --header-color: var(--theme-color);
     --footer-color: #efefef;
@@ -23,6 +23,14 @@ header {
     margin-left: auto;
     padding: 1rem;
     margin-bottom: 1rem;
+}
+
+.text-end {
+    line-height: 2.5rem;
+}
+
+.text-end .dropdown-menu {
+    line-height: 1.5rem;
 }
 
 .input-group-text {
@@ -82,12 +90,6 @@ a {
         margin-bottom: 1;
         width: 100%;
         text-align: center;
-    }
-}
-
-@media screen and (max-width: 485px) {
-    .text-end {
-        margin-top: 1rem;
     }
 }
 
