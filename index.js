@@ -926,6 +926,31 @@ app.get('/stampa=*', redirectLogin, async (req, res) => {
     });
 });
 
+// Render della pagina delle FAQ
+app.get('/faq', (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+
+    // Se l'utente è loggato allora visualizza il dropdown in alto a destra
+    if (req.session.user) {
+        logged = true;
+        utente = req.session.user.nome;
+    }
+    // Altrimenti mostra solo i pulsanti di login e registrazione
+    else {
+        logged = false;
+        utente = '';
+    }
+
+    // Renderizza la pagina
+    res.render('faq', {
+        title: 'FAQ',
+        style: 'style-faq.css',
+        utente: utente,
+        log: logged
+    });
+});
+
 
 // Pagina 404 (errore)
 app.use((req, res) => {

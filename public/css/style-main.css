@@ -55,18 +55,6 @@ div#desc {
     color: white;
 }
 
-.btn-login {
-    background-color: var(--btn-prenota-color);
-    border-color: transparent;
-    color: black;
-}
-
-.btn-login:hover, .btn-login:active, .btn-login:focus {
-    background-color: var(--btn-info-color);
-    border-color: transparent;
-    color: black;
-}
-
 /* Gestione card nella main page */
 .listing {
     width: 95%;

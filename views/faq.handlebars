@@ -1,0 +1,134 @@
+<body>
+  <!-- Includi l'header -->
+  {{> header}}
+
+  <div class="container" id="textSection">
+    <!-- Domanda 1 -->
+    <div class="header">
+      Q: Vorrei prenotare un evento ma non so come fare
+    </div>
+    <div class="body">
+      <span class="italic">A: </span>
+      <span>
+        Solo gli utenti registrati e che hanno effettuato l'accesso al sistema possono prenotare
+        gli eventi. Se hai effettuato l'accesso al sistema, all'interno delle card evento comparirà
+        il tasto "Prenota".<br>
+        Se non hai effettuato l'accesso, 
+        <a href="/signup">Registrati</a> oppure <a href="/login">Accedi</a>.
+      </span>
+    </div>
+
+    <!-- Domanda 2 -->
+    <div class="header">
+      Q: Ho effettuato l'accesso ma non vedo il tasto prenota
+    </div>
+    <div class="body">
+      <span class="italic">A: </span>
+      <span>
+        Se hai effettuato l'accesso al sistema ma ancora non vedi il tasto prenota, allora 
+        l'evento che hai scelto non è più disponibile, e non può quindi essere prenotato. <br>
+        Inoltre, tutti gli eventi che hanno una data precedente alla data attuale (e compaiono
+        quindi nella sezione "Eventi conclusi") non sono prenotabili.
+      </span>
+    </div>
+
+    <!-- Domanda 3 -->
+    <div class="header">
+      Q: Ho prenotato un evento per errore. Cosa posso fare?
+    </div>
+    <div class="body">
+      <span class="italic">A: </span>
+      <span>
+        Se hai prenotato un evento a cui non sei interessato puoi disdire la prenotazione attraverso
+        la pagina <a href="/profile">Il mio profilo</a>.<br>
+        All'interno della sezione "Prenotazioni"
+        troverai la lista degli eventi prenotati: ti basterà cliccare sul tasto "Disdici".
+      </span>
+    </div>
+
+    <!-- Domanda 4 -->
+    <div class="header">
+      Q: Una volta prenotato un evento cosa devo fare?
+    </div>
+    <div class="body">
+      <span class="italic">A: </span>
+      <span>
+        Se hai prenotato un evento ti basterà stampare la ricevuta della prenotazione, che contiene
+        un QR Code che lo staff scansionerà all'entrata dell'evento.
+      </span>
+    </div>
+    
+    <!-- Domanda 5 -->
+    <div class="header">
+      Q: Posso eliminare il mio profilo qualora non ne abbia più bisogno?
+    </div>
+    <div class="body">
+      <span class="italic">A: </span>
+      <span>
+        Sì, è sempre possibile eliminare definitivamente il proprio profilo dal sistema attraverso
+        l'apposita sezione nella pagina <a href="/settings">Impostazioni</a>.<br>
+        Attenzione: la cancellazione del profilo è un'operazione irreversibile, quindi è bene
+        essere sicuri di voler rimuovere l'account.
+      </span>
+    </div>
+
+    <!-- Domanda 6 -->
+    <div class="header">
+      Q: Come posso organizzare un mio evento?
+    </div>
+    <div class="body">
+      <span class="italic">A: </span>
+      <span>
+        Se hai la volontà di organizzare eventi ti basta richiedere di diventare un organizzatore
+        attraverso l'apposita tab nella pagina <a href="/profile">Il mio profilo</a>.<br>
+        Una volta inoltrata la richiesta, un organizzatore potrà accettare o rifiutare la tua 
+        richiesta. Se la tua richiesta verrà accettata vedrai nella pagina del profilo nuove sezioni
+        dedite alla creazione ed eliminazione di eventi.
+      </span>
+    </div>
+
+    <!-- Domanda 7 -->
+    <div class="header">
+      Q: Ho sbagliato a compilare i miei dati nella fase di registrazione, posso rimediare?
+    </div>
+    <div class="body">
+      <span class="italic">A: </span>
+      <span>
+        È possibile aggiornare il nome, il cognome e la password inseriti nella fase di registrazione 
+        attraverso l'apposita sezione nella pagina <a href="/settings">Impostazioni</a>.<br>
+
+        Per aggiornare i tuoi dati è necessario inserire la password attuale e, se si vuole cambiare
+        anche la password, basterà inserire la nuova password e ripeterla per conferma,
+        altrimenti è possibile modificare solo gli altri campi reinserendo la stessa password.
+      </span>
+    </div>
+
+    <!-- Domanda 8 -->
+    <div class="header">
+      Q: Ho effettuato delle modifiche ai miei dati ma non ne vedo l'effetto.
+    </div>
+    <div class="body">
+      <span class="italic">A: </span>
+      <span>
+        Se il cambio dati è stato effettuato con successo, affinché i tuoi dati dell'account 
+        cambino è necessario effettuare il logout e riaccedere al sistema.
+      </span>
+    </div>
+    
+    <!-- Domanda 9 -->
+    <div class="header">
+      Q: Ho prenotato un evento ma ora non lo trovo più tra le prenotazioni e nella home page.
+    </div>
+    <div class="body">
+      <span class="italic">A: </span>
+      <span>
+        Se hai prenotato un evento ma la prenotazione non compare più nella pagina
+        "Il mio profilo" e l'evento non compare più nemmeno usando la ricerca allora è possibile
+        che sia stato eliminato dall'organizzatore.
+      </span>
+    </div>
+  </div>
+
+  <!-- Includi il footer -->
+  {{> footer}}
+</body>

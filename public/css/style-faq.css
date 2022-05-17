@@ -1,0 +1,53 @@
+@import "style-common.css";
+
+/* Generali */
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    width: 100%;
+    padding-bottom: 5rem;
+    position: relative;
+    font-family: var(--font-family);
+}
+
+/* Stili del testo */
+.header {
+    font-size: 22px;
+    font-family: var(--font-family);
+    margin-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-style: italic;
+}
+
+.body {
+    font-size: 18px;
+    font-family: var(--font-family);
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+div.footer {
+    font-size: 22px;
+    font-family: var(--font-family);
+    font-weight: bold;
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
+.italic {
+    font-style: italic;
+}
+
+/* Media queries per l'adattamento a dispositivi mobili */
+@media screen and (max-width: 621px) {
+    #textSection {
+        min-height: 75vh;
+    }
+}

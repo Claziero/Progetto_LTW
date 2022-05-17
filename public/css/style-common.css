@@ -23,6 +23,7 @@ header {
     margin-left: auto;
     padding: 1rem;
     margin-bottom: 1rem;
+    font-family: var(--font-family);
 }
 
 .text-end {
@@ -39,6 +40,18 @@ header {
 
 .fa-search {
     cursor: pointer;
+}
+
+.btn-login {
+    background-color: var(--btn-prenota-color);
+    border-color: transparent;
+    color: black;
+}
+
+.btn-login:hover, .btn-login:active, .btn-login:focus {
+    background-color: var(--btn-info-color);
+    border-color: transparent;
+    color: black;
 }
 
 /* Stili del footer */
@@ -99,7 +112,7 @@ a {
     }
 }
 
-@media screen and (max-width: 1001px) {
+@media screen and (max-width: 1047px) {
     header ul.nav {
         width: 100%;
     }
