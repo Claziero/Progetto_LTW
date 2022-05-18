@@ -8,8 +8,8 @@ $(document).ready(function () {
 
     // Azioni diverse in base alla pagina
     switch (active[0]) {
-        // Caso di pagine HIGHLIGHTS
-        case 'highlights':
+        // Caso di pagine HIGHLIGHTS, NEXT
+        case 'highlights': case 'next':
             // Link precedente
             if (isNaN(active[1]) || active[1] == 2) prev = "/" + active[0];
             else prev = "/" + active[0] + "/" + String(active[1] - 1);
@@ -36,7 +36,7 @@ $(document).ready(function () {
             next = "/" + String(parseInt(active[0]) + 1);
             break;
     }
-    
+
     // Imposta i link
     $("#prev").attr("href", prev);
     $("#next").attr("href", next);
