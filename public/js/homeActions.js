@@ -3,15 +3,39 @@ $(document).ready(function () {
     $(".card").fadeIn(1500);
 
     // Ricava i link per i tasti "precedente" e "successivo" nella paginazione
-    var active = parseInt($("li.active > a").attr("href").split("/")[1]);
+    var active = $("li.active > a").attr("href").slice(1).split("/");
+    active[1] = parseInt(active[1]);
 
-    // Link precedente
-    if (active == 2 || isNaN(active)) prev = "/";
-    else prev = "/" + String(active - 1);
-    
-    // Link successivo
-    if (isNaN(active)) next = "/2";
-    else next = "/" + String(active + 1);
+    // Azioni diverse in base alla pagina
+    switch (active[0]) {
+        // Caso di pagine HIGHLIGHTS
+        case 'highlights':
+            // Link precedente
+            if (isNaN(active[1]) || active[1] == 2) prev = "/" + active[0];
+            else prev = "/" + active[0] + "/" + String(active[1] - 1);
+
+            // Link successivo
+            if (isNaN(active[1])) next = "/" + active[0] + "/2";
+            else next = "/" + active[0] + "/" + String(active[1] + 1);
+            
+            break;
+        
+        // Caso di pagine MAIN
+        case "":
+            prev = "/";
+            next = "/2";
+            break;
+
+        case "2":
+            prev = "/";
+            next = "/3";
+            break;
+
+        default:
+            prev = "/" + String(parseInt(active[0]) - 1);
+            next = "/" + String(parseInt(active[0]) + 1);
+            break;
+    }
     
     // Imposta i link
     $("#prev").attr("href", prev);
@@ -42,8 +66,8 @@ function displayError(error) {
     if (error.target.readyState == 4 && error.target.status == 200) {
         var n = error.target.responseURL.split("book=")[1];
         if (n.length != 0) {
-            $("#e"+n+" #desc").attr("hidden", true);
-            $("#e"+n+" #message").html(error.target.responseText);
+            $("#e" + n + " #desc").attr("hidden", true);
+            $("#e" + n + " #message").html(error.target.responseText);
         }
     }
 }
