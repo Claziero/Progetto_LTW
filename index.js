@@ -58,22 +58,30 @@ app.get('/', async (req, res) => {
     // Conta il numero di eventi per ricavare il numero delle pagine
     var numPages = Math.ceil(query.length / 12);
 
-    // Imposta i numeri di pagine, i link e gli stati degli elementi <li>
-    var pages = [];
-    for (let i = 1; i <= numPages; i++) pages.push({
-        num: i, 
-        link: '/' + i, 
-        active: ''
-    });
+    // Se il numero di pagine è almeno 1 allora setta i link e i numeri di pagina
+    if (numPages > 0) {
+        // Imposta i numeri di pagine, i link e gli stati degli elementi <li>
+        var pages = [];
+        for (let i = 1; i <= numPages; i++) pages.push({
+            num: i, 
+            link: '/' + i, 
+            active: ''
+        });
 
-    pages[0]['link'] = '/';
-    pages[0]['active'] = 'active';
-    prev = {disabled: 'disabled'};
-    next = {disabled: ''};
-    
-    // Ritaglia i risultati della query
-    if (numPages > 1) query = query.slice(0, 12);
-    else next['disabled'] = 'disabled';
+        pages[0]['link'] = '/';
+        pages[0]['active'] = 'active';
+        prev = {disabled: 'disabled'};
+        next = {disabled: ''};
+        
+        // Ritaglia i risultati della query
+        if (numPages > 1) query = query.slice(0, 12);
+        else next['disabled'] = 'disabled';
+    }
+    else {
+        var pages = [{num: 1, link: '/', active: 'active'}];
+        prev = {disabled: 'disabled'};
+        next = {disabled: 'disabled'};
+    }
 
     // Formatta tutte le date ottenute
     query.forEach (elem => {
@@ -217,22 +225,30 @@ app.get('/highlights', async (req, res) => {
     // Conta il numero di eventi per ricavare il numero delle pagine
     var numPages = Math.ceil(query.length / 12);
 
-    // Imposta i numeri di pagine, i link e gli stati degli elementi <li>
-    var pages = [];
-    for (let i = 1; i <= numPages; i++) pages.push({
-        num: i, 
-        link: '/highlights/' + i, 
-        active: ''
-    });
-
-    pages[0]['link'] = '/highlights';
-    pages[0]['active'] = 'active';
-    prev = {disabled: 'disabled'};
-    next = {disabled: ''};
+    // Se il numero di pagine è almeno 1 allora setta i link e i numeri di pagina
+    if (numPages > 0) {
+        // Imposta i numeri di pagine, i link e gli stati degli elementi <li>
+        var pages = [];
+        for (let i = 1; i <= numPages; i++) pages.push({
+            num: i, 
+            link: '/highlights/' + i, 
+            active: ''
+        });
     
-    // Ritaglia i risultati della query
-    if (numPages > 1) query = query.slice(0, 12);
-    else next['disabled'] = 'disabled';
+        pages[0]['link'] = '/highlights';
+        pages[0]['active'] = 'active';
+        prev = {disabled: 'disabled'};
+        next = {disabled: ''};
+        
+        // Ritaglia i risultati della query
+        if (numPages > 1) query = query.slice(0, 12);
+        else next['disabled'] = 'disabled';
+    }
+    else {
+        var pages = [{num: 1, link: '/highlights', active: 'active'}];
+        prev = {disabled: 'disabled'};
+        next = {disabled: 'disabled'};
+    }
     
     // Formatta tutte le date ottenute
     query.forEach (elem => {
@@ -375,22 +391,30 @@ app.get('/next', async (req, res) => {
     // Conta il numero di eventi per ricavare il numero delle pagine
     var numPages = Math.ceil(query.length / 12);
 
-    // Imposta i numeri di pagine, i link e gli stati degli elementi <li>
-    var pages = [];
-    for (let i = 1; i <= numPages; i++) pages.push({
-        num: i, 
-        link: '/next/' + i, 
-        active: ''
-    });
+    // Se il numero di pagine è almeno 1 allora setta i link e i numeri di pagina
+    if (numPages > 0) {
+        // Imposta i numeri di pagine, i link e gli stati degli elementi <li>
+        var pages = [];
+        for (let i = 1; i <= numPages; i++) pages.push({
+            num: i, 
+            link: '/next/' + i, 
+            active: ''
+        });
 
-    pages[0]['link'] = '/next';
-    pages[0]['active'] = 'active';
-    prev = {disabled: 'disabled'};
-    next = {disabled: ''};
-    
-    // Ritaglia i risultati della query
-    if (numPages > 1) query = query.slice(0, 12);
-    else next['disabled'] = 'disabled';
+        pages[0]['link'] = '/next';
+        pages[0]['active'] = 'active';
+        prev = {disabled: 'disabled'};
+        next = {disabled: ''};
+        
+        // Ritaglia i risultati della query
+        if (numPages > 1) query = query.slice(0, 12);
+        else next['disabled'] = 'disabled';
+    }
+    else {
+        var pages = [{num: 1, link: '/next', active: 'active'}];
+        prev = {disabled: 'disabled'};
+        next = {disabled: 'disabled'};
+    }
     
     // Formatta tutte le date ottenute
     query.forEach (elem => {
@@ -528,22 +552,30 @@ app.get('/passed', async (req, res) => {
     // Conta il numero di eventi per ricavare il numero delle pagine
     var numPages = Math.ceil(query.length / 12);
 
-    // Imposta i numeri di pagine, i link e gli stati degli elementi <li>
-    var pages = [];
-    for (let i = 1; i <= numPages; i++) pages.push({
-        num: i, 
-        link: '/passed/' + i, 
-        active: ''
-    });
+    // Se il numero di pagine è almeno 1 allora setta i link e i numeri di pagina
+    if (numPages > 0) {
+        // Imposta i numeri di pagine, i link e gli stati degli elementi <li>
+        var pages = [];
+        for (let i = 1; i <= numPages; i++) pages.push({
+            num: i, 
+            link: '/passed/' + i, 
+            active: ''
+        });
 
-    pages[0]['link'] = '/passed';
-    pages[0]['active'] = 'active';
-    prev = {disabled: 'disabled'};
-    next = {disabled: ''};
-    
-    // Ritaglia i risultati della query
-    if (numPages > 1) query = query.slice(0, 12);
-    else next['disabled'] = 'disabled';
+        pages[0]['link'] = '/passed';
+        pages[0]['active'] = 'active';
+        prev = {disabled: 'disabled'};
+        next = {disabled: ''};
+        
+        // Ritaglia i risultati della query
+        if (numPages > 1) query = query.slice(0, 12);
+        else next['disabled'] = 'disabled';
+    }
+    else {
+        var pages = [{num: 1, link: '/passed', active: 'active'}];
+        prev = {disabled: 'disabled'};
+        next = {disabled: 'disabled'};
+    }
     
     // Formatta tutte le date ottenute
     query.forEach (elem => {
@@ -647,10 +679,8 @@ app.get('/passed/[0-9]*', async (req, res) => {
 app.get('/signup', redirectHome, (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
     req.session.views += 1;
-    // console.log("[DEBUG] SessionID:" + req.sessionID);
-    // console.log("[DEBUG] Session:");
-    // console.log(req.session);
 
+    // Renderizza la pagina di signup
     res.render('signup', {
         title: "Registrati", 
         style: "style-signup.css",
@@ -675,6 +705,7 @@ app.post('/signupValid', (req, res) => {
         privilegi: 0
     };
 
+    // Prova la registrazione
     db.insertUser(user).then(sign => {
         // Se c'è un errore nella registrazione
         if (sign == -1) {
@@ -708,10 +739,8 @@ app.post('/signupValid', (req, res) => {
 app.get('/login', redirectHome, (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
     req.session.views += 1;
-    // console.log("[DEBUG] SessionID:" + req.sessionID);
-    // console.log("[DEBUG] Session:");
-    // console.log(req.session);
 
+    // Renderizza la pagina di login
     res.render('signin', {
         title: "Login", 
         style: "style-signin.css",
