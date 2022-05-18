@@ -91,6 +91,12 @@ div#desc {
     position: absolute;
 }
 
+/* Paginazione */
+.page-item.active .page-link {
+    background-color: var(--btn-prenotato-color);
+    border-color: var(--btn-prenotato-color);
+}
+
 /* Media queries per l'adattamento a dispositivi mobili */
 @media screen and (max-width: 621px) {
     #mainSection {

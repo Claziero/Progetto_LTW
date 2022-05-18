@@ -68,7 +68,7 @@ table {
     }
 }
 
-@media screen and (max-width: 654px) {
+@media screen and (max-width: 700px) {
     .btn {
         margin-bottom: .25rem;
     }

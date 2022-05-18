@@ -29,11 +29,6 @@
   </script>
   {{/if}}
 
-  <!-- Parte di ricerca: se non ci sono risultati allora stampa l'errore -->
-  {{#if error}}
-  <div class="mb-3 text-danger text-center" id="message">{{error}}</div>
-  {{/if}}
-
   <!-- Paginazione -->
   <nav>
     <ul class="pagination justify-content-center">
@@ -48,6 +43,11 @@
       </li>
     </ul>
   </nav>
+
+  <!-- Parte di ricerca: se non ci sono risultati allora stampa l'errore -->
+  {{#if error}}
+  <div class="mb-3 text-danger text-center" id="message">{{error}}</div>
+  {{/if}}
 
   <!-- Per ogni elemento della query crea un nuovo elemento -->
   <div class="container" id="mainSection">

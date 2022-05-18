@@ -77,11 +77,13 @@ app.get('/', async (req, res) => {
         // Ritaglia i risultati della query
         if (numPages > 1) query = query.slice(0, EVS_PER_PAGE);
         else next['disabled'] = 'disabled';
+        error = '';
     }
     else {
         var pages = [{num: 1, link: '/', active: 'active'}];
         prev = {disabled: 'disabled'};
         next = {disabled: 'disabled'};
+        error = 'Non ci sono nuovi eventi in questa sezione.';
     }
 
     // Formatta tutte le date ottenute
@@ -125,7 +127,8 @@ app.get('/', async (req, res) => {
         log: logged,
         pages: pages,
         prev: prev,
-        next: next
+        next: next,
+        error: error
     });
 });
 
@@ -244,11 +247,13 @@ app.get('/highlights', async (req, res) => {
         // Ritaglia i risultati della query
         if (numPages > 1) query = query.slice(0, EVS_PER_PAGE);
         else next['disabled'] = 'disabled';
+        error = '';
     }
     else {
         var pages = [{num: 1, link: '/highlights', active: 'active'}];
         prev = {disabled: 'disabled'};
         next = {disabled: 'disabled'};
+        error = 'Non ci sono nuovi eventi in questa sezione.';
     }
     
     // Formatta tutte le date ottenute
@@ -292,7 +297,8 @@ app.get('/highlights', async (req, res) => {
         log: logged,
         pages: pages,
         prev: prev,
-        next: next
+        next: next,
+        error: error
     });
 });
 
@@ -410,11 +416,13 @@ app.get('/next', async (req, res) => {
         // Ritaglia i risultati della query
         if (numPages > 1) query = query.slice(0, EVS_PER_PAGE);
         else next['disabled'] = 'disabled';
+        error = '';
     }
     else {
         var pages = [{num: 1, link: '/next', active: 'active'}];
         prev = {disabled: 'disabled'};
         next = {disabled: 'disabled'};
+        error = 'Non ci sono nuovi eventi in questa sezione.';
     }
     
     // Formatta tutte le date ottenute
@@ -458,7 +466,8 @@ app.get('/next', async (req, res) => {
         log: logged,
         pages: pages,
         prev: prev,
-        next: next
+        next: next,
+        error: error
     });
 });
 
@@ -571,11 +580,13 @@ app.get('/passed', async (req, res) => {
         // Ritaglia i risultati della query
         if (numPages > 1) query = query.slice(0, EVS_PER_PAGE);
         else next['disabled'] = 'disabled';
+        error = '';
     }
     else {
         var pages = [{num: 1, link: '/passed', active: 'active'}];
         prev = {disabled: 'disabled'};
         next = {disabled: 'disabled'};
+        error = 'Non ci sono nuovi eventi in questa sezione.';
     }
     
     // Formatta tutte le date ottenute
@@ -603,7 +614,8 @@ app.get('/passed', async (req, res) => {
         log: logged,
         pages: pages,
         prev: prev,
-        next: next
+        next: next,
+        error: error
     });
 });
 
@@ -1274,16 +1286,65 @@ app.get('/unbook=*', redirectLogin, (req, res) => {
 });
 
 // Intercetta le ricerche di eventi
-app.get('/search=*', async (req, res) => {
+app.get('/search=:src/:n?', async (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
     req.session.views += 1;
 
     // Ottieni il testo della ricerca
-    var src = req.originalUrl.split('search=')[1];
+    var src = req.params.src;
+    var n = parseInt(req.params.n);
 
     // Esegui la query
     var query = await db.search(src);
 
+    // Conta il numero di eventi per ricavare il numero delle pagine
+    var numPages = Math.ceil(query.length / EVS_PER_PAGE);
+
+    // Se il numero di pagine è almeno 1 allora setta i link e i numeri di pagina
+    if (numPages > 0) {
+        // Imposta i numeri di pagine, i link e gli stati degli elementi <li>
+        var pages = [];
+        for (let i = 1; i <= numPages; i++) pages.push({
+            num: i, 
+            link: '/search=' + src + '/' + i, 
+            active: ''
+        });
+
+        pages[0]['link'] = '/search=' + src;
+        
+        // Se è stata richiesta una pagina diversa dalla prima
+        if (n) {
+            // Se la pagina richiesta non esiste
+            if (n > numPages) {
+                res.render('404', {
+                    title: "Error404", 
+                    style: "style-main.css",
+                });
+                return;
+            }
+
+            pages[n - 1]['active'] = 'active';
+            prev = {disabled: ''};
+
+            // Ritaglia i risultati della query
+            query = query.slice(EVS_PER_PAGE * (n - 1), EVS_PER_PAGE * n);
+        }
+        else {
+            pages[0]['active'] = 'active';
+            prev = {disabled: 'disabled'};
+        }
+        next = {disabled: ''};
+        
+        if (n == numPages) next['disabled'] = 'disabled';
+        else if (numPages > 1) query = query.slice(0, EVS_PER_PAGE);
+        else next['disabled'] = 'disabled';
+    }
+    else {
+        var pages = [{num: 1, link: '/search=' + src, active: 'active'}];
+        prev = {disabled: 'disabled'};
+        next = {disabled: 'disabled'};
+    }
+    
     // Formatta tutte le date ottenute
     query.forEach (elem => {
         elem['dataora'] = db.formatDate(elem['dataora'].toString());
@@ -1329,6 +1390,9 @@ app.get('/search=*', async (req, res) => {
         mainList: query,
         utente: utente,
         log: logged,
+        pages: pages,
+        prev: prev,
+        next: next,
         error: error
     });
 });
