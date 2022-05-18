@@ -521,12 +521,29 @@ app.get('/next/[0-9]*', async (req, res) => {
 app.get('/passed', async (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
     req.session.views += 1;
-    // console.log("[DEBUG] SessionID:" + req.sessionID);
-    // console.log("[DEBUG] Session:");
-    // console.log(req.session);
 
     // Esegui la query per il main listing
     var query = await db.loadPassed();
+
+    // Conta il numero di eventi per ricavare il numero delle pagine
+    var numPages = Math.ceil(query.length / 12);
+
+    // Imposta i numeri di pagine, i link e gli stati degli elementi <li>
+    var pages = [];
+    for (let i = 1; i <= numPages; i++) pages.push({
+        num: i, 
+        link: '/passed/' + i, 
+        active: ''
+    });
+
+    pages[0]['link'] = '/passed';
+    pages[0]['active'] = 'active';
+    prev = {disabled: 'disabled'};
+    next = {disabled: ''};
+    
+    // Ritaglia i risultati della query
+    if (numPages > 1) query = query.slice(0, 12);
+    else next['disabled'] = 'disabled';
     
     // Formatta tutte le date ottenute
     query.forEach (elem => {
@@ -550,7 +567,79 @@ app.get('/passed', async (req, res) => {
         js: "homeActions.js", 
         mainList: query,
         utente: utente,
-        log: logged
+        log: logged,
+        pages: pages,
+        prev: prev,
+        next: next
+    });
+});
+
+// Render della pagina "Eventi conclusi" (pagina diversa da 1)
+app.get('/passed/[0-9]*', async (req, res) => {
+    // Incrementa il contatore di visualizzazioni della pagina
+    req.session.views += 1;
+
+    // Ottieni il numero di pagina richiesta
+    var n = req.originalUrl.split('/passed/')[1];
+    
+    // Esegui la query per il main listing
+    var query = await db.loadPassed();
+    
+    // Conta il numero di eventi per ricavare il numero delle pagine
+    var numPages = Math.ceil(query.length / 12);
+
+    // Se la pagina richiesta non esiste
+    if (n > numPages) {
+        res.render('404', {
+            title: "Error404", 
+            style: "style-main.css",
+        });
+        return;
+    }
+
+    // Imposta i numeri di pagine, i link e gli stati degli elementi <li>
+    var pages = [];
+    for (let i = 1; i <= numPages; i++) pages.push({
+        num: i, 
+        link: '/passed/' + i, 
+        active: ''
+    });
+    pages[0]['link'] = '/passed/';
+    pages[n - 1]['active'] = 'active';
+    prev = {disabled: ''};
+    next = {disabled: ''};
+
+    // Ritaglia i risultati della query
+    if (numPages > 1) query = query.slice(12 * (n - 1), 12 * n);
+
+    if (n == numPages) next['disabled'] = 'disabled';
+
+    // Formatta tutte le date ottenute
+    query.forEach (elem => {
+        elem['dataora'] = db.formatDate(elem['dataora'].toString());
+    });
+
+    // Se l'utente è loggato allora visualizza il dropdown in alto a destra
+    if (req.session.user) {
+        logged = true;
+        utente = req.session.user.nome;
+    }
+    // Altrimenti mostra solo i pulsanti di login e registrazione
+    else {
+        logged = false;
+        utente = '';
+    }
+
+    res.render('home', {
+        title: "Eventi passati", 
+        style: "style-main.css",
+        js: "homeActions.js", 
+        mainList: query,
+        utente: utente,
+        log: logged,
+        pages: pages,
+        prev: prev,
+        next: next
     });
 });
 

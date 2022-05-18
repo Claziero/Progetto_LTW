@@ -8,8 +8,8 @@ $(document).ready(function () {
 
     // Azioni diverse in base alla pagina
     switch (active[0]) {
-        // Caso di pagine HIGHLIGHTS, NEXT
-        case 'highlights': case 'next':
+        // Caso di pagine HIGHLIGHTS, PROSSIMAMENTE e EVENTI PASSATI
+        case 'highlights': case 'next': case 'passed':
             // Link precedente
             if (isNaN(active[1]) || active[1] == 2) prev = "/" + active[0];
             else prev = "/" + active[0] + "/" + String(active[1] - 1);
