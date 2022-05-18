@@ -6,6 +6,7 @@ const session = require('express-session');
 
 const SESS_NAME = 'session';
 const SECRET_STR = 'segreto';
+const EVS_PER_PAGE = 12;
 
 const app = express();
 app.listen(3000); // Porta 3000 per il server
@@ -16,7 +17,7 @@ app.set('views', './views');
 
 // Per usare file di stile css e script javascript
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 // Per l'uso della sessione 
 app.use(session({
@@ -56,7 +57,7 @@ app.get('/', async (req, res) => {
     var query = await db.loadMainListing();
 
     // Conta il numero di eventi per ricavare il numero delle pagine
-    var numPages = Math.ceil(query.length / 12);
+    var numPages = Math.ceil(query.length / EVS_PER_PAGE);
 
     // Se il numero di pagine è almeno 1 allora setta i link e i numeri di pagina
     if (numPages > 0) {
@@ -74,7 +75,7 @@ app.get('/', async (req, res) => {
         next = {disabled: ''};
         
         // Ritaglia i risultati della query
-        if (numPages > 1) query = query.slice(0, 12);
+        if (numPages > 1) query = query.slice(0, EVS_PER_PAGE);
         else next['disabled'] = 'disabled';
     }
     else {
@@ -140,7 +141,7 @@ app.get('/[0-9]+', async (req, res) => {
     var query = await db.loadMainListing();
     
     // Conta il numero di eventi per ricavare il numero delle pagine
-    var numPages = Math.ceil(query.length / 12);
+    var numPages = Math.ceil(query.length / EVS_PER_PAGE);
 
     // Se la pagina richiesta non esiste
     if (n > numPages) {
@@ -164,7 +165,7 @@ app.get('/[0-9]+', async (req, res) => {
     next = {disabled: ''};
 
     // Ritaglia i risultati della query
-    if (numPages > 1) query = query.slice(12 * (n - 1), 12 * n);
+    if (numPages > 1) query = query.slice(EVS_PER_PAGE * (n - 1), EVS_PER_PAGE * n);
 
     if (n == numPages) next['disabled'] = 'disabled';
 
@@ -223,7 +224,7 @@ app.get('/highlights', async (req, res) => {
     var query = await db.loadHighlights();
 
     // Conta il numero di eventi per ricavare il numero delle pagine
-    var numPages = Math.ceil(query.length / 12);
+    var numPages = Math.ceil(query.length / EVS_PER_PAGE);
 
     // Se il numero di pagine è almeno 1 allora setta i link e i numeri di pagina
     if (numPages > 0) {
@@ -241,7 +242,7 @@ app.get('/highlights', async (req, res) => {
         next = {disabled: ''};
         
         // Ritaglia i risultati della query
-        if (numPages > 1) query = query.slice(0, 12);
+        if (numPages > 1) query = query.slice(0, EVS_PER_PAGE);
         else next['disabled'] = 'disabled';
     }
     else {
@@ -307,7 +308,7 @@ app.get('/highlights/[0-9]*', async (req, res) => {
     var query = await db.loadHighlights();
     
     // Conta il numero di eventi per ricavare il numero delle pagine
-    var numPages = Math.ceil(query.length / 12);
+    var numPages = Math.ceil(query.length / EVS_PER_PAGE);
 
     // Se la pagina richiesta non esiste
     if (n > numPages) {
@@ -331,7 +332,7 @@ app.get('/highlights/[0-9]*', async (req, res) => {
     next = {disabled: ''};
 
     // Ritaglia i risultati della query
-    if (numPages > 1) query = query.slice(12 * (n - 1), 12 * n);
+    if (numPages > 1) query = query.slice(EVS_PER_PAGE * (n - 1), EVS_PER_PAGE * n);
 
     if (n == numPages) next['disabled'] = 'disabled';
 
@@ -389,7 +390,7 @@ app.get('/next', async (req, res) => {
     var query = await db.loadNext();
 
     // Conta il numero di eventi per ricavare il numero delle pagine
-    var numPages = Math.ceil(query.length / 12);
+    var numPages = Math.ceil(query.length / EVS_PER_PAGE);
 
     // Se il numero di pagine è almeno 1 allora setta i link e i numeri di pagina
     if (numPages > 0) {
@@ -407,7 +408,7 @@ app.get('/next', async (req, res) => {
         next = {disabled: ''};
         
         // Ritaglia i risultati della query
-        if (numPages > 1) query = query.slice(0, 12);
+        if (numPages > 1) query = query.slice(0, EVS_PER_PAGE);
         else next['disabled'] = 'disabled';
     }
     else {
@@ -473,7 +474,7 @@ app.get('/next/[0-9]*', async (req, res) => {
     var query = await db.loadNext();
     
     // Conta il numero di eventi per ricavare il numero delle pagine
-    var numPages = Math.ceil(query.length / 12);
+    var numPages = Math.ceil(query.length / EVS_PER_PAGE);
 
     // Se la pagina richiesta non esiste
     if (n > numPages) {
@@ -497,7 +498,7 @@ app.get('/next/[0-9]*', async (req, res) => {
     next = {disabled: ''};
 
     // Ritaglia i risultati della query
-    if (numPages > 1) query = query.slice(12 * (n - 1), 12 * n);
+    if (numPages > 1) query = query.slice(EVS_PER_PAGE * (n - 1), EVS_PER_PAGE * n);
 
     if (n == numPages) next['disabled'] = 'disabled';
 
@@ -550,7 +551,7 @@ app.get('/passed', async (req, res) => {
     var query = await db.loadPassed();
 
     // Conta il numero di eventi per ricavare il numero delle pagine
-    var numPages = Math.ceil(query.length / 12);
+    var numPages = Math.ceil(query.length / EVS_PER_PAGE);
 
     // Se il numero di pagine è almeno 1 allora setta i link e i numeri di pagina
     if (numPages > 0) {
@@ -568,7 +569,7 @@ app.get('/passed', async (req, res) => {
         next = {disabled: ''};
         
         // Ritaglia i risultati della query
-        if (numPages > 1) query = query.slice(0, 12);
+        if (numPages > 1) query = query.slice(0, EVS_PER_PAGE);
         else next['disabled'] = 'disabled';
     }
     else {
@@ -618,7 +619,7 @@ app.get('/passed/[0-9]*', async (req, res) => {
     var query = await db.loadPassed();
     
     // Conta il numero di eventi per ricavare il numero delle pagine
-    var numPages = Math.ceil(query.length / 12);
+    var numPages = Math.ceil(query.length / EVS_PER_PAGE);
 
     // Se la pagina richiesta non esiste
     if (n > numPages) {
@@ -642,7 +643,7 @@ app.get('/passed/[0-9]*', async (req, res) => {
     next = {disabled: ''};
 
     // Ritaglia i risultati della query
-    if (numPages > 1) query = query.slice(12 * (n - 1), 12 * n);
+    if (numPages > 1) query = query.slice(EVS_PER_PAGE * (n - 1), EVS_PER_PAGE * n);
 
     if (n == numPages) next['disabled'] = 'disabled';
 
