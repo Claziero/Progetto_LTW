@@ -1,6 +1,8 @@
 /* Colori */
 :root {
     --theme-color: rgba(24, 192, 46, 0.534);
+    --btn-login-color: rgba(8, 211, 41, 0.603);
+    --btn-info-color: rgba(17, 177, 226, 0.534);
     --font-family: "Lato", "Inter", sans-serif;
 }
 
@@ -24,9 +26,15 @@ img {
 }
 
 .btn {
-    background-color: var(--theme-color);
+    background-color: var(--btn-login-color);
     color: black;
     border-color: transparent;
+}
+
+.btn:hover, .btn:active, .btn:focus {
+    background-color: var(--btn-info-color);
+    border-color: transparent;
+    color: black;
 }
 
 .input-group-text {

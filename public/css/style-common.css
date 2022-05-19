@@ -54,6 +54,10 @@ header {
     color: black;
 }
 
+.dropdown-item:active {
+    background-color: var(--btn-info-color);
+}
+
 /* Stili del footer */
 footer {
     background-color: var(--footer-color);

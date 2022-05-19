@@ -1,6 +1,8 @@
 /* Colori */
 :root {
     --theme-color: rgba(24, 192, 46, 0.534);
+    --btn-login-color: rgba(8, 211, 41, 0.603);
+    --btn-info-color: rgba(17, 177, 226, 0.534);
     --font-family: "Lato", "Inter", sans-serif;
 }
 
@@ -28,9 +30,15 @@ img {
 }
 
 .btn-login {
-    background-color: var(--theme-color);
+    background-color: var(--btn-login-color);
     color: black;
     border-color: transparent;
+}
+
+.btn-login:hover, .btn-login:active, .btn-login:focus {
+    background-color: var(--btn-info-color);
+    border-color: transparent;
+    color: black;
 }
 
 .form-signin {
@@ -56,6 +64,12 @@ img {
 }
 
 /* Media queries per l'adattamento a dispositivi mobili */
+@media screen and (max-width: 600px) {
+    img {
+        width: 70%;
+    }
+}
+
 @media screen and (min-height: 460px) {
     section {
         height: 100vh;

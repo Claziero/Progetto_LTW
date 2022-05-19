@@ -217,7 +217,7 @@ app.get('/[0-9]+', async (req, res) => {
     });
 });
 
-// Render della homepage con eventi Highlights
+// Render della homepage con eventi "Highlights"
 app.get('/highlights/:n?', async (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
     req.session.views += 1;
@@ -425,7 +425,7 @@ app.get('/next/:n?', async (req, res) => {
     });
 });
 
-// Render della homepage con eventi passati
+// Render della homepage con "Eventi conclusi"
 app.get('/passed/:n?', async (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
     req.session.views += 1;
@@ -893,6 +893,7 @@ app.get('/deleteUser', redirectLogin, (req, res) => {
     });
 });
 
+// Intercetta le creazioni di nuovi eventi
 app.post('/createEvent', redirectLogin, (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
     req.session.views += 1;
@@ -915,7 +916,7 @@ app.post('/createEvent', redirectLogin, (req, res) => {
         if (b == -1) {
             console.log(">>Errore in inserimento evento (" + user.email + ")");
 
-            //TBC
+            // Redireziona alla pagina del profilo
             res.redirect("/profile");
             res.end();
             return;
@@ -924,7 +925,7 @@ app.post('/createEvent', redirectLogin, (req, res) => {
         else if (b == 0) {
             console.log(">>Inserimento evento effettuato (" + req.session.user.email + ")");
             
-            //TBC
+            // Redireziona alla pagina home
             res.redirect("/");
             res.end();
             return;
@@ -1074,7 +1075,7 @@ app.get('/remove=*', redirectLogin, (req, res) => {
         else if (b == -1) {
             console.log(">>[Rimozione.evento] Errore nella query");
 
-            //TBC
+            // Redireziona alla pagina home
             res.redirect("/");
             res.end();
             return;            
