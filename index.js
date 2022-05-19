@@ -511,6 +511,11 @@ app.get('/next/[0-9]*', async (req, res) => {
 
     if (n == numPages) next['disabled'] = 'disabled';
 
+    // Formatta tutte le date ottenute
+    query.forEach (elem => {
+        elem['dataora'] = db.formatDate(elem['dataora'].toString());
+    });
+
     // Se l'utente è loggato allora visualizza il dropdown in alto a destra
     if (req.session.user) {
         logged = true;
@@ -1309,7 +1314,6 @@ app.get('/search=:src/:n?', async (req, res) => {
             link: '/search=' + src + '/' + i, 
             active: ''
         });
-
         pages[0]['link'] = '/search=' + src;
         
         // Se è stata richiesta una pagina diversa dalla prima
