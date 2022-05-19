@@ -31,18 +31,18 @@
           Ciao {{utente}}
         </a>
         <ul class="dropdown-menu text-small">
-          <li><a class="dropdown-item" href="settings">Impostazioni</a></li>
-          <li><a class="dropdown-item" href="profile">Il mio profilo</a></li>
+          <li><a class="dropdown-item" href="/settings">Impostazioni</a></li>
+          <li><a class="dropdown-item" href="/profile">Il mio profilo</a></li>
           <li>
             <hr class="dropdown-divider">
           </li>
-          <li><a class="dropdown-item" href="logout">Esci</a></li>
+          <li><a class="dropdown-item" href="/logout">Esci</a></li>
         </ul>
       </div>
       {{else}}
       <div class="text-end">
-        <a href="login"><button class="btn btn-primary btn-login">Accedi</button></a>
-        <a href="signup"><button class="btn btn-primary btn-login">Registrati</button></a>
+        <a href="/login"><button class="btn btn-primary btn-login">Accedi</button></a>
+        <a href="/signup"><button class="btn btn-primary btn-login">Registrati</button></a>
       </div>
       {{/if}}
 
