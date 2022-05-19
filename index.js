@@ -217,11 +217,11 @@ app.get('/[0-9]+', async (req, res) => {
     });
 });
 
-
 // Render della homepage con eventi Highlights
-app.get('/highlights', async (req, res) => {
+app.get('/highlights/:n?', async (req, res) => {
     // Incrementa il contatore di visualizzazioni della pagina
     req.session.views += 1;
+    var n = parseInt(req.params.n);
 
     // Esegui la query per il main listing
     var query = await db.loadHighlights();
@@ -238,14 +238,33 @@ app.get('/highlights', async (req, res) => {
             link: '/highlights/' + i, 
             active: ''
         });
-    
         pages[0]['link'] = '/highlights';
-        pages[0]['active'] = 'active';
-        prev = {disabled: 'disabled'};
+        
+        // Se è stata richiesta una pagina diversa dalla prima
+        if (n) {
+            // Se la pagina richiesta non esiste
+            if (n > numPages) {
+                res.render('404', {
+                    title: "Error404", 
+                    style: "style-main.css",
+                });
+                return;
+            }
+
+            pages[n - 1]['active'] = 'active';
+            prev = {disabled: ''};
+
+            // Ritaglia i risultati della query
+            query = query.slice(EVS_PER_PAGE * (n - 1), EVS_PER_PAGE * n);
+        }
+        else {
+            pages[0]['active'] = 'active';
+            prev = {disabled: 'disabled'};
+        }
         next = {disabled: ''};
         
-        // Ritaglia i risultati della query
-        if (numPages > 1) query = query.slice(0, EVS_PER_PAGE);
+        if (n && n == numPages) next['disabled'] = 'disabled';
+        else if (numPages > 1) query = query.slice(0, EVS_PER_PAGE);
         else next['disabled'] = 'disabled';
         error = '';
     }
@@ -299,91 +318,6 @@ app.get('/highlights', async (req, res) => {
         prev: prev,
         next: next,
         error: error
-    });
-});
-
-// Render della pagina Highlights (pagina diversa da 1)
-app.get('/highlights/[0-9]*', async (req, res) => {
-    // Incrementa il contatore di visualizzazioni della pagina
-    req.session.views += 1;
-
-    // Ottieni il numero di pagina richiesta
-    var n = req.originalUrl.split('/highlights/')[1];
-    
-    // Esegui la query per il main listing
-    var query = await db.loadHighlights();
-    
-    // Conta il numero di eventi per ricavare il numero delle pagine
-    var numPages = Math.ceil(query.length / EVS_PER_PAGE);
-
-    // Se la pagina richiesta non esiste
-    if (n > numPages) {
-        res.render('404', {
-            title: "Error404", 
-            style: "style-main.css",
-        });
-        return;
-    }
-
-    // Imposta i numeri di pagine, i link e gli stati degli elementi <li>
-    var pages = [];
-    for (let i = 1; i <= numPages; i++) pages.push({
-        num: i, 
-        link: '/highlights/' + i, 
-        active: ''
-    });
-    pages[0]['link'] = '/highlights/';
-    pages[n - 1]['active'] = 'active';
-    prev = {disabled: ''};
-    next = {disabled: ''};
-
-    // Ritaglia i risultati della query
-    if (numPages > 1) query = query.slice(EVS_PER_PAGE * (n - 1), EVS_PER_PAGE * n);
-
-    if (n == numPages) next['disabled'] = 'disabled';
-
-    // Formatta tutte le date ottenute
-    query.forEach (elem => {
-        elem['dataora'] = db.formatDate(elem['dataora'].toString());
-    });
-
-    // Se l'utente è loggato allora visualizza il dropdown in alto a destra
-    if (req.session.user) {
-        logged = true;
-        utente = req.session.user.nome;
-
-        // Esegui la query per vedere tutte le prenotazioni dell'utente
-        var prenotazioni = await db.prenotazioni(req.session.user.email);
-        
-        // Ricava gli ID degli eventi prenotati
-        var s = []
-        prenotazioni.forEach (elem => {
-            s.push(elem['id']);
-        });
-
-        // Imposta il campo prenotato
-        query.forEach (elem => {
-            if (s.includes(elem['id']))
-                elem['prenotato'] = true;
-            else elem['prenotato'] = false;
-        });
-    }
-    // Altrimenti mostra solo i pulsanti di login e registrazione
-    else {
-        logged = false;
-        utente = '';
-    }
-
-    res.render('home', {
-        title: "Highlights", 
-        style: "style-main.css",
-        js: "homeActions.js", 
-        mainList: query,
-        utente: utente,
-        log: logged,
-        pages: pages,
-        prev: prev,
-        next: next
     });
 });
 
