@@ -166,11 +166,9 @@
                   <label for="imgEvent">Immagine di sfondo</label>
                   <br>
                   <select name="imgEvent" class="form-select" form="creaEvento" required>
-                    <option value="" selected></option>
                     {{#each images}}
                     <option value="{{nome}}">{{titolo}}</option>
                     {{/each}}
-                    <option value="Altro">Altro</option>
                   </select>
                 </div>
 

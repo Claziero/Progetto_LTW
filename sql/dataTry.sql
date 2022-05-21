@@ -4,6 +4,7 @@ INSERT INTO Utente VALUES
     ('Promoter', 'User', '2000-01-01', 'M', 'promoter@user.com', '63a9f0ea7bb98050796b649e85481845', true, 1);
 
 INSERT INTO ImgMapping VALUES 
+    ('NONE', 'Nessuna immagine'),
     ('chess.png', 'Scacchi'),
     ('wrestling.png', 'Wrestling'),
     ('boardgame.png', 'Dadi (giochi da tavolo)'),
