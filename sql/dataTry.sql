@@ -1,7 +1,7 @@
 /* Inserimento tuple di prova nel DB */
 INSERT INTO Utente VALUES
-    ('Normal', 'User', '2000-01-01', 'M', 'normal@user.com', '63a9f0ea7bb98050796b649e85481845', true, 0),
-    ('Promoter', 'User', '2000-01-01', 'M', 'promoter@user.com', '63a9f0ea7bb98050796b649e85481845', true, 1);
+    ('Normal', 'User', '2000-01-01', 'M', 'normal@user.com', '63a9f0ea7bb98050796b649e85481845', 0),
+    ('Promoter', 'User', '2000-01-01', 'M', 'promoter@user.com', '63a9f0ea7bb98050796b649e85481845', 1);
 
 INSERT INTO ImgMapping VALUES 
     ('NONE', 'Nessuna immagine'),

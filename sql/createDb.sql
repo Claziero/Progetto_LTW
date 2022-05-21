@@ -13,7 +13,6 @@ CREATE TABLE Utente(
     Sesso               CHAR(1) NOT NULL,
     Email               VARCHAR,
     Passwd              VARCHAR NOT NULL,
-    Verificato          BOOLEAN NOT NULL,
     Privilegi           INT NOT NULL,
     
     PRIMARY KEY (Email)
@@ -64,4 +63,4 @@ CREATE TABLE Prenotazione(
 
 /* Inserimento utente DBA */
 INSERT INTO Utente VALUES
-    ('Database', 'Administrator', '2000-01-01', 'M', 'dba@pgsql.com', '63a9f0ea7bb98050796b649e85481845', true, 2);
+    ('Database', 'Administrator', '2000-01-01', 'M', 'dba@pgsql.com', '63a9f0ea7bb98050796b649e85481845', 2);

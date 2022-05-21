@@ -539,7 +539,6 @@ app.post('/signupValid', (req, res) => {
         sesso: req.body.sesso,
         email: req.body.email,
         password: req.body.password,
-        validato: true,
         privilegi: 0
     };
 
