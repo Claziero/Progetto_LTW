@@ -103,3 +103,14 @@ div#desc {
         min-height: 75vh;
     }
 }
+
+@media screen and (max-width: 430px) {
+    .card {
+        width: 100%;
+        min-height: 400px;
+    }
+
+    .card-deck {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}

@@ -73,3 +73,9 @@ table {
         margin-bottom: .25rem;
     }
 }
+
+@media screen and (max-width: 450px) {
+    .col {
+        flex: none;
+    }
+}
