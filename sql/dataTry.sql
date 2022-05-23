@@ -34,7 +34,7 @@ INSERT INTO Evento VALUES
         40, 'Evento torneo di braccio di ferro. 2 persone', True, False, 'armwrestling.png'),
     (5, 'promoter@user.com', 'Torneo di tennis', 'Torneo', 'Verona, IT', '2022-05-25 19:30', 
         30, 'Evento torneo di tennis. 2 persone', True, False, 'tennis.png'),
-    (6, 'promoter@user.com', 'Partita di pallavolo', 'Singolo', 'Firenze, IT', '2022-05-30 21:00', 
+    (6, 'promoter@user.com', 'Partita di pallavolo', 'Singolo', 'Firenze, IT', '2022-05-29 21:00', 
         90, 'Evento partita di pallavolo. 10 persone', True, False, 'volleyball.png'),
     (7, 'promoter@user.com', 'Duello di scherma', 'Singolo', 'Napoli, IT', '2022-05-31 11:30', 
         30, 'Evento duello di scherma. 2 persone', True, False, 'scherma.png'),
