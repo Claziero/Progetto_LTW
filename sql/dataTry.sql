@@ -2,7 +2,7 @@
 INSERT INTO Users VALUES
     ('Normal', 'User', '2000-01-01', 'M', 'user', '63a9f0ea7bb98050796b649e85481845', 0),
     ('Promoter', 'User', '2000-01-01', 'M', 'promoter', 'f04f17c8c22d85f9b5771d6ed952bd6e', 1),
-    ('Root', 'User', '1987-06-31', 'M', 'root', '63a9f0ea7bb98050796b649e85481845', 1),
+    ('Root', 'User', '1987-06-19', 'M', 'root', '63a9f0ea7bb98050796b649e85481845', 1),
     ('Marco', 'Alberto', '2000-04-25', 'M', 'marco', 'f04f17c8c22d85f9b5771d6ed952bd6e', 0),
     ('Angelo', 'Spognardi', '2000-04-25', 'M', 'angsp', '63a9f0ea7bb98050796b649e85481845', 0),
     ('Luigi', 'Mancini', '2000-04-25', 'M', 'lvm', '5f4dcc3b5aa765d61d8327deb882cf99', 0),
