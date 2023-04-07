@@ -1,12 +1,12 @@
 /* Tabella Utenti iscritti 
  * Gli utenti possono essere di vari tipi (con vari privilegi):
- * Privilegi=0 => Utente standard
- * Privilegi=1 => Utente organizzatore 
+ * Privilegi=0 => Users standard
+ * Privilegi=1 => Users organizzatore 
  * Privilegi=2 => DBA (massimo livello di privilegi)
- * Privilegi=3 => Utente standard in attesa di diventare organizzatore
+ * Privilegi=3 => Users standard in attesa di diventare organizzatore
  * Password salvate in formato MD5
 */
-CREATE TABLE Utente(
+CREATE TABLE Users(
     Nome                VARCHAR NOT NULL,
     Cognome             VARCHAR NOT NULL,
     DataNascita         DATE NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE ImgMapping(
  * Un evento può essere ancora disponibile oppure già passato (non prenotabile)
  * ed ha un numero limitato di posti.
 */
-CREATE TABLE Evento(
+CREATE TABLE Event(
     ID                  INT,
     Organizzatore       VARCHAR NOT NULL,
     Titolo              VARCHAR NOT NULL,
@@ -44,23 +44,23 @@ CREATE TABLE Evento(
     Immagine            VARCHAR,
 
     PRIMARY KEY (ID),
-    FOREIGN KEY (Organizzatore) REFERENCES Utente,
+    FOREIGN KEY (Organizzatore) REFERENCES Users,
     FOREIGN KEY (Immagine) REFERENCES ImgMapping
 );
 
 /* Tabella delle prenotazioni
  * Ogni persona può prenotare al massimo una sola volta ogni evento
 */
-CREATE TABLE Prenotazione(
-    ID_Evento           INT,
-    Email_Utente        VARCHAR,
+CREATE TABLE Booking(
+    ID_Event           INT,
+    Email_User        VARCHAR,
     DataOra             TIMESTAMP,
 
-    PRIMARY KEY (ID_Evento, Email_Utente),
-    FOREIGN KEY (Email_Utente) REFERENCES Utente,
-    FOREIGN KEY (ID_Evento) REFERENCES Evento
+    PRIMARY KEY (ID_Event, Email_User),
+    FOREIGN KEY (Email_User) REFERENCES Users,
+    FOREIGN KEY (ID_Event) REFERENCES Event
 );
 
 /* Inserimento utente DBA */
-INSERT INTO Utente VALUES
+INSERT INTO Users VALUES
     ('Database', 'Administrator', '2000-01-01', 'M', 'dba@pgsql.com', '63a9f0ea7bb98050796b649e85481845', 2);
