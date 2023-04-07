@@ -63,4 +63,4 @@ CREATE TABLE Booking(
 
 /* Inserimento utente DBA */
 INSERT INTO Users VALUES
-    ('Database', 'Administrator', '2000-01-01', 'M', 'dba@pgsql.com', '63a9f0ea7bb98050796b649e85481845', 2);
+    ('Database', 'Administrator', '2000-01-01', 'M', 'psqladmin', '63a9f0ea7bb98050796b649e85481845', 2);
