@@ -1,13 +1,13 @@
 /* Inserimento tuple di prova nel DB */
 INSERT INTO Users VALUES
     ('Normal', 'User', '2000-01-01', 'M', 'user', '63a9f0ea7bb98050796b649e85481845', 0),
-    ('Promoter', 'User', '2000-01-01', 'M', 'promoter', 'f04f17c8c22d85f9b5771d6ed952bd6e', 1),
+    ('Promoter', 'User', '2000-01-01', 'M', 'promoter', 'c2e91e2e25c962e8c913464dc27469d0', 1),
     ('Root', 'User', '1987-06-19', 'M', 'root', '63a9f0ea7bb98050796b649e85481845', 1),
-    ('Marco', 'Alberto', '2000-04-25', 'M', 'marco', 'f04f17c8c22d85f9b5771d6ed952bd6e', 0),
+    ('Marco', 'Alberto', '2000-04-25', 'M', 'marco', 'c2e91e2e25c962e8c913464dc27469d0', 0),
     ('Angelo', 'Spognardi', '2000-04-25', 'M', 'angsp', '63a9f0ea7bb98050796b649e85481845', 0),
     ('Luigi', 'Mancini', '2000-04-25', 'M', 'lvm', '5f4dcc3b5aa765d61d8327deb882cf99', 0),
-    ('Maria', 'Marsico', '2000-04-25', 'F', 'maria', '7b24afc8bc80e548d66c4e7ff72171c5', 0),
-    ('Chiara', 'Lesto', '2000-04-25', 'F', 'chiaral', '7b24afc8bc80e548d66c4e7ff72171c5', 0),
+    ('Maria', 'Marsico', '2000-04-25', 'F', 'maria', '6eb67e3155abcb9e647ea2fbb8178386', 0),
+    ('Chiara', 'Lesto', '2000-04-25', 'F', 'chiaral', '6eb67e3155abcb9e647ea2fbb8178386', 0),
     ('Tiziano', 'Acqua', '1990-04-23', 'M', 'tizq', '5f4dcc3b5aa765d61d8327deb882cf99', 0);
 
 INSERT INTO ImgMapping VALUES 
