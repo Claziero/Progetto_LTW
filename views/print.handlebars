@@ -5,7 +5,7 @@
         $(document).ready(function () {
             // Generazione del QR code per la prenotazione
             new QRCode($('#qrcode')[0], {
-                text: "email={{email}}|id={{id}}",
+                text: "username={{username}}|id={{id}}",
                 width: 200,
                 height: 200
             });
@@ -30,17 +30,17 @@
         <!-- Informazioni dell'evento -->
         <div class="header">Informazioni evento</div>
         <div class="body">
-            <div><span class="italic">Titolo: </span>{{titolo}}</div>
-            <div><span class="italic">Luogo: </span>{{luogo}}</div>
+            <div><span class="italic">Titolo: </span>{{title}}</div>
+            <div><span class="italic">Luogo: </span>{{location}}</div>
             <div><span class="italic">Data: </span>{{edataora}}</div>
         </div>
 
         <!-- Informazioni sulla prenotazione dell'utente -->
         <div class="header">La tua prenotazione</div>
         <div class="body">
-            <div><span class="italic">Nome: </span>{{nome}}</div>
+            <div><span class="italic">Nome: </span>{{name}}</div>
             <div><span class="italic">Cognome: </span>{{cognome}}</div>
-            <div><span class="italic">Email: </span>{{email}}</div>
+            <div><span class="italic">Username: </span>{{username}}</div>
             <div><span class="italic">Data: </span>{{pdataora}}</div>
         </div>
 

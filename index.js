@@ -96,16 +96,16 @@ app.get('/', async (req, res) => {
 
         // Formatta tutte le date ottenute
         query.forEach (elem => {
-            elem['dataora'] = db.formatDate(elem['dataora'].toString());
+            elem['datetime'] = db.formatDate(elem['datetime'].toString());
         });
         
         // Se l'utente è loggato allora visualizza il dropdown in alto a destra
         if (req.session.user) {
             logged = true;
-            utente = req.session.user.nome;
+            utente = req.session.user.name;
 
             // Esegui la query per vedere tutte le prenotazioni dell'utente
-            var prenotazioni = await db.prenotazioni(req.session.user.email);
+            var prenotazioni = await db.prenotazioni(req.session.user.username);
             
             // Ricava gli ID degli eventi prenotati
             var s = []
@@ -187,16 +187,16 @@ app.get('/[0-9]+', async (req, res) => {
 
         // Formatta tutte le date ottenute
         query.forEach (elem => {
-            elem['dataora'] = db.formatDate(elem['dataora'].toString());
+            elem['datetime'] = db.formatDate(elem['datetime'].toString());
         });
         
         // Se l'utente è loggato allora visualizza il dropdown in alto a destra
         if (req.session.user) {
             logged = true;
-            utente = req.session.user.nome;
+            utente = req.session.user.name;
 
             // Esegui la query per vedere tutte le prenotazioni dell'utente
-            var prenotazioni = await db.prenotazioni(req.session.user.email);
+            var prenotazioni = await db.prenotazioni(req.session.user.username);
             
             // Ricava gli ID degli eventi prenotati
             var s = []
@@ -295,16 +295,16 @@ app.get('/highlights/:n?', async (req, res) => {
         
         // Formatta tutte le date ottenute
         query.forEach (elem => {
-            elem['dataora'] = db.formatDate(elem['dataora'].toString());
+            elem['datetime'] = db.formatDate(elem['datetime'].toString());
         });
 
         // Se l'utente è loggato allora visualizza il dropdown in alto a destra
         if (req.session.user) {
             logged = true;
-            utente = req.session.user.nome;
+            utente = req.session.user.name;
 
             // Esegui la query per vedere tutte le prenotazioni dell'utente
-            var prenotazioni = await db.prenotazioni(req.session.user.email);
+            var prenotazioni = await db.prenotazioni(req.session.user.username);
             
             // Ricava gli ID degli eventi prenotati
             var s = []
@@ -404,16 +404,16 @@ app.get('/next/:n?', async (req, res) => {
         
         // Formatta tutte le date ottenute
         query.forEach (elem => {
-            elem['dataora'] = db.formatDate(elem['dataora'].toString());
+            elem['datetime'] = db.formatDate(elem['datetime'].toString());
         });
 
         // Se l'utente è loggato allora visualizza il dropdown in alto a destra
         if (req.session.user) {
             logged = true;
-            utente = req.session.user.nome;
+            utente = req.session.user.name;
 
             // Esegui la query per vedere tutte le prenotazioni dell'utente
-            var prenotazioni = await db.prenotazioni(req.session.user.email);
+            var prenotazioni = await db.prenotazioni(req.session.user.username);
             
             // Ricava gli ID degli eventi prenotati
             var s = []
@@ -513,13 +513,13 @@ app.get('/passed/:n?', async (req, res) => {
         
         // Formatta tutte le date ottenute
         query.forEach (elem => {
-            elem['dataora'] = db.formatDate(elem['dataora'].toString());
+            elem['datetime'] = db.formatDate(elem['datetime'].toString());
         });
 
         // Se l'utente è loggato allora visualizza il dropdown in alto a destra
         if (req.session.user) {
             logged = true;
-            utente = req.session.user.nome;
+            utente = req.session.user.name;
         }
         // Altrimenti mostra solo i pulsanti di login e registrazione
         else {
@@ -566,20 +566,20 @@ app.post('/signupValid', (req, res) => {
 
         // Inserisci i dati nel db
         var user = {
-            nome: req.body.nome,
-            cognome: req.body.cognome,
-            datanasc: req.body.data,
-            sesso: req.body.sesso,
-            email: req.body.email,
+            name: req.body.name,
+            surname: req.body.surname,
+            born: req.body.data,
+            gender: req.body.gender,
+            username: req.body.username,
             password: req.body.password,
-            privilegi: 0
+            privileges: 0
         };
 
         // Prova la registrazione
         db.insertUser(user).then(sign => {
             // Se c'è un errore nella registrazione
             if (sign == -1) {
-                console.log(">>Registrazione errata: email esistente (" + user.email + ")");
+                console.log(">>Registrazione errata: username esistente (" + user.username + ")");
 
                 res.render('signup', {
                     title: "Registrati", 
@@ -591,11 +591,11 @@ app.post('/signupValid', (req, res) => {
             }
             // Altrimenti vai avanti e crea la sessione
             else {
-                console.log(">>Nuovo utente registrato: " + req.body.email);
+                console.log(">>Nuovo utente registrato: " + req.body.username);
                 
                 req.session.user = {
-                    email: user.email,
-                    nome: user.nome.charAt(0).toUpperCase() + user.nome.slice(1)
+                    username: user.username,
+                    name: user.name.charAt(0).toUpperCase() + user.name.slice(1)
                 };
                 req.session.views = 0;
         
@@ -627,22 +627,22 @@ app.post('/loginValid', (req, res) => {
     try {
         // Incrementa il contatore di visualizzazioni della pagina
         req.session.views += 1;
-        console.log(">>Nuova richiesta di login: " + req.body.email);
+        console.log(">>Nuova richiesta di login: " + req.body.username);
 
         var user = {
-            email: req.body.email,
+            username: req.body.username,
             password: req.body.password
         };
 
         // Verifica le credenziali immesse
         db.logUser(user).then(log => {
             if (typeof log === 'string') {
-                console.log(">>Utente loggato: " + user.email);
+                console.log(">>Utente loggato: " + user.username);
 
                 // Imposta la sessione
                 req.session.user = {
-                    email: user.email,
-                    nome: log.charAt(0).toUpperCase() + log.slice(1)
+                    username: user.username,
+                    name: log.charAt(0).toUpperCase() + log.slice(1)
                 }
                 req.session.views = 0;
 
@@ -650,25 +650,25 @@ app.post('/loginValid', (req, res) => {
                 return res.redirect('/');
             }
             else if (log == -1) {
-                console.log(">>Accesso errato: pwd errata (" + user.email + ")");
+                console.log(">>Accesso errato: pwd errata (" + user.username + ")");
                 
                 res.render('signin', {
                     title: "Login", 
                     style: "style-signin.css",
                     js: "validateSignin.js",
-                    email: req.body.email,
+                    username: req.body.username,
                     error: 'La password non è corretta. Riprova'
                 });
                 return;
             }
             else if (log == -2) {
-                console.log(">>Accesso errato: mail errata (" + user.email + ")");
+                console.log(">>Accesso errato: mail errata (" + user.username + ")");
 
                 res.render('signin', {
                     title: "Login", 
                     style: "style-signin.css",
                     js: "validateSignin.js",
-                    email: req.body.email,
+                    username: req.body.username,
                     error: 'La mail non è registrata. Riprova'
                 });
                 return;
@@ -689,17 +689,17 @@ app.get('/settings', redirectLogin, async (req, res) => {
         // Se l'utente è loggato allora visualizza il dropdown in alto a destra
         if (req.session.user) {
             logged = true;
-            utente = req.session.user.nome;
+            utente = req.session.user.name;
         }
 
         // Prendi i dati utente da mettere nei campi
-        var userData = await db.getUserData(req.session.user.email);
+        var userData = await db.getUserData(req.session.user.username);
 
-        // Esegui la query per prendere il livello di privilegi
-        var livello = (await db.getLevel(req.session.user.email))[0].privilegi;
+        // Esegui la query per prendere il livello di privileges
+        var livello = (await db.getLevel(req.session.user.username))[0].privileges;
 
         // Formatta la data in YYYY-MM-DD
-        var d = new Date(userData[0].datanascita);
+        var d = new Date(userData[0].born);
         var data = d.getFullYear() + '-';
         if (d.getMonth() < 8) data += '0' 
         data += (d.getMonth() + 1) + '-';
@@ -712,10 +712,10 @@ app.get('/settings', redirectLogin, async (req, res) => {
             js: "validateSettings.js",
             log: logged,
             utente: utente,
-            nome: userData[0].nome,
-            cognome: userData[0].cognome,
+            name: userData[0].name,
+            surname: userData[0].surname,
             data: data,
-            privilegi: livello == 0
+            privileges: livello == 0
         });
     }
     catch (err) {
@@ -731,10 +731,10 @@ app.post('/changeUser', redirectLogin, async (req, res) => {
 
         // Inserisci i dati nel db
         var user = {
-            nome: req.body.nome,
-            cognome: req.body.cognome,
-            datanasc: req.body.data,
-            email: req.session.user.email,
+            name: req.body.name,
+            surname: req.body.surname,
+            born: req.body.data,
+            username: req.session.user.username,
             oldpwd: req.body.oldPsw,
             newpwd: req.body.password
         };
@@ -743,17 +743,17 @@ app.post('/changeUser', redirectLogin, async (req, res) => {
             // Se l'utente è loggato allora visualizza il dropdown in alto a destra
             if (req.session.user) {
                 logged = true;
-                utente = req.session.user.nome;
+                utente = req.session.user.name;
             }
 
             // Prendi i dati utente da mettere nei campi
-            var userData = await db.getUserData(req.session.user.email);
+            var userData = await db.getUserData(req.session.user.username);
 
-            // Esegui la query per prendere il livello di privilegi
-            var livello = (await db.getLevel(req.session.user.email))[0].privilegi;
+            // Esegui la query per prendere il livello di privileges
+            var livello = (await db.getLevel(req.session.user.username))[0].privileges;
 
             // Formatta la data in YYYY-MM-DD
-            var d = new Date(userData[0].datanascita);
+            var d = new Date(userData[0].born);
             var data = d.getFullYear() + '-';
             if (d.getMonth() < 8) data += '0' 
             data += (d.getMonth() + 1) + '-';
@@ -764,7 +764,7 @@ app.post('/changeUser', redirectLogin, async (req, res) => {
         db.changeUser(user).then(b => {
             // Se è andato a buon fine
             if (b == 0) {
-                console.log(">>Cambio dati effettuato (" + req.session.user.email + ")");
+                console.log(">>Cambio dati effettuato (" + req.session.user.username + ")");
                 
                 res.render('settings', {
                     title: "Impostazioni", 
@@ -772,10 +772,10 @@ app.post('/changeUser', redirectLogin, async (req, res) => {
                     js: "validateSettings.js",
                     log: logged,
                     utente: utente,
-                    nome: userData[0].nome,
-                    cognome: userData[0].cognome,
+                    name: userData[0].name,
+                    surname: userData[0].surname,
                     data: data,
-                    privilegi: livello == 0,
+                    privileges: livello == 0,
                     success: 'Cambio dati effettuato con successo. \
                         Effettua il logout per rendere effettive le modifiche.'
                 });
@@ -783,7 +783,7 @@ app.post('/changeUser', redirectLogin, async (req, res) => {
             }
             // Se c'è un errore nelle query
             else if (b == -1) {
-                console.log(">>Errore nel cambio dati (query) (" + user.email + ")");
+                console.log(">>Errore nel cambio dati (query) (" + user.username + ")");
 
                 res.render('settings', {
                     title: "Impostazioni", 
@@ -791,17 +791,17 @@ app.post('/changeUser', redirectLogin, async (req, res) => {
                     js: "validateSettings.js",
                     log: logged,
                     utente: utente,
-                    nome: userData[0].nome,
-                    cognome: userData[0].cognome,
+                    name: userData[0].name,
+                    surname: userData[0].surname,
                     data: data,
-                    privilegi: livello == 0,
+                    privileges: livello == 0,
                     error: 'Errore durante l\'aggiornamento dei dati. Riprova'
                 });
                 return;
             }
             // Se la password inserita non è corretta
             else if (b == -2) {
-                console.log(">>Errore nel cambio dati (pwd errata) (" + user.email + ")");
+                console.log(">>Errore nel cambio dati (pwd errata) (" + user.username + ")");
 
                 res.render('settings', {
                     title: "Impostazioni", 
@@ -809,10 +809,10 @@ app.post('/changeUser', redirectLogin, async (req, res) => {
                     js: "validateSettings.js",
                     log: logged,
                     utente: utente,
-                    nome: userData[0].nome,
-                    cognome: userData[0].cognome,
+                    name: userData[0].name,
+                    surname: userData[0].surname,
                     data: data,
-                    privilegi: livello == 0,
+                    privileges: livello == 0,
                     error: 'Attenzione: la password attuale non è corretta. Riprova'
                 });
                 return;
@@ -833,31 +833,31 @@ app.get('/profile', redirectLogin, async (req, res) => {
         // Se l'utente è loggato allora visualizza il dropdown in alto a destra
         if (req.session.user) {
             logged = true;
-            utente = req.session.user.nome;
+            utente = req.session.user.name;
         }
 
         // Esegui la query per le prenotazioni
-        var query = await db.prenotazioni(req.session.user.email);
+        var query = await db.prenotazioni(req.session.user.username);
 
         // Esegui la query per lo storico
-        var storico = await db.storico(req.session.user.email);
+        var storico = await db.storico(req.session.user.username);
 
-        // Esegui la query per prendere il livello di privilegi
-        var livello = (await db.getLevel(req.session.user.email))[0].privilegi;
+        // Esegui la query per prendere il livello di privileges
+        var livello = (await db.getLevel(req.session.user.username))[0].privileges;
 
         var orgs = false;
-        var email = null;
+        var username = null;
         var reqs = false;
 
         // Se sei un organizzatore 
         if (livello == 1) {
             // Cerca anche gli eventi organizzati
-            var org = await db.organizzazioni(req.session.user.email);
+            var org = await db.organizzazioni(req.session.user.username);
             orgs = org.length > 0;
 
             // Formatta tutte le date ottenute
             org.forEach (elem => {
-                elem['dataora'] = db.formatDate(elem['dataora'].toString());
+                elem['datetime'] = db.formatDate(elem['datetime'].toString());
             });
 
             // Cerca anche eventuali richieste di diventare organizzatore
@@ -869,14 +869,14 @@ app.get('/profile', redirectLogin, async (req, res) => {
         }
 
         // Altrimenti sei un utente normale che può chiedere di essere organizzatore
-        else email = req.session.user.email;
+        else username = req.session.user.username;
         
         // Formatta tutte le date ottenute
         query.forEach (elem => {
-            elem['dataora'] = db.formatDate(elem['dataora'].toString());
+            elem['datetime'] = db.formatDate(elem['datetime'].toString());
         });
         storico.forEach (elem => {
-            elem['dataora'] = db.formatDate(elem['dataora'].toString());
+            elem['datetime'] = db.formatDate(elem['datetime'].toString());
         });
 
         res.render('profile', {
@@ -888,10 +888,10 @@ app.get('/profile', redirectLogin, async (req, res) => {
             notEmpty: query.length > 0,
             log: logged,
             utente: utente,
-            privilegi: livello == 1,
+            privileges: livello == 1,
             numOrg: orgs,
             organizzazioni: org,
-            email: email,
+            username: username,
             richiesta: livello == 3,
             utenti: richieste,
             requests: reqs, 
@@ -907,7 +907,7 @@ app.get('/profile', redirectLogin, async (req, res) => {
 
 // Render della pagina di logout
 app.get('/logout', redirectLogin, (req, res) => {
-    console.log(">>Utente uscito: " + req.session.user.email);
+    console.log(">>Utente uscito: " + req.session.user.username);
 
     // Elimina la sessione
     req.session.destroy(err => {
@@ -929,19 +929,19 @@ app.get('/deleteUser', redirectLogin, (req, res) => {
         // Incrementa il contatore di visualizzazioni della pagina
         req.session.views += 1;
 
-        var email = req.session.user.email;
+        var username = req.session.user.username;
 
         // Prova a registrare la prenotazione
-        db.deleteUser(email).then(b => {
+        db.deleteUser(username).then(b => {
             if (b == 0) {
-                console.log(">>[Elim. utente] Eliminazione effettuata (" + email + ")");
+                console.log(">>[Elim. utente] Eliminazione effettuata (" + username + ")");
 
                 // Redireziona alla pagina di logout
                 res.redirect('/logout');
                 res.end();
             }
             else if (b == -1) {
-                console.log(">>[Elim. utente] Errore nella query (" + email + ")");
+                console.log(">>[Elim. utente] Errore nella query (" + username + ")");
 
                 // Redireziona alla pagina delle impostazioni
                 res.redirect('/settings');
@@ -962,21 +962,21 @@ app.post('/createEvent', redirectLogin, (req, res) => {
 
         // Recupera i dati inseriti
         var event = {
-            organizzatore: req.session.user.email,
-            titolo: req.body.titolo,
-            luogo: req.body.location,
-            tipo: req.body.eventType,
+            organizer: req.session.user.username,
+            title: req.body.title,
+            location: req.body.location,
+            type: req.body.eventType,
             data: req.body.dateTime,
-            posti: req.body.posti,
-            descrizione: req.body.descrizione,
-            immagine: req.body.imgEvent
+            seats: req.body.seats,
+            description: req.body.description,
+            image: req.body.imgEvent
         };
 
         // Inserisci l'evento nel db
         db.insertEvent(event).then(b => {
             // Se c'è un errore nell'inserimento dell'evento
             if (b == -1) {
-                console.log(">>Errore in inserimento evento (" + user.email + ")");
+                console.log(">>Errore in inserimento evento (" + user.username + ")");
 
                 // Redireziona alla pagina del profilo
                 res.redirect("/profile");
@@ -985,7 +985,7 @@ app.post('/createEvent', redirectLogin, (req, res) => {
             }
             // Altrimenti vai avanti e redireziona alla home
             else if (b == 0) {
-                console.log(">>Inserimento evento effettuato (" + req.session.user.email + ")");
+                console.log(">>Inserimento evento effettuato (" + req.session.user.username + ")");
                 
                 // Redireziona alla pagina home
                 res.redirect("/");
@@ -1051,11 +1051,11 @@ app.get('/beOrganizer=*', redirectLogin, (req, res) => {
         // Incrementa il contatore di visualizzazioni della pagina
         req.session.views += 1;
 
-        // Ottieni l'email dell'utente
-        var email = req.originalUrl.split('beOrganizer=')[1];
+        // Ottieni l'username dell'utente
+        var username = req.originalUrl.split('beOrganizer=')[1];
 
         // Prova a registrare la prenotazione
-        db.beOrganizer(email).then(b => {
+        db.beOrganizer(username).then(b => {
             if (b == 0) {
                 console.log(">>[Richiesta organ.] Richiesta OK");
 
@@ -1083,20 +1083,20 @@ app.get('/acceptUser=*', redirectLogin, (req, res) => {
         // Incrementa il contatore di visualizzazioni della pagina
         req.session.views += 1;
 
-        // Ottieni l'email dell'utente
-        var email = req.originalUrl.split('acceptUser=')[1];
+        // Ottieni l'username dell'utente
+        var username = req.originalUrl.split('acceptUser=')[1];
 
         // Prova a registrare la prenotazione
-        db.acceptRequest(email).then(b => {
+        db.acceptRequest(username).then(b => {
             if (b == 0) {
-                console.log(">>[Richiesta organ.] Richiesta Accettata (" + email + ")");
+                console.log(">>[Richiesta organ.] Richiesta Accettata (" + username + ")");
 
                 // Redireziona alla pagina del profilo
                 res.redirect('/profile');
                 res.end();
             }
             else if (b == -1) {
-                console.log(">>[Richiesta organ.] Errore nella query (" + email + ")");
+                console.log(">>[Richiesta organ.] Errore nella query (" + username + ")");
 
                 // Redireziona alla pagina del profilo
                 res.redirect('/profile');
@@ -1115,20 +1115,20 @@ app.get('/declineUser=*', redirectLogin, (req, res) => {
         // Incrementa il contatore di visualizzazioni della pagina
         req.session.views += 1;
 
-        // Ottieni l'email dell'utente
-        var email = req.originalUrl.split('declineUser=')[1];
+        // Ottieni l'username dell'utente
+        var username = req.originalUrl.split('declineUser=')[1];
 
         // Prova a registrare la prenotazione
-        db.declineRequest(email).then(b => {
+        db.declineRequest(username).then(b => {
             if (b == 0) {
-                console.log(">>[Richiesta organ.] Richiesta Respinta (" + email + ")");
+                console.log(">>[Richiesta organ.] Richiesta Respinta (" + username + ")");
 
                 // Redireziona alla pagina del profilo
                 res.redirect('/profile');
                 res.end();
             }
             else if (b == -1) {
-                console.log(">>[Richiesta organ.] Errore nella query (" + email + ")");
+                console.log(">>[Richiesta organ.] Errore nella query (" + username + ")");
 
                 // Redireziona alla pagina del profilo
                 res.redirect('/profile');
@@ -1184,7 +1184,7 @@ app.get('/unbook=*', redirectLogin, (req, res) => {
         var id = req.originalUrl.split('unbook=')[1];
 
         // Prova a registrare la prenotazione
-        db.unbook(id, req.session.user.email).then(b => {
+        db.unbook(id, req.session.user.username).then(b => {
             // Se è andata a buon fine l'eliminazione
             if (b == 0) 
                 console.log(">>[Pren.evento] Disdetta OK");
@@ -1270,20 +1270,20 @@ app.get('/search=:src/:n?', async (req, res) => {
         // Formatta tutte le date ottenute
         query.forEach (elem => {
             try {
-                elem['dataora'] = db.formatDate(elem['dataora'].toString());
+                elem['datetime'] = db.formatDate(elem['datetime'].toString());
             }
             catch (err) {
-                elem['dataora'] = "Data non disponibile";
+                elem['datetime'] = "Data non disponibile";
             }
         });
     
         // Se l'utente è loggato allora visualizza il dropdown in alto a destra
         if (req.session.user) {
             logged = true;
-            utente = req.session.user.nome;
+            utente = req.session.user.name;
     
             // Esegui la query per vedere tutte le prenotazioni dell'utente
-            var prenotazioni = await db.prenotazioni(req.session.user.email);
+            var prenotazioni = await db.prenotazioni(req.session.user.username);
             
             // Ricava gli ID degli eventi prenotati
             var s = []
@@ -1338,7 +1338,7 @@ app.get('/stampa=*', redirectLogin, async (req, res) => {
         var id = req.originalUrl.split('stampa=')[1];
 
         // Esegui la query
-        var query = await db.getPrintData(id, req.session.user.email);
+        var query = await db.getPrintData(id, req.session.user.username);
         
         // Formatta tutte le date ottenute
         query.forEach (elem => {
@@ -1367,7 +1367,7 @@ app.get('/faq', (req, res) => {
     // Se l'utente è loggato allora visualizza il dropdown in alto a destra
     if (req.session.user) {
         logged = true;
-        utente = req.session.user.nome;
+        utente = req.session.user.name;
     }
     // Altrimenti mostra solo i pulsanti di login e registrazione
     else {

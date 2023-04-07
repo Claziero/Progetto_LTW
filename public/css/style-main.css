@@ -15,14 +15,14 @@ body {
     font-family: var(--font-family);
 }
 
-div#titolo {
+div#title {
     font-size: 25px;
     text-align: center;
     padding-top: .5rem;
     font-weight: 400;
 }
 
-div#tipo {
+div#type {
     margin-bottom: .5rem;
     text-align: center;
 }

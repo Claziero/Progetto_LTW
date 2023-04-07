@@ -17,7 +17,7 @@
         <ul class="nav nav-tabs" id="prof-tab" role="tablist">
 
           <!-- Utente organizzatore -->
-          {{#if privilegi}}
+          {{#if privileges}}
           <li class="nav-item">
             <a class="nav-link active" id="prenotazioniTab" data-toggle="tab" onclick="showPrenotazioni()" role="tab"
               aria-controls="home" aria-selected="true">Prenotazioni</a>
@@ -64,7 +64,7 @@
         <div class="tab-content" id="prof-tabContent">
 
           <!-- Utente organizzatore -->
-          {{#if privilegi}}
+          {{#if privileges}}
 
           <!-- TAB prenotazioni -->
           <div class="tab-pane fade show active" id="prenotazioni" role="tabpanel" aria-labelledby="prenotazioni-tab">
@@ -81,8 +81,8 @@
               <!-- Dati prenotazioni -->
               {{#each prenotazioni}}
               <tr>
-                <td>{{titolo}}</td>
-                <td>{{dataora}}</td>
+                <td>{{title}}</td>
+                <td>{{datetime}}</td>
                 <td>
                   <button class="btn btn-disdici" onclick="unbook({{id}})">Disdici</button>
                   <button class="btn btn-print" onclick="stampa({{id}})">Stampa</button>
@@ -106,9 +106,9 @@
               <!-- Titolo e luogo dell'evento -->
               <div class="row mb-3">
                 <div class="col">
-                  <label for="titolo">Titolo</label>
+                  <label for="title">Titolo</label>
                   <br>
-                  <input type="text" class="form-control" name='titolo' placeholder="Titolo Evento" required />
+                  <input type="text" class="form-control" name='title' placeholder="Titolo Evento" required />
                 </div>
 
                 <div class="col">
@@ -118,7 +118,7 @@
                 </div>
               </div>
 
-              <!-- Tipo, dataora e posti -->
+              <!-- Tipo, datetime e posti -->
               <div class="row mb-3">
                 <!-- Tipo evento -->
                 <div class="col col-xl-4">
@@ -142,9 +142,9 @@
 
                 <!-- Posti disponibili -->
                 <div class="col col-xl-4">
-                  <label for="posti">Posti</label>
+                  <label for="seats">Posti</label>
                   <br>
-                  <input type="number" class="form-control" name="posti" min="2" required />
+                  <input type="number" class="form-control" name="seats" min="2" required />
                 </div>
               </div>
             </form>
@@ -153,9 +153,9 @@
             <div class="row">
               <!-- Descrizione -->
               <div class="col-xl-8">
-                <label for="descrizione">Descrizione</label>
+                <label for="description">Descrizione</label>
                 <br>
-                <textarea rows="5" cols="100" class="form-control" form="creaEvento" name="descrizione" maxlength="115"
+                <textarea rows="5" cols="100" class="form-control" form="creaEvento" name="description" maxlength="115"
                   placeholder="Descrizione dell'evento" required></textarea>
               </div>
 
@@ -167,7 +167,7 @@
                   <br>
                   <select name="imgEvent" class="form-select" form="creaEvento" required>
                     {{#each images}}
-                    <option value="{{nome}}">{{titolo}}</option>
+                    <option value="{{name}}">{{title}}</option>
                     {{/each}}
                   </select>
                 </div>
@@ -190,19 +190,19 @@
               <tr>
                 <th>Nome</th>
                 <th>Cognome</th>
-                <th>Email</th>
+                <th>Username</th>
                 <th>Azioni</th>
               </tr>
 
               <!-- Dati degli utenti -->
               {{#each utenti}}
               <tr>
-                <td>{{nome}}</td>
-                <td>{{cognome}}</td>
-                <td>{{email}}</td>
+                <td>{{name}}</td>
+                <td>{{surname}}</td>
+                <td>{{username}}</td>
                 <td>
-                  <button class="btn btn-confirm" onclick="acceptUser('{{email}}')">Accetta</button>
-                  <button class="btn btn-disdici" onclick="declineUser('{{email}}')">Respingi</button>
+                  <button class="btn btn-confirm" onclick="acceptUser('{{username}}')">Accetta</button>
+                  <button class="btn btn-disdici" onclick="declineUser('{{username}}')">Respingi</button>
                 </td>
               </tr>
               {{/each}}
@@ -229,8 +229,8 @@
               <!-- Dati organizzazioni -->
               {{#each organizzazioni}}
               <tr>
-                <td>{{titolo}}</td>
-                <td>{{dataora}}</td>
+                <td>{{title}}</td>
+                <td>{{datetime}}</td>
                 <td>
                   <button class="btn btn-disdici" onclick="remove({{id}})">Rimuovi</button>
                 </td>
@@ -259,9 +259,9 @@
               <!-- Dati prenotazioni -->
               {{#each storico}}
               <tr>
-                <td>{{titolo}}</td>
-                <td>{{dataora}}</td>
-                <td>{{luogo}}</td>
+                <td>{{title}}</td>
+                <td>{{datetime}}</td>
+                <td>{{location}}</td>
               </tr>
               {{/each}}
             </table>
@@ -291,8 +291,8 @@
               <!-- Dati prenotazioni -->
               {{#each prenotazioni}}
               <tr>
-                <td>{{titolo}}</td>
-                <td>{{dataora}}</td>
+                <td>{{title}}</td>
+                <td>{{datetime}}</td>
                 <td>
                   <button class="btn btn-disdici" onclick="unbook({{id}})">Disdici</button>
                   <button class="btn btn-print" onclick="stampa({{id}})">Stampa</button>
@@ -321,7 +321,7 @@
 
               <!-- Se non hai richiesto di essere organizzatore allora mostra il pulsante (unless == if not) -->
               {{#unless richiesta}}
-              <button class="btn btn-confirm mt-3" id="btnRichiedi" onclick="richiediOrg('{{email}}')">Richiedi</button>
+              <button class="btn btn-confirm mt-3" id="btnRichiedi" onclick="richiediOrg('{{username}}')">Richiedi</button>
               {{/unless}}
             </div>
           </div>
@@ -340,9 +340,9 @@
               <!-- Dati prenotazioni -->
               {{#each storico}}
               <tr>
-                <td>{{titolo}}</td>
-                <td>{{dataora}}</td>
-                <td>{{luogo}}</td>
+                <td>{{title}}</td>
+                <td>{{datetime}}</td>
+                <td>{{location}}</td>
               </tr>
               {{/each}}
             </table>

@@ -75,8 +75,8 @@ function enableChanges() {
     $("#btnModifica").hide();
     $('#btnSubmit').removeAttr('hidden');
     $('#btnReset').removeAttr('hidden');
-    $('#nome').removeAttr('readonly');
-    $('#cognome').removeAttr('readonly');
+    $('#name').removeAttr('readonly');
+    $('#surname').removeAttr('readonly');
     $('#oldPsw').removeAttr('readonly');
     $('#password').removeAttr('readonly');
     $('#password_repeat').removeAttr('readonly');
@@ -87,8 +87,8 @@ function disableChanges() {
     $("#btnModifica").show();
     $('#btnSubmit').attr('hidden', true);
     $('#btnReset').attr('hidden', true);
-    $('#nome').attr('readonly', true);
-    $('#cognome').attr('readonly', true);
+    $('#name').attr('readonly', true);
+    $('#surname').attr('readonly', true);
     $('#oldPsw').attr('readonly', true);
     $('#password').attr('readonly', true);
     $('#password_repeat').attr('readonly', true);

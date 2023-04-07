@@ -1,27 +1,27 @@
-<div class="card listing" id="e{{id}}" style="background-image: url('/img/{{immagine}}');">
+<div class="card listing" id="e{{id}}" style="background-image: url('/img/{{image}}');">
 
   <div class="card-inner">
-    <div id="titolo">{{titolo}}</div>
-    <div id="tipo">Tipo evento: {{tipo}}</div>
+    <div id="title">{{title}}</div>
+    <div id="type">Tipo evento: {{type}}</div>
 
-    <div id="dataora"><i class="fa-solid fa-calendar-days"></i> {{dataora}}</div>
-    {{#if disponibile}}
-    <div id="posti"><i class="fa-solid fa-chair"></i> Posti disponibili: {{postidisponibili}}</div>
+    <div id="datetime"><i class="fa-solid fa-calendar-days"></i> {{datetime}}</div>
+    {{#if available}}
+    <div id="seats"><i class="fa-solid fa-chair"></i> Posti disponibili: {{seats}}</div>
     {{/if}}
 
     <!-- Informazioni aggiuntive -->
-    <div id="luogo"><i class="fa-solid fa-map-location-dot"></i> {{luogo}}</div>
-    <div id="organizzatore"><i class="fa-solid fa-user-tag"></i> {{organizzatore}}</div>
+    <div id="location"><i class="fa-solid fa-map-location-dot"></i> {{location}}</div>
+    <div id="organizer"><i class="fa-solid fa-user-tag"></i> {{organizer}}</div>
 
     <hr class="my-1">
-    <p id="desc">{{descrizione}}</p>
+    <p id="desc">{{description}}</p>
     
     <!-- Messaggio di errore -->
     <div class="mt-2 text-danger" id="message"></div>
 
     <!-- Pulsanti -->
     <div class="buttons-par">
-      {{#if disponibile}}
+      {{#if available}}
         {{#if prenotato}}
         <button class="btn btn-prenotato" disabled>Prenotato</button>
         {{else}}

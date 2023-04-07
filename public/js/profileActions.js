@@ -41,20 +41,20 @@ function remove(id) {
 }
 
 // Funzione per accettare una nuova richiesta di organizzatore (organizzatore)
-function acceptUser(email) {
-    console.log("Accetta organizzatore utente=" + email);
+function acceptUser(username) {
+    console.log("Accetta organizzatore utente=" + username);
 
     // Reindirizza alla pagina di accettazione
-    window.location.replace("/acceptUser=" + email);
+    window.location.replace("/acceptUser=" + username);
     return;
 }
 
 // Funzione per respingere una nuova richiesta di organizzatore (organizzatore)
-function declineUser(email) {
-    console.log("Respingi organizzatore utente=" + email);
+function declineUser(username) {
+    console.log("Respingi organizzatore utente=" + username);
 
     // Reindirizza alla pagina di respinta
-    window.location.replace("/declineUser=" + email);
+    window.location.replace("/declineUser=" + username);
     return;
 }
 
@@ -197,14 +197,14 @@ function setDates() {
 }
 
 // Funzione per richiedere di essere un organizzatore
-function richiediOrg(email) {
-    console.log("Richiesta privilegi per utente=" + email);
+function richiediOrg(username) {
+    console.log("Richiesta privileges per utente=" + username);
 
     // Crea una nuova richiesta verso il server
     // Le risposte vengono poi gestite dalla funzione displayRes
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = displayRes;
-    httpRequest.open("GET", '/beOrganizer=' + email, true);
+    httpRequest.open("GET", '/beOrganizer=' + username, true);
     httpRequest.send();
 }
 

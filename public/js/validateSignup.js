@@ -28,9 +28,9 @@ function checkLgh() {
     }
 }
 
-// Verifica che il sesso sia tra le scelte ammissibili
+// Verifica che il gender sia tra le scelte ammissibili
 function checkSex() {
-    var a = $('#sesso').val();
+    var a = $('#gender').val();
     return (a == 'M' || a == 'F' || a == 'U');
 }
 

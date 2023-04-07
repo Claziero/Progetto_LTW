@@ -3,7 +3,7 @@ CREATE OR REPLACE FUNCTION diminuisci_posti() RETURNS TRIGGER AS
 $$
 	BEGIN
 		UPDATE event
-			SET postidisponibili = postidisponibili - 1
+			SET seats = seats - 1
             WHERE ID = NEW.ID_Event;
 		RETURN null;
 	END;
@@ -14,7 +14,7 @@ CREATE OR REPLACE FUNCTION aumenta_posti() RETURNS TRIGGER AS
 $$
 	BEGIN
 		UPDATE event
-			SET postidisponibili = postidisponibili + 1
+			SET seats = seats + 1
             WHERE ID = OLD.ID_Event;
 		RETURN null;
 	END;
@@ -27,13 +27,13 @@ FOR EACH ROW EXECUTE PROCEDURE diminuisci_posti();
 CREATE OR REPLACE TRIGGER trigger_delete_prenotazione AFTER DELETE ON booking
 FOR EACH ROW EXECUTE PROCEDURE aumenta_posti();
 
--- Funzione per aggiornare i flag "passato" e "disponibile" in base al timestamp attuale
+-- Funzione per aggiornare i flag "passed" e "available" in base al timestamp attuale
 CREATE OR REPLACE FUNCTION set_flags() RETURNS TRIGGER AS
 $$
 	BEGIN
 		UPDATE event
-			SET passato = true, disponibile = false
-            WHERE dataora < (SELECT NOW()::timestamp);
+			SET passed = true, available = false
+            WHERE datetime < (SELECT NOW()::timestamp);
 		RETURN null;
 	END;
 $$ LANGUAGE PLPGSQL;

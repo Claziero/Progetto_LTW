@@ -18,16 +18,16 @@
                 <div class="row gx-3 mb-3">
                   <!-- Nome -->
                   <div class="col-md-6">
-                    <label class="small" for="nome">Nome</label>
-                    <input class="form-control" id="nome" name="nome" type="text" placeholder="Inserire nome"
-                      value="{{nome}}" readonly required />
+                    <label class="small" for="name">Nome</label>
+                    <input class="form-control" id="name" name="name" type="text" placeholder="Inserire name"
+                      value="{{name}}" readonly required />
                   </div>
 
                   <!-- Cognome -->
                   <div class="col-md-6">
-                    <label class="small" for="cognome">Cognome</label>
-                    <input class="form-control" id="cognome" name="cognome" type="text" placeholder="Inserire cognome"
-                      value="{{cognome}}" readonly required />
+                    <label class="small" for="surname">Cognome</label>
+                    <input class="form-control" id="surname" name="surname" type="text" placeholder="Inserire surname"
+                      value="{{surname}}" readonly required />
                   </div>
                 </div>
 
@@ -93,7 +93,7 @@
         </div>
 
         <!-- Rimozione account (solo utenti standard) -->
-        {{#if privilegi}}
+        {{#if privileges}}
         <div class="col-md-8 col-sm-12">
           <div class="card mb-4">
             <div class="card-header">Il tuo profilo</div>

@@ -1,51 +1,51 @@
 /* Tabella Utenti iscritti 
  * Gli utenti possono essere di vari tipi (con vari privilegi):
- * Privilegi=0 => Users standard
- * Privilegi=1 => Users organizzatore 
- * Privilegi=2 => DBA (massimo livello di privilegi)
- * Privilegi=3 => Users standard in attesa di diventare organizzatore
+ * Privileges=0 => Users standard
+ * Privileges=1 => Users organizzatore 
+ * Privileges=2 => DBA (massimo livello di privilegi)
+ * Privileges=3 => Users standard in attesa di diventare organizzatore
  * Password salvate in formato MD5
 */
 CREATE TABLE Users(
-    Nome                VARCHAR NOT NULL,
-    Cognome             VARCHAR NOT NULL,
-    DataNascita         DATE NOT NULL,
-    Sesso               CHAR(1) NOT NULL,
-    Email               VARCHAR,
-    Passwd              VARCHAR NOT NULL,
-    Privilegi           INT NOT NULL,
+    Name                VARCHAR NOT NULL,
+    Surname             VARCHAR NOT NULL,
+    Born                DATE NOT NULL,
+    Gender              CHAR(1) NOT NULL,
+    Username            VARCHAR,
+    Password            VARCHAR NOT NULL,
+    Privileges          INT NOT NULL,
     
-    PRIMARY KEY (Email)
+    PRIMARY KEY (Username)
 );
 
 /* Tabella per il mapping tra il nome di un immagine e il suo titolo */
 CREATE TABLE ImgMapping(
-    Nome                VARCHAR,
-    Titolo              VARCHAR,
+    Name                VARCHAR,
+    Title               VARCHAR,
 
-    PRIMARY KEY (Nome)
+    PRIMARY KEY (Name)
 );
 
 /* Tabella Eventi organizzati
- * Un evento può essere ancora disponibile oppure già passato (non prenotabile)
+ * Un evento può essere ancora disponibile oppure già passed (non prenotabile)
  * ed ha un numero limitato di posti.
 */
 CREATE TABLE Event(
     ID                  INT,
-    Organizzatore       VARCHAR NOT NULL,
-    Titolo              VARCHAR NOT NULL,
-    Tipo                VARCHAR,
-    Luogo               VARCHAR,
-    DataOra             TIMESTAMP,
-    PostiDisponibili    INT,
-    Descrizione         VARCHAR,
-    Disponibile         BOOLEAN,
-    Passato             BOOLEAN,
-    Immagine            VARCHAR,
+    Organizer           VARCHAR NOT NULL,
+    Title               VARCHAR NOT NULL,
+    Type                VARCHAR,
+    Location            VARCHAR,
+    DateTime            TIMESTAMP,
+    Seats               INT,
+    Description         VARCHAR,
+    Available           BOOLEAN,
+    Passed              BOOLEAN,
+    Image               VARCHAR,
 
     PRIMARY KEY (ID),
-    FOREIGN KEY (Organizzatore) REFERENCES Users,
-    FOREIGN KEY (Immagine) REFERENCES ImgMapping
+    FOREIGN KEY (Organizer) REFERENCES Users,
+    FOREIGN KEY (Image) REFERENCES ImgMapping
 );
 
 /* Tabella delle prenotazioni
@@ -53,11 +53,11 @@ CREATE TABLE Event(
 */
 CREATE TABLE Booking(
     ID_Event           INT,
-    Email_User        VARCHAR,
-    DataOra             TIMESTAMP,
+    Username_User      VARCHAR,
+    DateTime           TIMESTAMP,
 
-    PRIMARY KEY (ID_Event, Email_User),
-    FOREIGN KEY (Email_User) REFERENCES Users,
+    PRIMARY KEY (ID_Event, Username_User),
+    FOREIGN KEY (Username_User) REFERENCES Users,
     FOREIGN KEY (ID_Event) REFERENCES Event
 );
 
