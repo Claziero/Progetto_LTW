@@ -1,14 +1,15 @@
 /* Inserimento tuple di prova nel DB */
 INSERT INTO Users VALUES
-    ('Normal', 'User', '2000-01-01', 'M', 'user', '63a9f0ea7bb98050796b649e85481845', 0),
-    ('Promoter', 'User', '2000-01-01', 'M', 'promoter', 'c2e91e2e25c962e8c913464dc27469d0', 1),
-    ('Root', 'User', '1987-06-19', 'M', 'root', '63a9f0ea7bb98050796b649e85481845', 1),
-    ('Marco', 'Alberto', '2000-04-25', 'M', 'marco', 'c2e91e2e25c962e8c913464dc27469d0', 0),
-    ('Angelo', 'Spognardi', '2000-04-25', 'M', 'angsp', '63a9f0ea7bb98050796b649e85481845', 0),
-    ('Luigi', 'Mancini', '2000-04-25', 'M', 'lvm', '5f4dcc3b5aa765d61d8327deb882cf99', 0),
-    ('Maria', 'Marsico', '2000-04-25', 'F', 'maria', '6eb67e3155abcb9e647ea2fbb8178386', 0),
-    ('Chiara', 'Lesto', '2000-04-25', 'F', 'chiaral', '6eb67e3155abcb9e647ea2fbb8178386', 0),
-    ('Tiziano', 'Acqua', '1990-04-23', 'M', 'tizq', '5f4dcc3b5aa765d61d8327deb882cf99', 0);
+    ('Normal', 'User', '2000-01-01', 'M', 'user', 'c2e91e2e25c962e8c913464dc27469d0', 0),
+    ('Promoter', 'User', '2000-01-01', 'M', 'promoter', '6eb67e3155abcb9e647ea2fbb8178386', 1),
+    ('Root', 'User', '1987-06-19', 'M', 'root', 'e4d38eb457992994cc35352da714f224', 1),
+    ('Marco', 'Alberto', '2000-04-25', 'M', 'marco', '292acb4f4f036140438fbe0124f8a856', 0),
+    ('Angelo', 'Paletta', '2000-04-25', 'M', 'fisher', '19b7728b8d80838cbd72d4bf72804661', 0),
+    ('Mario', 'Destrorsi', '2000-04-25', 'M', 'mariod', '8f4d99e6986f24e404273fd67b4cdcc2', 0),
+    ('Annamaria', 'Gonzalez', '2000-04-25', 'F', 'gonza', 'bc2c47c62d01724e1a9baab4e265bedf', 0),
+    ('Chiara', 'Lesto', '2000-04-25', 'F', 'chiaral', 'd3558a654a9febf67075f580a09f034c', 0),
+    ('Giorgio', 'Corvi', '2000-04-25', 'M', 'graven', 'df9629432aa9cb425a91158e93b1013d', 0),
+    ('Tiziano', 'Acqua', '1990-04-23', 'M', 'tizq', 'a8fe87a7263f699d5b26226c531dcf1c', 0);
 
 INSERT INTO ImgMapping VALUES 
     ('NONE', 'Nessuna immagine'),
