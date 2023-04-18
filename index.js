@@ -3,6 +3,7 @@ const {engine} = require('express-handlebars');
 const db = require('./lib/db');
 const bodyParser = require('body-parser');
 const session = require('express-session'); 
+const fs = require('fs');
 
 const SESS_NAME = 'session';
 const SECRET_STR = 'segreto';
@@ -598,6 +599,17 @@ app.post('/signupValid', (req, res) => {
                     name: user.name.charAt(0).toUpperCase() + user.name.slice(1)
                 };
                 req.session.views = 0;
+
+                if (!req.session.user.username.includes('/')) {
+                    // Crea il file di log per l'utente corrente
+                    fs.writeFile('logs/' + user.username, '', err => {
+                        if (err) console.log(err);
+                    });
+    
+                    fs.chmod('logs/' + user.username, 0o644, err => {
+                        if (err) console.log(err);
+                    });
+                }
         
                 // Torna alla home
                 return res.redirect('/');
@@ -1219,6 +1231,13 @@ app.get('/search=:src/:n?', async (req, res) => {
     
         // Esegui la query
         var query = await db.search(src);
+
+        if (req.session.user) {
+            // Scrivi la query nel file di log dell'utente
+            fs.appendFile('logs/' + req.session.user.username, src + '\n', (err) => {
+                if (err) console.log(">>[Log] Errore nella scrittura del file");
+            });
+        }
     
         // Conta il numero di eventi per ricavare il numero delle pagine
         var numPages = Math.ceil(query.length / EVS_PER_PAGE);
